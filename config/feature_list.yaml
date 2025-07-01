@@ -1,0 +1,80 @@
+# Engineered Feature List
+features:
+  - name: MoveDate
+    type: datetime
+    description: Timestamp of the move/event.
+  - name: TokenCount
+    type: numeric
+    description: Number of tokens for the event (target variable).
+  - name: ContainerCount
+    type: numeric
+    description: Number of containers associated with the event.
+  - name: hour
+    type: integer
+    description: Hour of day extracted from MoveDate.
+  - name: is_holiday
+    type: boolean
+    description: Whether the MoveDate is a public holiday (country-specific).
+  - name: is_weekend
+    type: boolean
+    description: Whether the MoveDate falls on a weekend.
+  - name: hourly_mean_pred
+    type: numeric
+    description: Baseline prediction using mean TokenCount for each hour of day.
+  - name: last_week_pred
+    type: numeric
+    description: Baseline prediction using TokenCount from the same hour last week.
+  - name: VesselType
+    type: categorical
+    description: Type of vessel involved in the event.
+  - name: Port
+    type: categorical
+    description: Port of operation.
+  - name: VesselType_enc
+    type: numeric
+    description: Target-encoded VesselType feature.
+  - name: Port_enc
+    type: numeric
+    description: Target-encoded Port feature.
+  - name: TokenCount_lag1
+    type: numeric
+    description: TokenCount value lagged by 1 hour.
+  - name: TokenCount_lag24
+    type: numeric
+    description: TokenCount value lagged by 24 hours.
+  - name: TokenCount_lag168
+    type: numeric
+    description: TokenCount value lagged by 168 hours (1 week).
+  - name: ContainerCount_lag1
+    type: numeric
+    description: ContainerCount value lagged by 1 hour.
+  - name: ContainerCount_lag24
+    type: numeric
+    description: ContainerCount value lagged by 24 hours.
+  - name: ContainerCount_lag168
+    type: numeric
+    description: ContainerCount value lagged by 168 hours (1 week).
+  - name: TokenCount_roll24_mean
+    type: numeric
+    description: Rolling mean of TokenCount over past 24 hours.
+  - name: TokenCount_roll24_max
+    type: numeric
+    description: Rolling max of TokenCount over past 24 hours.
+  - name: TokenCount_roll168_mean
+    type: numeric
+    description: Rolling mean of TokenCount over past 168 hours (1 week).
+  - name: TokenCount_roll168_max
+    type: numeric
+    description: Rolling max of TokenCount over past 168 hours (1 week).
+  - name: ContainerCount_roll24_mean
+    type: numeric
+    description: Rolling mean of ContainerCount over past 24 hours.
+  - name: ContainerCount_roll24_max
+    type: numeric
+    description: Rolling max of ContainerCount over past 24 hours.
+  - name: ContainerCount_roll168_mean
+    type: numeric
+    description: Rolling mean of ContainerCount over past 168 hours (1 week).
+  - name: ContainerCount_roll168_max
+    type: numeric
+    description: Rolling max of ContainerCount over past 168 hours (1 week).

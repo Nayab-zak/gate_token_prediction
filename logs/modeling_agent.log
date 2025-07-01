@@ -1,0 +1,57 @@
+2025-06-30 10:52:24,273 - modeling_agent - INFO - Trained baseline predictors.
+2025-06-30 10:55:11,710 - modeling_agent - INFO - Trained baseline predictors.
+2025-06-30 10:55:23,928 - modeling_agent - INFO - Trained Poisson and Negative Binomial GLMs with features: ['MoveHour', 'ContainerCount', 'year', 'month', 'dayofweek', 'hour_sin', 'hour_cos', 'MoveType', 'TerminalID', 'Desig']
+2025-06-30 11:03:09,916 - modeling_agent - INFO - Trained baseline predictors.
+2025-06-30 11:03:22,065 - modeling_agent - INFO - Trained Poisson and Negative Binomial GLMs with features: ['MoveHour', 'ContainerCount', 'year', 'month', 'dayofweek', 'hour_sin', 'hour_cos', 'MoveType', 'TerminalID', 'Desig']
+2025-06-30 11:03:25,340 - modeling_agent - INFO - Trained LightGBM (MAE: 0.00), XGBoost (MAE: 0.06)
+2025-06-30 11:04:52,279 - modeling_agent - INFO - Best params saved: {'num_leaves': 77, 'learning_rate': 0.06260185340078568, 'n_estimators': 233}
+2025-06-30 11:07:14,075 - modeling_agent - INFO - Trained baseline predictors.
+2025-06-30 11:07:14,263 - modeling_agent - INFO - Trained LightGBM (MAE: 7.00), XGBoost (MAE: 2.00)
+2025-06-30 11:14:38,195 - modeling_agent - INFO - Trained baseline predictors.
+2025-06-30 11:14:38,502 - modeling_agent - INFO - Trained LightGBM (MAE: 7.00), XGBoost (MAE: 2.00)
+2025-06-30 11:16:51,832 - modeling_agent - INFO - Trained baseline predictors.
+2025-06-30 11:16:54,375 - modeling_agent - INFO - Trained LightGBM (MAE: 7.00), XGBoost (MAE: 2.00)
+2025-06-30 11:35:08,644 - modeling_agent - INFO - Trained baseline predictors.
+2025-06-30 11:35:23,396 - modeling_agent - INFO - Trained Poisson and Negative Binomial GLMs with features: ['MoveHour', 'ContainerCount', 'TokenCount_lag1', 'TokenCount_lag24', 'TokenCount_lag168', 'TokenCount_roll24_mean', 'TokenCount_roll24_max', 'TokenCount_roll168_mean', 'TokenCount_roll168_max', 'MoveType', 'TerminalID', 'Desig']
+2025-06-30 11:35:28,625 - modeling_agent - INFO - Trained LightGBM (MAE: 0.00), XGBoost (MAE: 0.02)
+2025-06-30 11:37:16,369 - modeling_agent - INFO - Best params saved: {'num_leaves': 70, 'learning_rate': 0.09789570538723635, 'n_estimators': 166}
+2025-06-30 11:39:43,813 - modeling_agent - INFO - Trained baseline predictors.
+2025-06-30 11:39:57,395 - modeling_agent - INFO - Trained Poisson and Negative Binomial GLMs with features: ['MoveHour', 'ContainerCount', 'TokenCount_lag1', 'TokenCount_lag24', 'TokenCount_lag168', 'TokenCount_roll24_mean', 'TokenCount_roll24_max', 'TokenCount_roll168_mean', 'TokenCount_roll168_max', 'MoveType', 'TerminalID', 'Desig']
+2025-06-30 11:40:02,426 - modeling_agent - INFO - Trained LightGBM (MAE: 0.00), XGBoost (MAE: 0.02)
+2025-06-30 11:42:24,909 - modeling_agent - INFO - Best params saved: {'num_leaves': 128, 'learning_rate': 0.057170855235278026, 'n_estimators': 231}
+2025-06-30 11:46:49,910 - modeling_agent - INFO - Trained baseline predictors.
+2025-06-30 11:47:03,663 - modeling_agent - INFO - Trained Poisson and Negative Binomial GLMs with features: ['MoveHour', 'ContainerCount', 'TokenCount_lag1', 'TokenCount_lag24', 'TokenCount_lag168', 'TokenCount_roll24_mean', 'TokenCount_roll24_max', 'TokenCount_roll168_mean', 'TokenCount_roll168_max', 'MoveType', 'TerminalID', 'Desig']
+2025-06-30 11:47:09,367 - modeling_agent - INFO - Trained LightGBM (MAE: 0.00), XGBoost (MAE: 0.02)
+2025-06-30 11:49:34,133 - modeling_agent - INFO - Best params saved: {'num_leaves': 123, 'learning_rate': 0.0473264014980615, 'n_estimators': 297}
+2025-06-30 12:16:21,228 - modeling_agent - INFO - Trained baseline predictors.
+2025-06-30 12:16:28,741 - modeling_agent - INFO - Trained Poisson and Negative Binomial GLMs with features: ['MoveHour', 'ContainerCount', 'TokenCount_lag1', 'TokenCount_lag24', 'TokenCount_lag168', 'TokenCount_roll24_mean', 'TokenCount_roll24_max', 'TokenCount_roll168_mean', 'TokenCount_roll168_max', 'year', 'month', 'MoveType', 'TerminalID', 'Desig']
+2025-06-30 12:17:56,891 - modeling_agent - INFO - Trained LightGBM (MAE: 0.00), XGBoost (MAE: 0.02)
+2025-06-30 12:20:13,981 - modeling_agent - INFO - Best params saved: {'num_leaves': 119, 'learning_rate': 0.06073830744953758, 'n_estimators': 227}
+2025-06-30 13:13:11,589 - modeling_agent - INFO - Trained baseline predictors.
+2025-06-30 13:13:14,127 - modeling_agent - INFO - Trained Poisson and Negative Binomial GLMs with features: ['MoveHour', 'ContainerCount', 'TokenCount_lag1', 'TokenCount_lag24', 'TokenCount_lag168', 'TokenCount_roll24_mean', 'TokenCount_roll24_max', 'TokenCount_roll168_mean', 'TokenCount_roll168_max', 'year', 'month', 'MoveType_enc', 'TerminalID_enc', 'Desig_enc']
+2025-06-30 13:13:20,433 - modeling_agent - INFO - Trained LightGBM (MAE: 0.00), XGBoost (MAE: 0.02)
+2025-06-30 13:16:00,484 - modeling_agent - INFO - Best params saved: {'num_leaves': 111, 'learning_rate': 0.053424209088189095, 'n_estimators': 257}
+2025-07-01 09:52:41,363 - modeling_agent - INFO - Trained baseline predictors.
+2025-07-01 09:52:46,883 - modeling_agent - INFO - Trained Poisson and Negative Binomial GLMs with features: ['MoveHour', 'ContainerCount', 'TokenCount_lag1', 'TokenCount_lag24', 'TokenCount_lag168', 'TokenCount_roll24_mean', 'TokenCount_roll24_max', 'TokenCount_roll168_mean', 'TokenCount_roll168_max', 'year', 'month', 'MoveType', 'TerminalID', 'Desig']
+2025-07-01 09:52:49,954 - modeling_agent - INFO - Trained LightGBM (MAE: 0.00), XGBoost (MAE: 0.00)
+2025-07-01 09:54:24,706 - modeling_agent - INFO - Best params saved: {'num_leaves': 46, 'learning_rate': 0.05714435037885707, 'n_estimators': 232}
+2025-07-01 11:04:37,769 - modeling_agent - INFO - Trained baseline predictors.
+2025-07-01 11:04:43,528 - modeling_agent - INFO - Trained Poisson and Negative Binomial GLMs with features: ['MoveHour', 'ContainerCount', 'TokenCount_lag1', 'TokenCount_lag24', 'TokenCount_lag168', 'TokenCount_roll24_mean', 'TokenCount_roll24_max', 'TokenCount_roll168_mean', 'TokenCount_roll168_max', 'year', 'month', 'MoveType', 'TerminalID', 'Desig']
+2025-07-01 11:05:06,147 - modeling_agent - INFO - Trained LightGBM (MAE: 0.00), XGBoost (MAE: 0.00)
+2025-07-01 11:06:12,804 - modeling_agent - INFO - Best params saved: {'num_leaves': 106, 'learning_rate': 0.10913743815280247, 'n_estimators': 116}
+2025-07-01 11:50:46,573 - modeling_agent - INFO - Trained baseline predictors.
+2025-07-01 11:50:51,126 - modeling_agent - INFO - Trained Poisson and Negative Binomial GLMs with features: ['MoveHour', 'ContainerCount', 'TokenCount_lag1', 'TokenCount_lag24', 'TokenCount_lag168', 'TokenCount_roll24_mean', 'TokenCount_roll24_max', 'TokenCount_roll168_mean', 'TokenCount_roll168_max', 'year', 'month', 'MoveType', 'TerminalID', 'Desig']
+2025-07-01 11:50:54,875 - modeling_agent - INFO - Trained LightGBM (MAE: 0.00), XGBoost (MAE: 0.00)
+2025-07-01 11:52:21,878 - modeling_agent - INFO - Best params saved: {'num_leaves': 64, 'learning_rate': 0.05648308143441754, 'n_estimators': 289}
+2025-07-01 12:06:14,461 - modeling_agent - INFO - Trained baseline predictors.
+2025-07-01 12:06:19,415 - modeling_agent - INFO - Trained Poisson and Negative Binomial GLMs with features: ['MoveHour', 'ContainerCount', 'TokenCount_lag1', 'TokenCount_lag24', 'TokenCount_lag168', 'TokenCount_roll24_mean', 'TokenCount_roll24_max', 'TokenCount_roll168_mean', 'TokenCount_roll168_max', 'year', 'month', 'MoveType', 'TerminalID', 'Desig']
+2025-07-01 12:06:23,800 - modeling_agent - INFO - Trained LightGBM (MAE: 0.00), XGBoost (MAE: 0.00)
+2025-07-01 12:08:00,725 - modeling_agent - INFO - Best params saved: {'num_leaves': 81, 'learning_rate': 0.049280949116278415, 'n_estimators': 268}
+2025-07-01 12:41:15,414 - modeling_agent - INFO - Trained baseline predictors.
+2025-07-01 12:41:20,101 - modeling_agent - INFO - Trained Poisson and Negative Binomial GLMs with features: ['MoveHour', 'ContainerCount', 'TokenCount_lag1', 'TokenCount_lag24', 'TokenCount_lag168', 'TokenCount_roll24_mean', 'TokenCount_roll24_max', 'TokenCount_roll168_mean', 'TokenCount_roll168_max', 'year', 'month', 'MoveType', 'TerminalID', 'Desig']
+2025-07-01 12:41:23,167 - modeling_agent - INFO - Trained LightGBM (MAE: 0.00), XGBoost (MAE: 0.00)
+2025-07-01 12:43:04,656 - modeling_agent - INFO - Best params saved: {'num_leaves': 107, 'learning_rate': 0.07137053581909446, 'n_estimators': 198}
+2025-07-01 13:13:15,676 - modeling_agent - INFO - Trained baseline predictors.
+2025-07-01 13:13:20,328 - modeling_agent - INFO - Trained Poisson and Negative Binomial GLMs with features: ['MoveHour', 'ContainerCount', 'TokenCount_lag1', 'TokenCount_lag24', 'TokenCount_lag168', 'TokenCount_roll24_mean', 'TokenCount_roll24_max', 'TokenCount_roll168_mean', 'TokenCount_roll168_max', 'year', 'month', 'MoveType', 'TerminalID', 'Desig']
+2025-07-01 13:13:23,433 - modeling_agent - INFO - Trained LightGBM (MAE: 0.00), XGBoost (MAE: 0.00)
+2025-07-01 13:14:44,516 - modeling_agent - INFO - Best params saved: {'num_leaves': 111, 'learning_rate': 0.07806033533680726, 'n_estimators': 172}

@@ -1,0 +1,415 @@
+2025-06-30 11:14:38,183 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.00%
+2025-06-30 11:14:38,188 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend           MAE          RMSE  count
+0           0           0  4.440892e-16  5.958082e-16      5
+1           1           1  3.108624e-16  4.965068e-16      5
+2025-06-30 11:16:51,819 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.00%
+2025-06-30 11:16:51,825 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend           MAE          RMSE  count
+0           0           0  4.440892e-16  5.958082e-16      5
+1           1           1  3.108624e-16  4.965068e-16      5
+2025-06-30 11:49:35,247 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.02, MAPE: 0.01%
+2025-06-30 12:21:19,926 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.02, MAPE: 0.01%
+2025-06-30 12:21:20,220 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002128  0.077512  816018
+1       False        True  0.001964  0.017223  101936
+2        True       False  0.001185  0.005339    4295
+3        True        True  0.001393  0.005749    3007
+2025-06-30 12:23:34,617 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.02, MAPE: 0.01%
+2025-06-30 12:23:34,882 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002128  0.077512  816018
+1       False        True  0.001964  0.017223  101936
+2        True       False  0.001185  0.005339    4295
+3        True        True  0.001393  0.005749    3007
+2025-06-30 12:30:29,008 - evaluation_agent - INFO - Rolling test results:
+           start        end       MAE       RMSE
+0     2016-01-01 2016-01-01  2.797370   4.698979
+1     2016-01-01 2016-01-01  3.894383   8.070964
+2     2016-01-01 2016-01-01  2.632232   4.600144
+3     2016-01-01 2016-01-01  1.249359   1.900243
+4     2016-01-01 2016-01-02  8.609890  19.034313
+...          ...        ...       ...        ...
+38541        NaT        NaT  1.977068   2.550031
+38542        NaT        NaT  4.666072  10.727927
+38543        NaT        NaT  2.814541   4.901094
+38544        NaT        NaT  7.076421  13.209865
+38545        NaT        NaT  6.715637   8.256826
+
+[38546 rows x 4 columns]
+2025-06-30 12:30:29,252 - evaluation_agent - INFO - PSI flagged features:
+Empty DataFrame
+Columns: [feature, month, psi]
+Index: []
+2025-06-30 12:30:29,296 - evaluation_agent - INFO - Holdout MAE: 3.00, RMSE: 6.13, MAPE: 15.93%
+2025-06-30 12:30:29,541 - evaluation_agent - INFO - PSI flagged features:
+Empty DataFrame
+Columns: [feature, month, psi]
+Index: []
+2025-06-30 13:00:21,684 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.02, MAPE: 0.01%
+2025-06-30 13:00:21,954 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002128  0.077512  816018
+1       False        True  0.001964  0.017223  101936
+2        True       False  0.001185  0.005339    4295
+3        True        True  0.001393  0.005749    3007
+2025-06-30 13:05:08,809 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.02, MAPE: 0.01%
+2025-06-30 13:05:09,064 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002128  0.077512  816018
+1       False        True  0.001964  0.017223  101936
+2        True       False  0.001185  0.005339    4295
+3        True        True  0.001393  0.005749    3007
+2025-06-30 13:11:56,652 - evaluation_agent - INFO - Rolling test results:
+           start        end       MAE       RMSE
+0     2016-01-01 2016-01-01  2.812941   4.471070
+1     2016-01-01 2016-01-01  3.474041   7.877607
+2     2016-01-01 2016-01-01  2.506180   4.460404
+3     2016-01-01 2016-01-01  1.473878   2.024421
+4     2016-01-01 2016-01-02  8.637582  19.741350
+...          ...        ...       ...        ...
+38541        NaT        NaT  1.811060   2.322000
+38542        NaT        NaT  5.209024  10.669410
+38543        NaT        NaT  2.957277   4.768198
+38544        NaT        NaT  7.274501  13.412000
+38545        NaT        NaT  5.484885   6.490050
+
+[38546 rows x 4 columns]
+2025-06-30 13:11:56,894 - evaluation_agent - INFO - PSI flagged features:
+Empty DataFrame
+Columns: [feature, month, psi]
+Index: []
+2025-06-30 13:18:12,960 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.02, MAPE: 0.01%
+2025-06-30 13:18:13,221 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002109  0.077485  816018
+1       False        True  0.001948  0.017089  101936
+2        True       False  0.001171  0.005035    4295
+3        True        True  0.001380  0.005615    3007
+2025-06-30 13:21:35,635 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.02, MAPE: 0.01%
+2025-06-30 13:21:35,895 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002109  0.077485  816018
+1       False        True  0.001948  0.017089  101936
+2        True       False  0.001171  0.005035    4295
+3        True        True  0.001380  0.005615    3007
+2025-06-30 13:22:33,231 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.02, MAPE: 0.01%
+2025-06-30 13:22:33,492 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002109  0.077485  816018
+1       False        True  0.001948  0.017089  101936
+2        True       False  0.001171  0.005035    4295
+3        True        True  0.001380  0.005615    3007
+2025-06-30 13:29:14,037 - evaluation_agent - INFO - Rolling test results:
+           start        end       MAE       RMSE
+0     2016-01-01 2016-01-01  2.812941   4.471070
+1     2016-01-01 2016-01-01  3.474041   7.877607
+2     2016-01-01 2016-01-01  2.506180   4.460404
+3     2016-01-01 2016-01-01  1.473878   2.024421
+4     2016-01-01 2016-01-02  8.637582  19.741350
+...          ...        ...       ...        ...
+38541        NaT        NaT  1.811060   2.322000
+38542        NaT        NaT  5.209024  10.669410
+38543        NaT        NaT  2.957277   4.768198
+38544        NaT        NaT  7.274501  13.412000
+38545        NaT        NaT  5.484885   6.490050
+
+[38546 rows x 4 columns]
+2025-06-30 13:29:14,271 - evaluation_agent - INFO - PSI flagged features:
+Empty DataFrame
+Columns: [feature, month, psi]
+Index: []
+2025-06-30 13:29:14,300 - evaluation_agent - INFO - Holdout MAE: 3.24, RMSE: 6.09, MAPE: 16.73%
+2025-06-30 13:29:14,540 - evaluation_agent - INFO - PSI flagged features:
+Empty DataFrame
+Columns: [feature, month, psi]
+Index: []
+2025-06-30 13:29:15,683 - evaluation_agent - INFO - Report written to reports/final_report.md and plot saved to reports/final_report.png
+2025-06-30 13:58:19,400 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.02, MAPE: 0.01%
+2025-06-30 13:58:19,661 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002109  0.077485  816018
+1       False        True  0.001948  0.017089  101936
+2        True       False  0.001171  0.005035    4295
+3        True        True  0.001380  0.005615    3007
+2025-06-30 14:05:19,467 - evaluation_agent - INFO - Rolling test results:
+           start        end       MAE       RMSE
+0     2016-01-01 2016-01-01  2.812941   4.471070
+1     2016-01-01 2016-01-01  3.474041   7.877607
+2     2016-01-01 2016-01-01  2.506180   4.460404
+3     2016-01-01 2016-01-01  1.473878   2.024421
+4     2016-01-01 2016-01-02  8.637582  19.741350
+...          ...        ...       ...        ...
+38541        NaT        NaT  1.811060   2.322000
+38542        NaT        NaT  5.209024  10.669410
+38543        NaT        NaT  2.957277   4.768198
+38544        NaT        NaT  7.274501  13.412000
+38545        NaT        NaT  5.484885   6.490050
+
+[38546 rows x 4 columns]
+2025-06-30 14:05:20,571 - evaluation_agent - INFO - Holdout MAE: 3.24, RMSE: 6.09, MAPE: 16.73%
+2025-06-30 14:05:21,140 - evaluation_agent - INFO - PSI flagged features:
+Empty DataFrame
+Columns: [feature, month, psi]
+Index: []
+2025-06-30 14:05:22,255 - evaluation_agent - INFO - Report written to reports/final_report.md and plot saved to reports/final_report.png
+2025-06-30 14:11:38,332 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.02, MAPE: 0.01%
+2025-06-30 14:11:38,590 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002109  0.077485  816018
+1       False        True  0.001948  0.017089  101936
+2        True       False  0.001171  0.005035    4295
+3        True        True  0.001380  0.005615    3007
+2025-06-30 14:13:00,247 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.02, MAPE: 0.01%
+2025-06-30 14:13:00,508 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002109  0.077485  816018
+1       False        True  0.001948  0.017089  101936
+2        True       False  0.001171  0.005035    4295
+3        True        True  0.001380  0.005615    3007
+2025-06-30 14:20:10,562 - evaluation_agent - INFO - Rolling test results:
+           start        end       MAE       RMSE
+0     2016-01-01 2016-01-01  2.812941   4.471070
+1     2016-01-01 2016-01-01  3.474041   7.877607
+2     2016-01-01 2016-01-01  2.506180   4.460404
+3     2016-01-01 2016-01-01  1.473878   2.024421
+4     2016-01-01 2016-01-02  8.637582  19.741350
+...          ...        ...       ...        ...
+38541        NaT        NaT  1.811060   2.322000
+38542        NaT        NaT  5.209024  10.669410
+38543        NaT        NaT  2.957277   4.768198
+38544        NaT        NaT  7.274501  13.412000
+38545        NaT        NaT  5.484885   6.490050
+
+[38546 rows x 4 columns]
+2025-06-30 14:20:11,257 - evaluation_agent - INFO - Holdout MAE: 3.24, RMSE: 6.09, MAPE: 16.73%
+2025-06-30 14:20:11,493 - evaluation_agent - INFO - PSI flagged features:
+Empty DataFrame
+Columns: [feature, month, psi]
+Index: []
+2025-06-30 14:20:12,573 - evaluation_agent - INFO - Report written to reports/final_report.md and plot saved to reports/final_report.png
+2025-07-01 09:54:25,562 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 09:54:25,671 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 10:44:27,645 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 10:44:27,843 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 10:45:16,379 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 10:45:16,523 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 10:45:23,667 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 10:45:23,779 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 10:46:06,189 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 10:46:06,296 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 10:46:11,419 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 10:46:11,526 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 10:46:16,919 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 10:46:17,031 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 10:50:38,556 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 10:50:38,709 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 10:50:48,217 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 10:50:48,387 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 10:51:17,411 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 10:51:17,534 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 10:56:39,532 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 10:56:39,641 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 10:57:26,975 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 10:57:27,080 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 11:03:03,628 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 11:03:03,741 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 11:06:13,676 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 11:06:13,785 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 11:09:48,314 - evaluation_agent - INFO - Rolling test results:
+           start        end       MAE       RMSE
+0     2016-01-01 2016-01-01  2.834824   4.179698
+1     2016-01-01 2016-01-01  3.520275   7.678964
+2     2016-01-01 2016-01-01  2.281144   3.888390
+3     2016-01-01 2016-01-01  1.149142   1.572834
+4     2016-01-01 2016-01-02  8.161320  18.662539
+...          ...        ...       ...        ...
+15166 2023-12-09 2023-12-09  2.904946   5.450950
+15167 2023-12-09 2023-12-09  4.125035   5.870638
+15168 2023-12-09 2023-12-09  1.836609   3.066164
+15169 2023-12-09 2023-12-09  3.264399   7.055713
+15170 2023-12-09 2023-12-09  1.085364   1.446248
+
+[15171 rows x 4 columns]
+2025-07-01 11:52:22,853 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 11:52:22,972 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 11:55:13,352 - evaluation_agent - INFO - Rolling test results:
+           start        end       MAE       RMSE
+0     2016-01-01 2016-01-01  3.371858   5.046030
+1     2016-01-01 2016-01-01  3.827400   7.974922
+2     2016-01-01 2016-01-01  2.281678   3.923049
+3     2016-01-01 2016-01-01  1.042568   1.408520
+4     2016-01-01 2016-01-02  8.071397  18.293368
+...          ...        ...       ...        ...
+15166 2023-12-09 2023-12-09  2.940452   5.551251
+15167 2023-12-09 2023-12-09  3.929645   5.800627
+15168 2023-12-09 2023-12-09  1.825140   3.063762
+15169 2023-12-09 2023-12-09  3.183285   6.942002
+15170 2023-12-09 2023-12-09  1.364254   1.647985
+
+[15171 rows x 4 columns]
+2025-07-01 11:55:13,893 - evaluation_agent - INFO - Holdout MAE: 2.40, RMSE: 4.95, MAPE: 22.01%
+2025-07-01 11:55:14,048 - evaluation_agent - INFO - PSI flagged features:
+Empty DataFrame
+Columns: [feature, month, psi]
+Index: []
+2025-07-01 12:08:01,776 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 12:08:01,895 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 12:10:46,315 - evaluation_agent - INFO - Rolling test results:
+           start        end       MAE       RMSE
+0     2016-01-01 2016-01-01  3.371858   5.046030
+1     2016-01-01 2016-01-01  3.827400   7.974922
+2     2016-01-01 2016-01-01  2.281678   3.923049
+3     2016-01-01 2016-01-01  1.042568   1.408520
+4     2016-01-01 2016-01-02  8.071397  18.293368
+...          ...        ...       ...        ...
+15166 2023-12-09 2023-12-09  2.940452   5.551251
+15167 2023-12-09 2023-12-09  3.929645   5.800627
+15168 2023-12-09 2023-12-09  1.825140   3.063762
+15169 2023-12-09 2023-12-09  3.183285   6.942002
+15170 2023-12-09 2023-12-09  1.364254   1.647985
+
+[15171 rows x 4 columns]
+2025-07-01 12:10:46,859 - evaluation_agent - INFO - Holdout MAE: 2.40, RMSE: 4.95, MAPE: 22.01%
+2025-07-01 12:10:47,021 - evaluation_agent - INFO - PSI flagged features:
+Empty DataFrame
+Columns: [feature, month, psi]
+Index: []
+2025-07-01 12:10:49,134 - evaluation_agent - INFO - Report written to reports/final_report.md and plot saved to reports/final_report.png
+2025-07-01 12:43:05,676 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 12:43:05,792 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 12:46:05,562 - evaluation_agent - INFO - Rolling test results:
+           start        end       MAE       RMSE
+0     2016-01-01 2016-01-01  3.371858   5.046030
+1     2016-01-01 2016-01-01  3.827400   7.974922
+2     2016-01-01 2016-01-01  2.281678   3.923049
+3     2016-01-01 2016-01-01  1.042568   1.408520
+4     2016-01-01 2016-01-02  8.071397  18.293368
+...          ...        ...       ...        ...
+15166 2023-12-09 2023-12-09  2.940452   5.551251
+15167 2023-12-09 2023-12-09  3.929645   5.800627
+15168 2023-12-09 2023-12-09  1.825140   3.063762
+15169 2023-12-09 2023-12-09  3.183285   6.942002
+15170 2023-12-09 2023-12-09  1.364254   1.647985
+
+[15171 rows x 4 columns]
+2025-07-01 12:46:06,086 - evaluation_agent - INFO - Holdout MAE: 2.40, RMSE: 4.95, MAPE: 22.01%
+2025-07-01 12:46:06,230 - evaluation_agent - INFO - PSI flagged features:
+Empty DataFrame
+Columns: [feature, month, psi]
+Index: []
+2025-07-01 12:46:08,266 - evaluation_agent - INFO - Report written to reports/final_report.md and plot saved to reports/final_report.png
+2025-07-01 13:14:45,460 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 13:14:45,564 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 13:17:40,821 - evaluation_agent - INFO - Rolling test results:
+           start        end       MAE       RMSE
+0     2016-01-01 2016-01-01  3.371858   5.046030
+1     2016-01-01 2016-01-01  3.827400   7.974922
+2     2016-01-01 2016-01-01  2.281678   3.923049
+3     2016-01-01 2016-01-01  1.042568   1.408520
+4     2016-01-01 2016-01-02  8.071397  18.293368
+...          ...        ...       ...        ...
+15166 2023-12-09 2023-12-09  2.940452   5.551251
+15167 2023-12-09 2023-12-09  3.929645   5.800627
+15168 2023-12-09 2023-12-09  1.825140   3.063762
+15169 2023-12-09 2023-12-09  3.183285   6.942002
+15170 2023-12-09 2023-12-09  1.364254   1.647985
+
+[15171 rows x 4 columns]
+2025-07-01 13:17:41,368 - evaluation_agent - INFO - Holdout MAE: 2.40, RMSE: 4.95, MAPE: 22.01%
+2025-07-01 13:17:41,517 - evaluation_agent - INFO - PSI flagged features:
+Empty DataFrame
+Columns: [feature, month, psi]
+Index: []
+2025-07-01 13:17:43,620 - evaluation_agent - INFO - Report written to reports/final_report.md and plot saved to reports/final_report.png

@@ -1,0 +1,71 @@
+2025-06-30 10:45:19,114 - sanitization_agent - INFO - Dropped 1 rows exceeding missing threshold 0.5
+2025-06-30 10:45:19,115 - sanitization_agent - INFO - Filled 0 NA in TokenCount with 2.5
+2025-06-30 10:45:19,115 - sanitization_agent - INFO - Filled 1 NA in ContainerCount with 0
+2025-06-30 10:45:19,115 - sanitization_agent - INFO - Filled 0 NA in Other with unknown
+2025-06-30 10:45:19,115 - sanitization_agent - INFO - Removed 1 rows with negative values in TokenCount
+2025-06-30 10:45:19,115 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-06-30 10:45:19,115 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 3, 'rows_after': 1}
+2025-06-30 10:48:54,958 - sanitization_agent - INFO - Dropped 1 rows exceeding missing threshold 0.5
+2025-06-30 10:48:54,959 - sanitization_agent - INFO - Filled 0 NA in TokenCount with 2.5
+2025-06-30 10:48:54,959 - sanitization_agent - INFO - Filled 1 NA in ContainerCount with 0
+2025-06-30 10:48:54,959 - sanitization_agent - INFO - Filled 0 NA in Other with unknown
+2025-06-30 10:48:54,959 - sanitization_agent - INFO - Removed 1 rows with negative values in TokenCount
+2025-06-30 10:48:54,959 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-06-30 10:48:54,959 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 3, 'rows_after': 1}
+2025-06-30 11:07:14,276 - sanitization_agent - INFO - Dropped 1 rows exceeding missing threshold 0.5
+2025-06-30 11:07:14,276 - sanitization_agent - INFO - Filled 0 NA in TokenCount with 2.5
+2025-06-30 11:07:14,276 - sanitization_agent - INFO - Filled 1 NA in ContainerCount with 0
+2025-06-30 11:07:14,277 - sanitization_agent - INFO - Filled 0 NA in Other with unknown
+2025-06-30 11:07:14,277 - sanitization_agent - INFO - Removed 1 rows with negative values in TokenCount
+2025-06-30 11:07:14,277 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-06-30 11:07:14,277 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 3, 'rows_after': 1}
+2025-06-30 11:14:38,517 - sanitization_agent - INFO - Dropped 1 rows exceeding missing threshold 0.5
+2025-06-30 11:14:38,517 - sanitization_agent - INFO - Filled 0 NA in TokenCount with 2.5
+2025-06-30 11:14:38,518 - sanitization_agent - INFO - Filled 1 NA in ContainerCount with 0
+2025-06-30 11:14:38,518 - sanitization_agent - INFO - Filled 0 NA in Other with unknown
+2025-06-30 11:14:38,518 - sanitization_agent - INFO - Removed 1 rows with negative values in TokenCount
+2025-06-30 11:14:38,519 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-06-30 11:14:38,519 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 3, 'rows_after': 1}
+2025-06-30 11:16:54,383 - sanitization_agent - INFO - Dropped 1 rows exceeding missing threshold 0.5
+2025-06-30 11:16:54,383 - sanitization_agent - INFO - Filled 0 NA in TokenCount with 2.5
+2025-06-30 11:16:54,383 - sanitization_agent - INFO - Filled 1 NA in ContainerCount with 0
+2025-06-30 11:16:54,383 - sanitization_agent - INFO - Filled 0 NA in Other with unknown
+2025-06-30 11:16:54,384 - sanitization_agent - INFO - Removed 1 rows with negative values in TokenCount
+2025-06-30 11:16:54,384 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-06-30 11:16:54,384 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 3, 'rows_after': 1}
+2025-06-30 11:33:06,814 - sanitization_agent - INFO - Removed 0 rows with negative values in TokenCount
+2025-06-30 11:33:06,827 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-06-30 11:33:06,827 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 925256, 'rows_after': 925256}
+2025-06-30 11:33:58,685 - sanitization_agent - INFO - Removed 0 rows with negative values in TokenCount
+2025-06-30 11:33:58,696 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-06-30 11:33:58,696 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 925256, 'rows_after': 925256}
+2025-06-30 11:35:04,258 - sanitization_agent - INFO - Removed 0 rows with negative values in TokenCount
+2025-06-30 11:35:04,269 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-06-30 11:35:04,269 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 925256, 'rows_after': 925256}
+2025-06-30 11:39:39,786 - sanitization_agent - INFO - Removed 0 rows with negative values in TokenCount
+2025-06-30 11:39:39,795 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-06-30 11:39:39,795 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 925256, 'rows_after': 925256}
+2025-06-30 11:46:45,485 - sanitization_agent - INFO - Removed 0 rows with negative values in TokenCount
+2025-06-30 11:46:45,498 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-06-30 11:46:45,498 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 925256, 'rows_after': 925256}
+2025-07-01 09:28:58,021 - sanitization_agent - INFO - Removed 0 rows with negative values in TokenCount
+2025-07-01 09:28:58,031 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-07-01 09:28:58,031 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 925256, 'rows_after': 925256}
+2025-07-01 09:51:47,472 - sanitization_agent - INFO - Removed 0 rows with negative values in TokenCount
+2025-07-01 09:51:47,484 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-07-01 09:51:47,484 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 925256, 'rows_after': 925256}
+2025-07-01 11:03:43,639 - sanitization_agent - INFO - Removed 0 rows with negative values in TokenCount
+2025-07-01 11:03:43,649 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-07-01 11:03:43,649 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 925256, 'rows_after': 925256}
+2025-07-01 11:49:53,013 - sanitization_agent - INFO - Removed 0 rows with negative values in TokenCount
+2025-07-01 11:49:53,027 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-07-01 11:49:53,027 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 925256, 'rows_after': 925256}
+2025-07-01 12:05:19,275 - sanitization_agent - INFO - Removed 0 rows with negative values in TokenCount
+2025-07-01 12:05:19,286 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-07-01 12:05:19,286 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 925256, 'rows_after': 925256}
+2025-07-01 12:40:21,425 - sanitization_agent - INFO - Removed 0 rows with negative values in TokenCount
+2025-07-01 12:40:21,434 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-07-01 12:40:21,434 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 925256, 'rows_after': 925256}
+2025-07-01 13:12:21,790 - sanitization_agent - INFO - Removed 0 rows with negative values in TokenCount
+2025-07-01 13:12:21,799 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-07-01 13:12:21,799 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 925256, 'rows_after': 925256}

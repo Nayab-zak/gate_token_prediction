@@ -1,0 +1,59 @@
+2025-06-30 11:07:14,070 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1]
+2025-06-30 11:07:14,071 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [2], aggs: ['mean']
+2025-06-30 11:07:14,073 - feature_engineer_agent - INFO - Encoded categoricals: ['VesselType'] using target encoding
+2025-06-30 11:14:38,189 - feature_engineer_agent - WARNING - Country 'UAE' not supported for holidays. Setting is_holiday=False. Error: Country UAE not available
+2025-06-30 11:14:38,190 - feature_engineer_agent - WARNING - Country 'ZZZ' not supported for holidays. Setting is_holiday=False. Error: Country ZZZ not available
+2025-06-30 11:14:38,191 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1]
+2025-06-30 11:14:38,191 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [2], aggs: ['mean']
+2025-06-30 11:14:38,193 - feature_engineer_agent - INFO - Encoded categoricals: ['VesselType'] using target encoding
+2025-06-30 11:16:51,826 - feature_engineer_agent - WARNING - Country 'UAE' not supported for holidays. Setting is_holiday=False. Error: Country UAE not available
+2025-06-30 11:16:51,826 - feature_engineer_agent - WARNING - Country 'ZZZ' not supported for holidays. Setting is_holiday=False. Error: Country ZZZ not available
+2025-06-30 11:16:51,827 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1]
+2025-06-30 11:16:51,828 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [2], aggs: ['mean']
+2025-06-30 11:16:51,830 - feature_engineer_agent - INFO - Encoded categoricals: ['VesselType'] using target encoding
+2025-06-30 11:35:05,211 - feature_engineer_agent - WARNING - Country 'UAE' not supported for holidays. Setting is_holiday=False. Error: Country UAE not available
+2025-06-30 11:35:05,220 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-06-30 11:35:05,261 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-06-30 11:39:40,716 - feature_engineer_agent - WARNING - Country 'UAE' not supported for holidays. Setting is_holiday=False. Error: Country UAE not available
+2025-06-30 11:39:40,725 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-06-30 11:39:40,766 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-06-30 11:46:46,463 - feature_engineer_agent - WARNING - Country 'UAE' not supported for holidays. Setting is_holiday=False. Error: Country UAE not available
+2025-06-30 11:46:46,472 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-06-30 11:46:46,514 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-06-30 11:50:46,858 - feature_engineer_agent - WARNING - Country 'UAE' not supported for holidays. Setting is_holiday=False. Error: Country UAE not available
+2025-06-30 11:50:46,866 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-06-30 11:50:46,906 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-06-30 12:09:09,025 - feature_engineer_agent - INFO - Added custom UAE holiday flag for years: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023]
+2025-06-30 12:09:09,032 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-06-30 12:09:09,072 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-06-30 13:03:00,640 - feature_engineer_agent - INFO - Added custom UAE holiday flag for years: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023]
+2025-06-30 13:03:00,648 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-06-30 13:03:00,690 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-06-30 13:03:01,006 - feature_engineer_agent - INFO - Encoded categoricals: ['MoveType', 'TerminalID', 'Desig'] using target encoding
+2025-07-01 09:17:00,249 - feature_engineer_agent - INFO - Added custom UAE holiday flag for years: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023]
+2025-07-01 09:17:00,257 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-07-01 09:17:00,297 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-07-01 09:25:16,084 - feature_engineer_agent - INFO - Added custom UAE holiday flag for years: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023]
+2025-07-01 09:25:16,087 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-07-01 09:25:16,102 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-07-01 09:29:08,077 - feature_engineer_agent - INFO - Added custom UAE holiday flag for years: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023]
+2025-07-01 09:29:08,087 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-07-01 09:29:08,131 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-07-01 09:51:48,557 - feature_engineer_agent - INFO - Added custom UAE holiday flag for years: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023]
+2025-07-01 09:51:48,567 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-07-01 09:51:48,621 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-07-01 11:03:44,649 - feature_engineer_agent - INFO - Added custom UAE holiday flag for years: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023]
+2025-07-01 11:03:44,662 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-07-01 11:03:44,705 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-07-01 11:49:54,025 - feature_engineer_agent - INFO - Added custom UAE holiday flag for years: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023]
+2025-07-01 11:49:54,034 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-07-01 11:49:54,076 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-07-01 12:05:20,318 - feature_engineer_agent - INFO - Added custom UAE holiday flag for years: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023]
+2025-07-01 12:05:20,329 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-07-01 12:05:20,373 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-07-01 12:40:22,430 - feature_engineer_agent - INFO - Added custom UAE holiday flag for years: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023]
+2025-07-01 12:40:22,440 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-07-01 12:40:22,484 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-07-01 13:12:22,803 - feature_engineer_agent - INFO - Added custom UAE holiday flag for years: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023]
+2025-07-01 13:12:22,812 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-07-01 13:12:22,854 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']

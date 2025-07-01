@@ -1,0 +1,44 @@
+2025-06-30 11:07:13,937 - data_loader_agent - INFO - Loading data from file: /tmp/pytest-of-wk-12195/pytest-8/test_load_from_file_csv0/test.csv
+2025-06-30 11:07:13,939 - data_loader_agent - INFO - Loaded 1 rows
+2025-06-30 11:07:13,974 - data_loader_agent - INFO - Loading data from file: /tmp/pytest-of-wk-12195/pytest-8/test_load_from_file_xlsx0/test.xlsx
+2025-06-30 11:07:13,976 - data_loader_agent - INFO - Loaded 1 rows
+2025-06-30 11:07:13,977 - data_loader_agent - INFO - Loading data from file: /tmp/pytest-of-wk-12195/pytest-8/test_load_unknown_extension0/test.txt
+2025-06-30 11:07:13,977 - data_loader_agent - ERROR - Unsupported file extension: txt
+2025-06-30 11:14:38,140 - data_loader_agent - INFO - Loading data from file: /tmp/pytest-of-wk-12195/pytest-9/test_load_from_file_csv0/test.csv
+2025-06-30 11:14:38,142 - data_loader_agent - INFO - Loaded 1 rows
+2025-06-30 11:14:38,177 - data_loader_agent - INFO - Loading data from file: /tmp/pytest-of-wk-12195/pytest-9/test_load_from_file_xlsx0/test.xlsx
+2025-06-30 11:14:38,180 - data_loader_agent - INFO - Loaded 1 rows
+2025-06-30 11:14:38,180 - data_loader_agent - INFO - Loading data from file: /tmp/pytest-of-wk-12195/pytest-9/test_load_unknown_extension0/test.txt
+2025-06-30 11:14:38,181 - data_loader_agent - ERROR - Unsupported file extension: txt
+2025-06-30 11:16:51,734 - data_loader_agent - INFO - Loading data from file: /tmp/pytest-of-wk-12195/pytest-10/test_load_from_file_csv0/test.csv
+2025-06-30 11:16:51,736 - data_loader_agent - INFO - Loaded 1 rows
+2025-06-30 11:16:51,809 - data_loader_agent - INFO - Loading data from file: /tmp/pytest-of-wk-12195/pytest-10/test_load_from_file_xlsx0/test.xlsx
+2025-06-30 11:16:51,813 - data_loader_agent - INFO - Loaded 1 rows
+2025-06-30 11:16:51,814 - data_loader_agent - INFO - Loading data from file: /tmp/pytest-of-wk-12195/pytest-10/test_load_unknown_extension0/test.txt
+2025-06-30 11:16:51,814 - data_loader_agent - ERROR - Unsupported file extension: txt
+2025-06-30 11:31:03,915 - data_loader_agent - INFO - Loading data from file: data/Token_Input_data_desig.xlsx
+2025-06-30 11:31:23,384 - data_loader_agent - INFO - Loaded 925256 rows
+2025-06-30 11:32:47,048 - data_loader_agent - INFO - Loading data from file: data/Token_Input_data_desig.xlsx
+2025-06-30 11:33:06,486 - data_loader_agent - INFO - Loaded 925256 rows
+2025-06-30 11:33:39,039 - data_loader_agent - INFO - Loading data from file: data/Token_Input_data_desig.xlsx
+2025-06-30 11:33:58,400 - data_loader_agent - INFO - Loaded 925256 rows
+2025-06-30 11:34:44,847 - data_loader_agent - INFO - Loading data from file: data/Token_Input_data_desig.xlsx
+2025-06-30 11:35:03,961 - data_loader_agent - INFO - Loaded 925256 rows
+2025-06-30 11:39:20,271 - data_loader_agent - INFO - Loading data from file: data/Token_Input_data_desig.xlsx
+2025-06-30 11:39:39,507 - data_loader_agent - INFO - Loaded 925256 rows
+2025-06-30 11:46:26,016 - data_loader_agent - INFO - Loading data from file: data/Token_Input_data_desig.xlsx
+2025-06-30 11:46:45,190 - data_loader_agent - INFO - Loaded 925256 rows
+2025-07-01 09:28:38,532 - data_loader_agent - INFO - Loading data from file: data/Token_Input_data_desig.xlsx
+2025-07-01 09:28:57,744 - data_loader_agent - INFO - Loaded 925256 rows
+2025-07-01 09:51:27,947 - data_loader_agent - INFO - Loading data from file: data/Token_Input_data_desig.xlsx
+2025-07-01 09:51:47,124 - data_loader_agent - INFO - Loaded 925256 rows
+2025-07-01 11:03:23,484 - data_loader_agent - INFO - Loading data from file: data/Token_Input_data_desig.xlsx
+2025-07-01 11:03:43,362 - data_loader_agent - INFO - Loaded 925256 rows
+2025-07-01 11:49:33,053 - data_loader_agent - INFO - Loading data from file: data/Token_Input_data_desig.xlsx
+2025-07-01 11:49:52,729 - data_loader_agent - INFO - Loaded 925256 rows
+2025-07-01 12:04:59,311 - data_loader_agent - INFO - Loading data from file: data/Token_Input_data_desig.xlsx
+2025-07-01 12:05:18,989 - data_loader_agent - INFO - Loaded 925256 rows
+2025-07-01 12:40:01,902 - data_loader_agent - INFO - Loading data from file: data/Token_Input_data_desig.xlsx
+2025-07-01 12:40:21,148 - data_loader_agent - INFO - Loaded 925256 rows
+2025-07-01 13:12:01,975 - data_loader_agent - INFO - Loading data from file: data/Token_Input_data_desig.xlsx
+2025-07-01 13:12:21,512 - data_loader_agent - INFO - Loaded 925256 rows

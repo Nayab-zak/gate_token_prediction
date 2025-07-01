@@ -1,0 +1,14 @@
+artifact_uri: file:///home/wk-12195/Fatima/predictive_modeling/token_prediction/mlruns/185719559259451013/74e8d53ab784464995167fa18190417e/artifacts
+end_time: 1751357280731
+entry_point_name: ''
+experiment_id: '185719559259451013'
+lifecycle_stage: active
+run_id: 74e8d53ab784464995167fa18190417e
+run_name: train_model
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1751357174149
+status: 3
+tags: []
+user_id: wk-12195

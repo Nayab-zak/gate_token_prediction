@@ -1,0 +1,658 @@
+2025-06-30 10:45:19,114 - sanitization_agent - INFO - Dropped 1 rows exceeding missing threshold 0.5
+2025-06-30 10:45:19,115 - sanitization_agent - INFO - Filled 0 NA in TokenCount with 2.5
+2025-06-30 10:45:19,115 - sanitization_agent - INFO - Filled 1 NA in ContainerCount with 0
+2025-06-30 10:45:19,115 - sanitization_agent - INFO - Filled 0 NA in Other with unknown
+2025-06-30 10:45:19,115 - sanitization_agent - INFO - Removed 1 rows with negative values in TokenCount
+2025-06-30 10:45:19,115 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-06-30 10:45:19,115 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 3, 'rows_after': 1}
+2025-06-30 10:48:54,958 - sanitization_agent - INFO - Dropped 1 rows exceeding missing threshold 0.5
+2025-06-30 10:48:54,959 - sanitization_agent - INFO - Filled 0 NA in TokenCount with 2.5
+2025-06-30 10:48:54,959 - sanitization_agent - INFO - Filled 1 NA in ContainerCount with 0
+2025-06-30 10:48:54,959 - sanitization_agent - INFO - Filled 0 NA in Other with unknown
+2025-06-30 10:48:54,959 - sanitization_agent - INFO - Removed 1 rows with negative values in TokenCount
+2025-06-30 10:48:54,959 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-06-30 10:48:54,959 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 3, 'rows_after': 1}
+2025-06-30 10:52:24,273 - modeling_agent - INFO - Trained baseline predictors.
+2025-06-30 10:55:11,710 - modeling_agent - INFO - Trained baseline predictors.
+2025-06-30 10:55:23,928 - modeling_agent - INFO - Trained Poisson and Negative Binomial GLMs with features: ['MoveHour', 'ContainerCount', 'year', 'month', 'dayofweek', 'hour_sin', 'hour_cos', 'MoveType', 'TerminalID', 'Desig']
+2025-06-30 11:03:09,916 - modeling_agent - INFO - Trained baseline predictors.
+2025-06-30 11:03:22,065 - modeling_agent - INFO - Trained Poisson and Negative Binomial GLMs with features: ['MoveHour', 'ContainerCount', 'year', 'month', 'dayofweek', 'hour_sin', 'hour_cos', 'MoveType', 'TerminalID', 'Desig']
+2025-06-30 11:03:25,340 - modeling_agent - INFO - Trained LightGBM (MAE: 0.00), XGBoost (MAE: 0.06)
+2025-06-30 11:04:52,279 - modeling_agent - INFO - Best params saved: {'num_leaves': 77, 'learning_rate': 0.06260185340078568, 'n_estimators': 233}
+2025-06-30 11:07:13,937 - data_loader_agent - INFO - Loading data from file: /tmp/pytest-of-wk-12195/pytest-8/test_load_from_file_csv0/test.csv
+2025-06-30 11:07:13,939 - data_loader_agent - INFO - Loaded 1 rows
+2025-06-30 11:07:13,974 - data_loader_agent - INFO - Loading data from file: /tmp/pytest-of-wk-12195/pytest-8/test_load_from_file_xlsx0/test.xlsx
+2025-06-30 11:07:13,976 - data_loader_agent - INFO - Loaded 1 rows
+2025-06-30 11:07:13,977 - data_loader_agent - INFO - Loading data from file: /tmp/pytest-of-wk-12195/pytest-8/test_load_unknown_extension0/test.txt
+2025-06-30 11:07:13,977 - data_loader_agent - ERROR - Unsupported file extension: txt
+2025-06-30 11:07:14,070 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1]
+2025-06-30 11:07:14,071 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [2], aggs: ['mean']
+2025-06-30 11:07:14,073 - feature_engineer_agent - INFO - Encoded categoricals: ['VesselType'] using target encoding
+2025-06-30 11:07:14,075 - modeling_agent - INFO - Trained baseline predictors.
+2025-06-30 11:07:14,263 - modeling_agent - INFO - Trained LightGBM (MAE: 7.00), XGBoost (MAE: 2.00)
+2025-06-30 11:07:14,267 - preprocessing_agent - INFO - parse_dates: 2 rows before, 2 after (cols: ['MoveDate'])
+2025-06-30 11:07:14,269 - preprocessing_agent - INFO - normalize_numeric: 3 rows before, 3 after (cols: ['TokenCount', 'ContainerCount'], method: minmax)
+2025-06-30 11:07:14,270 - preprocessing_agent - INFO - handle_outliers: 3 rows before, 3 after (cols: ['TokenCount'], method: clip, threshold: 2)
+2025-06-30 11:07:14,274 - preprocessing_agent - INFO - encode_missing: 3 rows before, 3 after (strategy: median)
+2025-06-30 11:07:14,276 - sanitization_agent - INFO - Dropped 1 rows exceeding missing threshold 0.5
+2025-06-30 11:07:14,276 - sanitization_agent - INFO - Filled 0 NA in TokenCount with 2.5
+2025-06-30 11:07:14,276 - sanitization_agent - INFO - Filled 1 NA in ContainerCount with 0
+2025-06-30 11:07:14,277 - sanitization_agent - INFO - Filled 0 NA in Other with unknown
+2025-06-30 11:07:14,277 - sanitization_agent - INFO - Removed 1 rows with negative values in TokenCount
+2025-06-30 11:07:14,277 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-06-30 11:07:14,277 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 3, 'rows_after': 1}
+2025-06-30 11:14:38,140 - data_loader_agent - INFO - Loading data from file: /tmp/pytest-of-wk-12195/pytest-9/test_load_from_file_csv0/test.csv
+2025-06-30 11:14:38,142 - data_loader_agent - INFO - Loaded 1 rows
+2025-06-30 11:14:38,177 - data_loader_agent - INFO - Loading data from file: /tmp/pytest-of-wk-12195/pytest-9/test_load_from_file_xlsx0/test.xlsx
+2025-06-30 11:14:38,180 - data_loader_agent - INFO - Loaded 1 rows
+2025-06-30 11:14:38,180 - data_loader_agent - INFO - Loading data from file: /tmp/pytest-of-wk-12195/pytest-9/test_load_unknown_extension0/test.txt
+2025-06-30 11:14:38,181 - data_loader_agent - ERROR - Unsupported file extension: txt
+2025-06-30 11:14:38,183 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.00%
+2025-06-30 11:14:38,188 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend           MAE          RMSE  count
+0           0           0  4.440892e-16  5.958082e-16      5
+1           1           1  3.108624e-16  4.965068e-16      5
+2025-06-30 11:14:38,189 - feature_engineer_agent - WARNING - Country 'UAE' not supported for holidays. Setting is_holiday=False. Error: Country UAE not available
+2025-06-30 11:14:38,190 - feature_engineer_agent - WARNING - Country 'ZZZ' not supported for holidays. Setting is_holiday=False. Error: Country ZZZ not available
+2025-06-30 11:14:38,191 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1]
+2025-06-30 11:14:38,191 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [2], aggs: ['mean']
+2025-06-30 11:14:38,193 - feature_engineer_agent - INFO - Encoded categoricals: ['VesselType'] using target encoding
+2025-06-30 11:14:38,195 - modeling_agent - INFO - Trained baseline predictors.
+2025-06-30 11:14:38,502 - modeling_agent - INFO - Trained LightGBM (MAE: 7.00), XGBoost (MAE: 2.00)
+2025-06-30 11:14:38,508 - preprocessing_agent - INFO - parse_dates: 2 rows before, 2 after (cols: ['MoveDate'])
+2025-06-30 11:14:38,510 - preprocessing_agent - INFO - normalize_numeric: 3 rows before, 3 after (cols: ['TokenCount', 'ContainerCount'], method: minmax)
+2025-06-30 11:14:38,512 - preprocessing_agent - INFO - handle_outliers: 3 rows before, 3 after (cols: ['TokenCount'], method: clip, threshold: 3, cap_value: 99)
+2025-06-30 11:14:38,514 - preprocessing_agent - INFO - encode_missing: 3 rows before, 3 after (strategy: median)
+2025-06-30 11:14:38,517 - sanitization_agent - INFO - Dropped 1 rows exceeding missing threshold 0.5
+2025-06-30 11:14:38,517 - sanitization_agent - INFO - Filled 0 NA in TokenCount with 2.5
+2025-06-30 11:14:38,518 - sanitization_agent - INFO - Filled 1 NA in ContainerCount with 0
+2025-06-30 11:14:38,518 - sanitization_agent - INFO - Filled 0 NA in Other with unknown
+2025-06-30 11:14:38,518 - sanitization_agent - INFO - Removed 1 rows with negative values in TokenCount
+2025-06-30 11:14:38,519 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-06-30 11:14:38,519 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 3, 'rows_after': 1}
+2025-06-30 11:16:51,734 - data_loader_agent - INFO - Loading data from file: /tmp/pytest-of-wk-12195/pytest-10/test_load_from_file_csv0/test.csv
+2025-06-30 11:16:51,736 - data_loader_agent - INFO - Loaded 1 rows
+2025-06-30 11:16:51,809 - data_loader_agent - INFO - Loading data from file: /tmp/pytest-of-wk-12195/pytest-10/test_load_from_file_xlsx0/test.xlsx
+2025-06-30 11:16:51,813 - data_loader_agent - INFO - Loaded 1 rows
+2025-06-30 11:16:51,814 - data_loader_agent - INFO - Loading data from file: /tmp/pytest-of-wk-12195/pytest-10/test_load_unknown_extension0/test.txt
+2025-06-30 11:16:51,814 - data_loader_agent - ERROR - Unsupported file extension: txt
+2025-06-30 11:16:51,819 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.00%
+2025-06-30 11:16:51,825 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend           MAE          RMSE  count
+0           0           0  4.440892e-16  5.958082e-16      5
+1           1           1  3.108624e-16  4.965068e-16      5
+2025-06-30 11:16:51,826 - feature_engineer_agent - WARNING - Country 'UAE' not supported for holidays. Setting is_holiday=False. Error: Country UAE not available
+2025-06-30 11:16:51,826 - feature_engineer_agent - WARNING - Country 'ZZZ' not supported for holidays. Setting is_holiday=False. Error: Country ZZZ not available
+2025-06-30 11:16:51,827 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1]
+2025-06-30 11:16:51,828 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [2], aggs: ['mean']
+2025-06-30 11:16:51,830 - feature_engineer_agent - INFO - Encoded categoricals: ['VesselType'] using target encoding
+2025-06-30 11:16:51,832 - modeling_agent - INFO - Trained baseline predictors.
+2025-06-30 11:16:54,375 - modeling_agent - INFO - Trained LightGBM (MAE: 7.00), XGBoost (MAE: 2.00)
+2025-06-30 11:16:54,376 - preprocessing_agent - INFO - parse_dates: 2 rows before, 2 after (cols: ['MoveDate'])
+2025-06-30 11:16:54,378 - preprocessing_agent - INFO - normalize_numeric: 3 rows before, 3 after (cols: ['TokenCount', 'ContainerCount'], method: minmax)
+2025-06-30 11:16:54,379 - preprocessing_agent - INFO - handle_outliers: 3 rows before, 3 after (cols: ['TokenCount'], method: clip, threshold: 3, cap_value: 99)
+2025-06-30 11:16:54,380 - preprocessing_agent - INFO - encode_missing: 3 rows before, 3 after (strategy: median)
+2025-06-30 11:16:54,383 - sanitization_agent - INFO - Dropped 1 rows exceeding missing threshold 0.5
+2025-06-30 11:16:54,383 - sanitization_agent - INFO - Filled 0 NA in TokenCount with 2.5
+2025-06-30 11:16:54,383 - sanitization_agent - INFO - Filled 1 NA in ContainerCount with 0
+2025-06-30 11:16:54,383 - sanitization_agent - INFO - Filled 0 NA in Other with unknown
+2025-06-30 11:16:54,384 - sanitization_agent - INFO - Removed 1 rows with negative values in TokenCount
+2025-06-30 11:16:54,384 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-06-30 11:16:54,384 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 3, 'rows_after': 1}
+2025-06-30 11:31:03,915 - data_loader_agent - INFO - Loading data from file: data/Token_Input_data_desig.xlsx
+2025-06-30 11:31:23,384 - data_loader_agent - INFO - Loaded 925256 rows
+2025-06-30 11:32:47,048 - data_loader_agent - INFO - Loading data from file: data/Token_Input_data_desig.xlsx
+2025-06-30 11:33:06,486 - data_loader_agent - INFO - Loaded 925256 rows
+2025-06-30 11:33:06,814 - sanitization_agent - INFO - Removed 0 rows with negative values in TokenCount
+2025-06-30 11:33:06,827 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-06-30 11:33:06,827 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 925256, 'rows_after': 925256}
+2025-06-30 11:33:39,039 - data_loader_agent - INFO - Loading data from file: data/Token_Input_data_desig.xlsx
+2025-06-30 11:33:58,400 - data_loader_agent - INFO - Loaded 925256 rows
+2025-06-30 11:33:58,685 - sanitization_agent - INFO - Removed 0 rows with negative values in TokenCount
+2025-06-30 11:33:58,696 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-06-30 11:33:58,696 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 925256, 'rows_after': 925256}
+2025-06-30 11:34:44,847 - data_loader_agent - INFO - Loading data from file: data/Token_Input_data_desig.xlsx
+2025-06-30 11:35:03,961 - data_loader_agent - INFO - Loaded 925256 rows
+2025-06-30 11:35:04,258 - sanitization_agent - INFO - Removed 0 rows with negative values in TokenCount
+2025-06-30 11:35:04,269 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-06-30 11:35:04,269 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 925256, 'rows_after': 925256}
+2025-06-30 11:35:05,211 - feature_engineer_agent - WARNING - Country 'UAE' not supported for holidays. Setting is_holiday=False. Error: Country UAE not available
+2025-06-30 11:35:05,220 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-06-30 11:35:05,261 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-06-30 11:35:08,644 - modeling_agent - INFO - Trained baseline predictors.
+2025-06-30 11:35:23,396 - modeling_agent - INFO - Trained Poisson and Negative Binomial GLMs with features: ['MoveHour', 'ContainerCount', 'TokenCount_lag1', 'TokenCount_lag24', 'TokenCount_lag168', 'TokenCount_roll24_mean', 'TokenCount_roll24_max', 'TokenCount_roll168_mean', 'TokenCount_roll168_max', 'MoveType', 'TerminalID', 'Desig']
+2025-06-30 11:35:28,625 - modeling_agent - INFO - Trained LightGBM (MAE: 0.00), XGBoost (MAE: 0.02)
+2025-06-30 11:37:16,369 - modeling_agent - INFO - Best params saved: {'num_leaves': 70, 'learning_rate': 0.09789570538723635, 'n_estimators': 166}
+2025-06-30 11:39:20,271 - data_loader_agent - INFO - Loading data from file: data/Token_Input_data_desig.xlsx
+2025-06-30 11:39:39,507 - data_loader_agent - INFO - Loaded 925256 rows
+2025-06-30 11:39:39,786 - sanitization_agent - INFO - Removed 0 rows with negative values in TokenCount
+2025-06-30 11:39:39,795 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-06-30 11:39:39,795 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 925256, 'rows_after': 925256}
+2025-06-30 11:39:40,716 - feature_engineer_agent - WARNING - Country 'UAE' not supported for holidays. Setting is_holiday=False. Error: Country UAE not available
+2025-06-30 11:39:40,725 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-06-30 11:39:40,766 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-06-30 11:39:43,813 - modeling_agent - INFO - Trained baseline predictors.
+2025-06-30 11:39:57,395 - modeling_agent - INFO - Trained Poisson and Negative Binomial GLMs with features: ['MoveHour', 'ContainerCount', 'TokenCount_lag1', 'TokenCount_lag24', 'TokenCount_lag168', 'TokenCount_roll24_mean', 'TokenCount_roll24_max', 'TokenCount_roll168_mean', 'TokenCount_roll168_max', 'MoveType', 'TerminalID', 'Desig']
+2025-06-30 11:40:02,426 - modeling_agent - INFO - Trained LightGBM (MAE: 0.00), XGBoost (MAE: 0.02)
+2025-06-30 11:42:24,909 - modeling_agent - INFO - Best params saved: {'num_leaves': 128, 'learning_rate': 0.057170855235278026, 'n_estimators': 231}
+2025-06-30 11:46:26,016 - data_loader_agent - INFO - Loading data from file: data/Token_Input_data_desig.xlsx
+2025-06-30 11:46:45,190 - data_loader_agent - INFO - Loaded 925256 rows
+2025-06-30 11:46:45,485 - sanitization_agent - INFO - Removed 0 rows with negative values in TokenCount
+2025-06-30 11:46:45,498 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-06-30 11:46:45,498 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 925256, 'rows_after': 925256}
+2025-06-30 11:46:46,463 - feature_engineer_agent - WARNING - Country 'UAE' not supported for holidays. Setting is_holiday=False. Error: Country UAE not available
+2025-06-30 11:46:46,472 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-06-30 11:46:46,514 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-06-30 11:46:49,910 - modeling_agent - INFO - Trained baseline predictors.
+2025-06-30 11:47:03,663 - modeling_agent - INFO - Trained Poisson and Negative Binomial GLMs with features: ['MoveHour', 'ContainerCount', 'TokenCount_lag1', 'TokenCount_lag24', 'TokenCount_lag168', 'TokenCount_roll24_mean', 'TokenCount_roll24_max', 'TokenCount_roll168_mean', 'TokenCount_roll168_max', 'MoveType', 'TerminalID', 'Desig']
+2025-06-30 11:47:09,367 - modeling_agent - INFO - Trained LightGBM (MAE: 0.00), XGBoost (MAE: 0.02)
+2025-06-30 11:49:34,133 - modeling_agent - INFO - Best params saved: {'num_leaves': 123, 'learning_rate': 0.0473264014980615, 'n_estimators': 297}
+2025-06-30 11:49:35,247 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.02, MAPE: 0.01%
+2025-06-30 11:50:46,858 - feature_engineer_agent - WARNING - Country 'UAE' not supported for holidays. Setting is_holiday=False. Error: Country UAE not available
+2025-06-30 11:50:46,866 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-06-30 11:50:46,906 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-06-30 12:09:09,025 - feature_engineer_agent - INFO - Added custom UAE holiday flag for years: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023]
+2025-06-30 12:09:09,032 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-06-30 12:09:09,072 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-06-30 12:16:21,228 - modeling_agent - INFO - Trained baseline predictors.
+2025-06-30 12:16:28,741 - modeling_agent - INFO - Trained Poisson and Negative Binomial GLMs with features: ['MoveHour', 'ContainerCount', 'TokenCount_lag1', 'TokenCount_lag24', 'TokenCount_lag168', 'TokenCount_roll24_mean', 'TokenCount_roll24_max', 'TokenCount_roll168_mean', 'TokenCount_roll168_max', 'year', 'month', 'MoveType', 'TerminalID', 'Desig']
+2025-06-30 12:17:56,891 - modeling_agent - INFO - Trained LightGBM (MAE: 0.00), XGBoost (MAE: 0.02)
+2025-06-30 12:20:13,981 - modeling_agent - INFO - Best params saved: {'num_leaves': 119, 'learning_rate': 0.06073830744953758, 'n_estimators': 227}
+2025-06-30 12:21:19,926 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.02, MAPE: 0.01%
+2025-06-30 12:21:20,220 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002128  0.077512  816018
+1       False        True  0.001964  0.017223  101936
+2        True       False  0.001185  0.005339    4295
+3        True        True  0.001393  0.005749    3007
+2025-06-30 12:23:34,617 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.02, MAPE: 0.01%
+2025-06-30 12:23:34,882 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002128  0.077512  816018
+1       False        True  0.001964  0.017223  101936
+2        True       False  0.001185  0.005339    4295
+3        True        True  0.001393  0.005749    3007
+2025-06-30 12:30:29,008 - evaluation_agent - INFO - Rolling test results:
+           start        end       MAE       RMSE
+0     2016-01-01 2016-01-01  2.797370   4.698979
+1     2016-01-01 2016-01-01  3.894383   8.070964
+2     2016-01-01 2016-01-01  2.632232   4.600144
+3     2016-01-01 2016-01-01  1.249359   1.900243
+4     2016-01-01 2016-01-02  8.609890  19.034313
+...          ...        ...       ...        ...
+38541        NaT        NaT  1.977068   2.550031
+38542        NaT        NaT  4.666072  10.727927
+38543        NaT        NaT  2.814541   4.901094
+38544        NaT        NaT  7.076421  13.209865
+38545        NaT        NaT  6.715637   8.256826
+
+[38546 rows x 4 columns]
+2025-06-30 12:30:29,252 - evaluation_agent - INFO - PSI flagged features:
+Empty DataFrame
+Columns: [feature, month, psi]
+Index: []
+2025-06-30 12:30:29,296 - evaluation_agent - INFO - Holdout MAE: 3.00, RMSE: 6.13, MAPE: 15.93%
+2025-06-30 12:30:29,541 - evaluation_agent - INFO - PSI flagged features:
+Empty DataFrame
+Columns: [feature, month, psi]
+Index: []
+2025-06-30 13:00:21,684 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.02, MAPE: 0.01%
+2025-06-30 13:00:21,954 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002128  0.077512  816018
+1       False        True  0.001964  0.017223  101936
+2        True       False  0.001185  0.005339    4295
+3        True        True  0.001393  0.005749    3007
+2025-06-30 13:03:00,640 - feature_engineer_agent - INFO - Added custom UAE holiday flag for years: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023]
+2025-06-30 13:03:00,648 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-06-30 13:03:00,690 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-06-30 13:03:01,006 - feature_engineer_agent - INFO - Encoded categoricals: ['MoveType', 'TerminalID', 'Desig'] using target encoding
+2025-06-30 13:05:08,809 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.02, MAPE: 0.01%
+2025-06-30 13:05:09,064 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002128  0.077512  816018
+1       False        True  0.001964  0.017223  101936
+2        True       False  0.001185  0.005339    4295
+3        True        True  0.001393  0.005749    3007
+2025-06-30 13:11:56,652 - evaluation_agent - INFO - Rolling test results:
+           start        end       MAE       RMSE
+0     2016-01-01 2016-01-01  2.812941   4.471070
+1     2016-01-01 2016-01-01  3.474041   7.877607
+2     2016-01-01 2016-01-01  2.506180   4.460404
+3     2016-01-01 2016-01-01  1.473878   2.024421
+4     2016-01-01 2016-01-02  8.637582  19.741350
+...          ...        ...       ...        ...
+38541        NaT        NaT  1.811060   2.322000
+38542        NaT        NaT  5.209024  10.669410
+38543        NaT        NaT  2.957277   4.768198
+38544        NaT        NaT  7.274501  13.412000
+38545        NaT        NaT  5.484885   6.490050
+
+[38546 rows x 4 columns]
+2025-06-30 13:11:56,894 - evaluation_agent - INFO - PSI flagged features:
+Empty DataFrame
+Columns: [feature, month, psi]
+Index: []
+2025-06-30 13:13:11,589 - modeling_agent - INFO - Trained baseline predictors.
+2025-06-30 13:13:14,127 - modeling_agent - INFO - Trained Poisson and Negative Binomial GLMs with features: ['MoveHour', 'ContainerCount', 'TokenCount_lag1', 'TokenCount_lag24', 'TokenCount_lag168', 'TokenCount_roll24_mean', 'TokenCount_roll24_max', 'TokenCount_roll168_mean', 'TokenCount_roll168_max', 'year', 'month', 'MoveType_enc', 'TerminalID_enc', 'Desig_enc']
+2025-06-30 13:13:20,433 - modeling_agent - INFO - Trained LightGBM (MAE: 0.00), XGBoost (MAE: 0.02)
+2025-06-30 13:16:00,484 - modeling_agent - INFO - Best params saved: {'num_leaves': 111, 'learning_rate': 0.053424209088189095, 'n_estimators': 257}
+2025-06-30 13:18:12,960 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.02, MAPE: 0.01%
+2025-06-30 13:18:13,221 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002109  0.077485  816018
+1       False        True  0.001948  0.017089  101936
+2        True       False  0.001171  0.005035    4295
+3        True        True  0.001380  0.005615    3007
+2025-06-30 13:21:35,635 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.02, MAPE: 0.01%
+2025-06-30 13:21:35,895 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002109  0.077485  816018
+1       False        True  0.001948  0.017089  101936
+2        True       False  0.001171  0.005035    4295
+3        True        True  0.001380  0.005615    3007
+2025-06-30 13:22:33,231 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.02, MAPE: 0.01%
+2025-06-30 13:22:33,492 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002109  0.077485  816018
+1       False        True  0.001948  0.017089  101936
+2        True       False  0.001171  0.005035    4295
+3        True        True  0.001380  0.005615    3007
+2025-06-30 13:29:14,037 - evaluation_agent - INFO - Rolling test results:
+           start        end       MAE       RMSE
+0     2016-01-01 2016-01-01  2.812941   4.471070
+1     2016-01-01 2016-01-01  3.474041   7.877607
+2     2016-01-01 2016-01-01  2.506180   4.460404
+3     2016-01-01 2016-01-01  1.473878   2.024421
+4     2016-01-01 2016-01-02  8.637582  19.741350
+...          ...        ...       ...        ...
+38541        NaT        NaT  1.811060   2.322000
+38542        NaT        NaT  5.209024  10.669410
+38543        NaT        NaT  2.957277   4.768198
+38544        NaT        NaT  7.274501  13.412000
+38545        NaT        NaT  5.484885   6.490050
+
+[38546 rows x 4 columns]
+2025-06-30 13:29:14,271 - evaluation_agent - INFO - PSI flagged features:
+Empty DataFrame
+Columns: [feature, month, psi]
+Index: []
+2025-06-30 13:29:14,300 - evaluation_agent - INFO - Holdout MAE: 3.24, RMSE: 6.09, MAPE: 16.73%
+2025-06-30 13:29:14,540 - evaluation_agent - INFO - PSI flagged features:
+Empty DataFrame
+Columns: [feature, month, psi]
+Index: []
+2025-06-30 13:29:15,683 - evaluation_agent - INFO - Report written to reports/final_report.md and plot saved to reports/final_report.png
+2025-06-30 13:58:19,400 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.02, MAPE: 0.01%
+2025-06-30 13:58:19,661 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002109  0.077485  816018
+1       False        True  0.001948  0.017089  101936
+2        True       False  0.001171  0.005035    4295
+3        True        True  0.001380  0.005615    3007
+2025-06-30 14:05:19,467 - evaluation_agent - INFO - Rolling test results:
+           start        end       MAE       RMSE
+0     2016-01-01 2016-01-01  2.812941   4.471070
+1     2016-01-01 2016-01-01  3.474041   7.877607
+2     2016-01-01 2016-01-01  2.506180   4.460404
+3     2016-01-01 2016-01-01  1.473878   2.024421
+4     2016-01-01 2016-01-02  8.637582  19.741350
+...          ...        ...       ...        ...
+38541        NaT        NaT  1.811060   2.322000
+38542        NaT        NaT  5.209024  10.669410
+38543        NaT        NaT  2.957277   4.768198
+38544        NaT        NaT  7.274501  13.412000
+38545        NaT        NaT  5.484885   6.490050
+
+[38546 rows x 4 columns]
+2025-06-30 14:05:20,571 - evaluation_agent - INFO - Holdout MAE: 3.24, RMSE: 6.09, MAPE: 16.73%
+2025-06-30 14:05:21,140 - evaluation_agent - INFO - PSI flagged features:
+Empty DataFrame
+Columns: [feature, month, psi]
+Index: []
+2025-06-30 14:05:22,255 - evaluation_agent - INFO - Report written to reports/final_report.md and plot saved to reports/final_report.png
+2025-06-30 14:11:38,332 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.02, MAPE: 0.01%
+2025-06-30 14:11:38,590 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002109  0.077485  816018
+1       False        True  0.001948  0.017089  101936
+2        True       False  0.001171  0.005035    4295
+3        True        True  0.001380  0.005615    3007
+2025-06-30 14:13:00,247 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.02, MAPE: 0.01%
+2025-06-30 14:13:00,508 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002109  0.077485  816018
+1       False        True  0.001948  0.017089  101936
+2        True       False  0.001171  0.005035    4295
+3        True        True  0.001380  0.005615    3007
+2025-06-30 14:20:10,562 - evaluation_agent - INFO - Rolling test results:
+           start        end       MAE       RMSE
+0     2016-01-01 2016-01-01  2.812941   4.471070
+1     2016-01-01 2016-01-01  3.474041   7.877607
+2     2016-01-01 2016-01-01  2.506180   4.460404
+3     2016-01-01 2016-01-01  1.473878   2.024421
+4     2016-01-01 2016-01-02  8.637582  19.741350
+...          ...        ...       ...        ...
+38541        NaT        NaT  1.811060   2.322000
+38542        NaT        NaT  5.209024  10.669410
+38543        NaT        NaT  2.957277   4.768198
+38544        NaT        NaT  7.274501  13.412000
+38545        NaT        NaT  5.484885   6.490050
+
+[38546 rows x 4 columns]
+2025-06-30 14:20:11,257 - evaluation_agent - INFO - Holdout MAE: 3.24, RMSE: 6.09, MAPE: 16.73%
+2025-06-30 14:20:11,493 - evaluation_agent - INFO - PSI flagged features:
+Empty DataFrame
+Columns: [feature, month, psi]
+Index: []
+2025-06-30 14:20:12,573 - evaluation_agent - INFO - Report written to reports/final_report.md and plot saved to reports/final_report.png
+2025-07-01 09:17:00,249 - feature_engineer_agent - INFO - Added custom UAE holiday flag for years: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023]
+2025-07-01 09:17:00,257 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-07-01 09:17:00,297 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-07-01 09:25:16,084 - feature_engineer_agent - INFO - Added custom UAE holiday flag for years: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023]
+2025-07-01 09:25:16,087 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-07-01 09:25:16,102 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-07-01 09:28:38,532 - data_loader_agent - INFO - Loading data from file: data/Token_Input_data_desig.xlsx
+2025-07-01 09:28:57,744 - data_loader_agent - INFO - Loaded 925256 rows
+2025-07-01 09:28:58,021 - sanitization_agent - INFO - Removed 0 rows with negative values in TokenCount
+2025-07-01 09:28:58,031 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-07-01 09:28:58,031 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 925256, 'rows_after': 925256}
+2025-07-01 09:29:08,077 - feature_engineer_agent - INFO - Added custom UAE holiday flag for years: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023]
+2025-07-01 09:29:08,087 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-07-01 09:29:08,131 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-07-01 09:51:27,947 - data_loader_agent - INFO - Loading data from file: data/Token_Input_data_desig.xlsx
+2025-07-01 09:51:47,124 - data_loader_agent - INFO - Loaded 925256 rows
+2025-07-01 09:51:47,472 - sanitization_agent - INFO - Removed 0 rows with negative values in TokenCount
+2025-07-01 09:51:47,484 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-07-01 09:51:47,484 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 925256, 'rows_after': 925256}
+2025-07-01 09:51:48,557 - feature_engineer_agent - INFO - Added custom UAE holiday flag for years: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023]
+2025-07-01 09:51:48,567 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-07-01 09:51:48,621 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-07-01 09:52:41,363 - modeling_agent - INFO - Trained baseline predictors.
+2025-07-01 09:52:46,883 - modeling_agent - INFO - Trained Poisson and Negative Binomial GLMs with features: ['MoveHour', 'ContainerCount', 'TokenCount_lag1', 'TokenCount_lag24', 'TokenCount_lag168', 'TokenCount_roll24_mean', 'TokenCount_roll24_max', 'TokenCount_roll168_mean', 'TokenCount_roll168_max', 'year', 'month', 'MoveType', 'TerminalID', 'Desig']
+2025-07-01 09:52:49,954 - modeling_agent - INFO - Trained LightGBM (MAE: 0.00), XGBoost (MAE: 0.00)
+2025-07-01 09:54:24,706 - modeling_agent - INFO - Best params saved: {'num_leaves': 46, 'learning_rate': 0.05714435037885707, 'n_estimators': 232}
+2025-07-01 09:54:25,562 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 09:54:25,671 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 10:44:27,645 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 10:44:27,843 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 10:45:16,379 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 10:45:16,523 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 10:45:23,667 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 10:45:23,779 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 10:46:06,189 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 10:46:06,296 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 10:46:11,419 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 10:46:11,526 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 10:46:16,919 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 10:46:17,031 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 10:50:38,556 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 10:50:38,709 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 10:50:48,217 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 10:50:48,387 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 10:51:17,411 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 10:51:17,534 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 10:56:39,532 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 10:56:39,641 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 10:57:26,975 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 10:57:27,080 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 11:03:03,628 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 11:03:03,741 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 11:03:23,484 - data_loader_agent - INFO - Loading data from file: data/Token_Input_data_desig.xlsx
+2025-07-01 11:03:43,362 - data_loader_agent - INFO - Loaded 925256 rows
+2025-07-01 11:03:43,639 - sanitization_agent - INFO - Removed 0 rows with negative values in TokenCount
+2025-07-01 11:03:43,649 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-07-01 11:03:43,649 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 925256, 'rows_after': 925256}
+2025-07-01 11:03:44,649 - feature_engineer_agent - INFO - Added custom UAE holiday flag for years: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023]
+2025-07-01 11:03:44,662 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-07-01 11:03:44,705 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-07-01 11:04:37,769 - modeling_agent - INFO - Trained baseline predictors.
+2025-07-01 11:04:43,528 - modeling_agent - INFO - Trained Poisson and Negative Binomial GLMs with features: ['MoveHour', 'ContainerCount', 'TokenCount_lag1', 'TokenCount_lag24', 'TokenCount_lag168', 'TokenCount_roll24_mean', 'TokenCount_roll24_max', 'TokenCount_roll168_mean', 'TokenCount_roll168_max', 'year', 'month', 'MoveType', 'TerminalID', 'Desig']
+2025-07-01 11:05:06,147 - modeling_agent - INFO - Trained LightGBM (MAE: 0.00), XGBoost (MAE: 0.00)
+2025-07-01 11:06:12,804 - modeling_agent - INFO - Best params saved: {'num_leaves': 106, 'learning_rate': 0.10913743815280247, 'n_estimators': 116}
+2025-07-01 11:06:13,676 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 11:06:13,785 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 11:09:48,314 - evaluation_agent - INFO - Rolling test results:
+           start        end       MAE       RMSE
+0     2016-01-01 2016-01-01  2.834824   4.179698
+1     2016-01-01 2016-01-01  3.520275   7.678964
+2     2016-01-01 2016-01-01  2.281144   3.888390
+3     2016-01-01 2016-01-01  1.149142   1.572834
+4     2016-01-01 2016-01-02  8.161320  18.662539
+...          ...        ...       ...        ...
+15166 2023-12-09 2023-12-09  2.904946   5.450950
+15167 2023-12-09 2023-12-09  4.125035   5.870638
+15168 2023-12-09 2023-12-09  1.836609   3.066164
+15169 2023-12-09 2023-12-09  3.264399   7.055713
+15170 2023-12-09 2023-12-09  1.085364   1.446248
+
+[15171 rows x 4 columns]
+2025-07-01 11:49:33,053 - data_loader_agent - INFO - Loading data from file: data/Token_Input_data_desig.xlsx
+2025-07-01 11:49:52,729 - data_loader_agent - INFO - Loaded 925256 rows
+2025-07-01 11:49:53,013 - sanitization_agent - INFO - Removed 0 rows with negative values in TokenCount
+2025-07-01 11:49:53,027 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-07-01 11:49:53,027 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 925256, 'rows_after': 925256}
+2025-07-01 11:49:54,025 - feature_engineer_agent - INFO - Added custom UAE holiday flag for years: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023]
+2025-07-01 11:49:54,034 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-07-01 11:49:54,076 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-07-01 11:50:46,573 - modeling_agent - INFO - Trained baseline predictors.
+2025-07-01 11:50:51,126 - modeling_agent - INFO - Trained Poisson and Negative Binomial GLMs with features: ['MoveHour', 'ContainerCount', 'TokenCount_lag1', 'TokenCount_lag24', 'TokenCount_lag168', 'TokenCount_roll24_mean', 'TokenCount_roll24_max', 'TokenCount_roll168_mean', 'TokenCount_roll168_max', 'year', 'month', 'MoveType', 'TerminalID', 'Desig']
+2025-07-01 11:50:54,875 - modeling_agent - INFO - Trained LightGBM (MAE: 0.00), XGBoost (MAE: 0.00)
+2025-07-01 11:52:21,878 - modeling_agent - INFO - Best params saved: {'num_leaves': 64, 'learning_rate': 0.05648308143441754, 'n_estimators': 289}
+2025-07-01 11:52:22,853 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 11:52:22,972 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 11:55:13,352 - evaluation_agent - INFO - Rolling test results:
+           start        end       MAE       RMSE
+0     2016-01-01 2016-01-01  3.371858   5.046030
+1     2016-01-01 2016-01-01  3.827400   7.974922
+2     2016-01-01 2016-01-01  2.281678   3.923049
+3     2016-01-01 2016-01-01  1.042568   1.408520
+4     2016-01-01 2016-01-02  8.071397  18.293368
+...          ...        ...       ...        ...
+15166 2023-12-09 2023-12-09  2.940452   5.551251
+15167 2023-12-09 2023-12-09  3.929645   5.800627
+15168 2023-12-09 2023-12-09  1.825140   3.063762
+15169 2023-12-09 2023-12-09  3.183285   6.942002
+15170 2023-12-09 2023-12-09  1.364254   1.647985
+
+[15171 rows x 4 columns]
+2025-07-01 11:55:13,893 - evaluation_agent - INFO - Holdout MAE: 2.40, RMSE: 4.95, MAPE: 22.01%
+2025-07-01 11:55:14,048 - evaluation_agent - INFO - PSI flagged features:
+Empty DataFrame
+Columns: [feature, month, psi]
+Index: []
+2025-07-01 12:04:59,311 - data_loader_agent - INFO - Loading data from file: data/Token_Input_data_desig.xlsx
+2025-07-01 12:05:18,989 - data_loader_agent - INFO - Loaded 925256 rows
+2025-07-01 12:05:19,275 - sanitization_agent - INFO - Removed 0 rows with negative values in TokenCount
+2025-07-01 12:05:19,286 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-07-01 12:05:19,286 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 925256, 'rows_after': 925256}
+2025-07-01 12:05:20,318 - feature_engineer_agent - INFO - Added custom UAE holiday flag for years: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023]
+2025-07-01 12:05:20,329 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-07-01 12:05:20,373 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-07-01 12:06:14,461 - modeling_agent - INFO - Trained baseline predictors.
+2025-07-01 12:06:19,415 - modeling_agent - INFO - Trained Poisson and Negative Binomial GLMs with features: ['MoveHour', 'ContainerCount', 'TokenCount_lag1', 'TokenCount_lag24', 'TokenCount_lag168', 'TokenCount_roll24_mean', 'TokenCount_roll24_max', 'TokenCount_roll168_mean', 'TokenCount_roll168_max', 'year', 'month', 'MoveType', 'TerminalID', 'Desig']
+2025-07-01 12:06:23,800 - modeling_agent - INFO - Trained LightGBM (MAE: 0.00), XGBoost (MAE: 0.00)
+2025-07-01 12:08:00,725 - modeling_agent - INFO - Best params saved: {'num_leaves': 81, 'learning_rate': 0.049280949116278415, 'n_estimators': 268}
+2025-07-01 12:08:01,776 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 12:08:01,895 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 12:10:46,315 - evaluation_agent - INFO - Rolling test results:
+           start        end       MAE       RMSE
+0     2016-01-01 2016-01-01  3.371858   5.046030
+1     2016-01-01 2016-01-01  3.827400   7.974922
+2     2016-01-01 2016-01-01  2.281678   3.923049
+3     2016-01-01 2016-01-01  1.042568   1.408520
+4     2016-01-01 2016-01-02  8.071397  18.293368
+...          ...        ...       ...        ...
+15166 2023-12-09 2023-12-09  2.940452   5.551251
+15167 2023-12-09 2023-12-09  3.929645   5.800627
+15168 2023-12-09 2023-12-09  1.825140   3.063762
+15169 2023-12-09 2023-12-09  3.183285   6.942002
+15170 2023-12-09 2023-12-09  1.364254   1.647985
+
+[15171 rows x 4 columns]
+2025-07-01 12:10:46,859 - evaluation_agent - INFO - Holdout MAE: 2.40, RMSE: 4.95, MAPE: 22.01%
+2025-07-01 12:10:47,021 - evaluation_agent - INFO - PSI flagged features:
+Empty DataFrame
+Columns: [feature, month, psi]
+Index: []
+2025-07-01 12:10:49,134 - evaluation_agent - INFO - Report written to reports/final_report.md and plot saved to reports/final_report.png
+2025-07-01 12:40:01,902 - data_loader_agent - INFO - Loading data from file: data/Token_Input_data_desig.xlsx
+2025-07-01 12:40:21,148 - data_loader_agent - INFO - Loaded 925256 rows
+2025-07-01 12:40:21,425 - sanitization_agent - INFO - Removed 0 rows with negative values in TokenCount
+2025-07-01 12:40:21,434 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-07-01 12:40:21,434 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 925256, 'rows_after': 925256}
+2025-07-01 12:40:22,430 - feature_engineer_agent - INFO - Added custom UAE holiday flag for years: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023]
+2025-07-01 12:40:22,440 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-07-01 12:40:22,484 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-07-01 12:41:15,414 - modeling_agent - INFO - Trained baseline predictors.
+2025-07-01 12:41:20,101 - modeling_agent - INFO - Trained Poisson and Negative Binomial GLMs with features: ['MoveHour', 'ContainerCount', 'TokenCount_lag1', 'TokenCount_lag24', 'TokenCount_lag168', 'TokenCount_roll24_mean', 'TokenCount_roll24_max', 'TokenCount_roll168_mean', 'TokenCount_roll168_max', 'year', 'month', 'MoveType', 'TerminalID', 'Desig']
+2025-07-01 12:41:23,167 - modeling_agent - INFO - Trained LightGBM (MAE: 0.00), XGBoost (MAE: 0.00)
+2025-07-01 12:43:04,656 - modeling_agent - INFO - Best params saved: {'num_leaves': 107, 'learning_rate': 0.07137053581909446, 'n_estimators': 198}
+2025-07-01 12:43:05,676 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 12:43:05,792 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 12:46:05,562 - evaluation_agent - INFO - Rolling test results:
+           start        end       MAE       RMSE
+0     2016-01-01 2016-01-01  3.371858   5.046030
+1     2016-01-01 2016-01-01  3.827400   7.974922
+2     2016-01-01 2016-01-01  2.281678   3.923049
+3     2016-01-01 2016-01-01  1.042568   1.408520
+4     2016-01-01 2016-01-02  8.071397  18.293368
+...          ...        ...       ...        ...
+15166 2023-12-09 2023-12-09  2.940452   5.551251
+15167 2023-12-09 2023-12-09  3.929645   5.800627
+15168 2023-12-09 2023-12-09  1.825140   3.063762
+15169 2023-12-09 2023-12-09  3.183285   6.942002
+15170 2023-12-09 2023-12-09  1.364254   1.647985
+
+[15171 rows x 4 columns]
+2025-07-01 12:46:06,086 - evaluation_agent - INFO - Holdout MAE: 2.40, RMSE: 4.95, MAPE: 22.01%
+2025-07-01 12:46:06,230 - evaluation_agent - INFO - PSI flagged features:
+Empty DataFrame
+Columns: [feature, month, psi]
+Index: []
+2025-07-01 12:46:08,266 - evaluation_agent - INFO - Report written to reports/final_report.md and plot saved to reports/final_report.png
+2025-07-01 13:12:01,975 - data_loader_agent - INFO - Loading data from file: data/Token_Input_data_desig.xlsx
+2025-07-01 13:12:21,512 - data_loader_agent - INFO - Loaded 925256 rows
+2025-07-01 13:12:21,790 - sanitization_agent - INFO - Removed 0 rows with negative values in TokenCount
+2025-07-01 13:12:21,799 - sanitization_agent - INFO - Removed 0 rows with negative values in ContainerCount
+2025-07-01 13:12:21,799 - sanitization_agent - INFO - Sanitization summary: {'rows_before': 925256, 'rows_after': 925256}
+2025-07-01 13:12:22,803 - feature_engineer_agent - INFO - Added custom UAE holiday flag for years: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023]
+2025-07-01 13:12:22,812 - feature_engineer_agent - INFO - Added lagged features for cols: ['TokenCount'], lags: [1, 24, 168]
+2025-07-01 13:12:22,854 - feature_engineer_agent - INFO - Added rolling features for cols: ['TokenCount'], windows: [24, 168], aggs: ['mean', 'max']
+2025-07-01 13:13:15,676 - modeling_agent - INFO - Trained baseline predictors.
+2025-07-01 13:13:20,328 - modeling_agent - INFO - Trained Poisson and Negative Binomial GLMs with features: ['MoveHour', 'ContainerCount', 'TokenCount_lag1', 'TokenCount_lag24', 'TokenCount_lag168', 'TokenCount_roll24_mean', 'TokenCount_roll24_max', 'TokenCount_roll168_mean', 'TokenCount_roll168_max', 'year', 'month', 'MoveType', 'TerminalID', 'Desig']
+2025-07-01 13:13:23,433 - modeling_agent - INFO - Trained LightGBM (MAE: 0.00), XGBoost (MAE: 0.00)
+2025-07-01 13:14:44,516 - modeling_agent - INFO - Best params saved: {'num_leaves': 111, 'learning_rate': 0.07806033533680726, 'n_estimators': 172}
+2025-07-01 13:14:45,460 - evaluation_agent - INFO - Holdout MAE: 0.00, RMSE: 0.00, MAPE: 0.01%
+2025-07-01 13:14:45,564 - evaluation_agent - INFO - Slice breakdown by ['is_holiday', 'is_weekend']:
+   is_holiday  is_weekend       MAE      RMSE   count
+0       False       False  0.002067  0.036303  255013
+1       False        True  0.002002  0.024078  101936
+2        True       False  0.001402  0.008991    4295
+3        True        True  0.001447  0.005531    3007
+2025-07-01 13:17:40,821 - evaluation_agent - INFO - Rolling test results:
+           start        end       MAE       RMSE
+0     2016-01-01 2016-01-01  3.371858   5.046030
+1     2016-01-01 2016-01-01  3.827400   7.974922
+2     2016-01-01 2016-01-01  2.281678   3.923049
+3     2016-01-01 2016-01-01  1.042568   1.408520
+4     2016-01-01 2016-01-02  8.071397  18.293368
+...          ...        ...       ...        ...
+15166 2023-12-09 2023-12-09  2.940452   5.551251
+15167 2023-12-09 2023-12-09  3.929645   5.800627
+15168 2023-12-09 2023-12-09  1.825140   3.063762
+15169 2023-12-09 2023-12-09  3.183285   6.942002
+15170 2023-12-09 2023-12-09  1.364254   1.647985
+
+[15171 rows x 4 columns]
+2025-07-01 13:17:41,368 - evaluation_agent - INFO - Holdout MAE: 2.40, RMSE: 4.95, MAPE: 22.01%
+2025-07-01 13:17:41,517 - evaluation_agent - INFO - PSI flagged features:
+Empty DataFrame
+Columns: [feature, month, psi]
+Index: []
+2025-07-01 13:17:43,620 - evaluation_agent - INFO - Report written to reports/final_report.md and plot saved to reports/final_report.png
