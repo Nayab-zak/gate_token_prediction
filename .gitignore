@@ -1,0 +1,24 @@
+# Ignore virtual environment
+pred_env/
+
+# Ignore trained models
+models/*.pkl
+models/*.json
+
+# Ignore outputs
+outputs/
+
+# Ignore logs
+logs/
+
+# Ignore temporary files
+*.pyc
+__pycache__/
+*.log
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
