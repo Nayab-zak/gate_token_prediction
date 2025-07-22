@@ -1,0 +1,48 @@
+best_params:
+  alpha: 0.17578579429504332
+  l1_ratio: 1
+  max_iter: 3051
+data_type: dense
+hyperparameters_path: models/elasticnet_best_params_20250722_113010.json
+model: elasticnet
+model_path: models/elasticnet_best_model_20250722_113010.pkl
+test_metrics:
+  mae: !!python/object/apply:numpy.core.multiarray.scalar
+  - &id001 !!python/object/apply:numpy.dtype
+    args:
+    - f8
+    - false
+    - true
+    state: !!python/tuple
+    - 3
+    - <
+    - null
+    - null
+    - null
+    - -1
+    - -1
+    - 0
+  - !!binary |
+    4HJLsHSSS0A=
+  mape: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    F6iI+Ea9wz8=
+  rmse: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    whCzIdsRUkA=
+train_metrics:
+  mae: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    cCSM6U2gSkA=
+  mape: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    Xt+ntYy6yz8=
+  rmse: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    j36DBYrZUEA=
+training_timestamp: '2025-07-22T11:31:57.363749'

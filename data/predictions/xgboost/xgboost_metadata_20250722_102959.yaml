@@ -1,0 +1,52 @@
+best_params:
+  colsample_bytree: 0.6865508389288834
+  learning_rate: 0.05465608247874511
+  max_depth: 7
+  n_estimators: 457
+  reg_alpha: 10
+  reg_lambda: 0
+  subsample: 0.8063079385987922
+data_type: dense
+hyperparameters_path: models/xgboost_best_params_20250722_102959.json
+model: xgboost
+model_path: models/xgboost_best_model_20250722_102959.pkl
+test_metrics:
+  mae: !!python/object/apply:numpy.core.multiarray.scalar
+  - &id001 !!python/object/apply:numpy.dtype
+    args:
+    - f8
+    - false
+    - true
+    state: !!python/tuple
+    - 3
+    - <
+    - null
+    - null
+    - null
+    - -1
+    - -1
+    - 0
+  - !!binary |
+    WPIGRKCxMEA=
+  mape: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    YW8I7XDSoD8=
+  rmse: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    JK6eSrkaOEA=
+train_metrics:
+  mae: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    KYBk3ZS5HUA=
+  mape: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    hqMCFdIalD8=
+  rmse: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    rwvzEqRyI0A=
+training_timestamp: '2025-07-22T10:32:33.019456'

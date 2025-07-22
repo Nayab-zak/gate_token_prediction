@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "name": "gate-token-eda-dashboard",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/images/(.*)",
+      "dest": "/images/$1"
+    }
+  ]
+}

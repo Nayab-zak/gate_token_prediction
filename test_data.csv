@@ -1,0 +1,6 @@
+Move_Date,Move_Time,Start_Gate,End_Gate,Direction,Start_Name,End_Name,Count
+2025-01-15,09:00:00,G01,G02,E,Gate 1,Gate 2,45
+2025-01-15,09:15:00,G02,G03,E,Gate 2,Gate 3,32
+2025-01-15,09:30:00,G03,G04,E,Gate 3,Gate 4,28
+2025-01-15,09:45:00,G04,G05,E,Gate 4,Gate 5,41
+2025-01-15,10:00:00,G05,G06,E,Gate 5,Gate 6,37

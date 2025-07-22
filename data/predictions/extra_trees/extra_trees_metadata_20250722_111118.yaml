@@ -1,0 +1,50 @@
+best_params:
+  max_depth: 20
+  max_features: 0.8
+  min_samples_leaf: 2
+  min_samples_split: 3
+  n_estimators: 135
+data_type: dense
+hyperparameters_path: models/extra_trees_best_params_20250722_111118.json
+model: extra_trees
+model_path: models/extra_trees_best_model_20250722_111118.pkl
+test_metrics:
+  mae: !!python/object/apply:numpy.core.multiarray.scalar
+  - &id001 !!python/object/apply:numpy.dtype
+    args:
+    - f8
+    - false
+    - true
+    state: !!python/tuple
+    - 3
+    - <
+    - null
+    - null
+    - null
+    - -1
+    - -1
+    - 0
+  - !!binary |
+    5d0RmrbfOUA=
+  mape: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    d9MJoXUwqT8=
+  rmse: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    Ate55tZoQUA=
+train_metrics:
+  mae: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    XgIzrpd9FUA=
+  mape: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    i5v5R9TAiz8=
+  rmse: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    nli91va/HUA=
+training_timestamp: '2025-07-22T11:12:14.080833'

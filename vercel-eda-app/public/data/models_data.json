@@ -1,0 +1,243 @@
+{
+  "_champion": "random_forest",
+  "mlp": {
+    "metadata": {
+      "model": "mlp",
+      "data_type": "dense",
+      "best_params": {
+        "alpha": 0.00289885802010906,
+        "hidden_layer_sizes": [50, 50],
+        "learning_rate_init": 0.006629660499645003,
+        "max_iter": 1228
+      },
+      "hyperparameters_path": "models/mlp_best_params_20250722_103417.json",
+      "model_path": "models/mlp_best_model_20250722_103417.pkl",
+      "training_timestamp": "2025-07-22T11:03:19.320956"
+    },
+    "total_predictions": 6486,
+    "sample_predictions": [
+      {
+        "timestamp": "2022-12-31 00:00:00",
+        "true_count": 621,
+        "pred_count": 640.62
+      },
+      {
+        "timestamp": "2022-12-31 01:00:00",
+        "true_count": 442,
+        "pred_count": 458.54
+      },
+      {
+        "timestamp": "2022-12-31 02:00:00",
+        "true_count": 371,
+        "pred_count": 374.62
+      },
+      {
+        "timestamp": "2022-12-31 03:00:00",
+        "true_count": 204,
+        "pred_count": 201.87
+      },
+      {
+        "timestamp": "2022-12-31 04:00:00",
+        "true_count": 195,
+        "pred_count": 211.07
+      },
+      {
+        "timestamp": "2022-12-31 05:00:00",
+        "true_count": 220,
+        "pred_count": 219.56
+      },
+      {
+        "timestamp": "2022-12-31 06:00:00",
+        "true_count": 301,
+        "pred_count": 287.45
+      },
+      {
+        "timestamp": "2022-12-31 07:00:00",
+        "true_count": 575,
+        "pred_count": 576.08
+      },
+      {
+        "timestamp": "2022-12-31 08:00:00",
+        "true_count": 645,
+        "pred_count": 646.41
+      },
+      {
+        "timestamp": "2022-12-31 09:00:00",
+        "true_count": 593,
+        "pred_count": 578.79
+      }
+    ]
+  },
+  "random_forest": {
+    "metadata": {
+      "model": "random_forest",
+      "data_type": "dense",
+      "best_params": {
+        "max_depth": 19,
+        "max_features": 0.8,
+        "min_samples_leaf": 1,
+        "min_samples_split": 3,
+        "n_estimators": 400
+      },
+      "hyperparameters_path": "models/random_forest_best_params_20250722_111549.json",
+      "model_path": "models/random_forest_best_model_20250722_111549.pkl"
+    },
+    "total_predictions": 6486,
+    "sample_predictions": [
+      {
+        "timestamp": "2022-12-31 00:00:00",
+        "true_count": 621,
+        "pred_count": 600.11
+      },
+      {
+        "timestamp": "2022-12-31 01:00:00",
+        "true_count": 442,
+        "pred_count": 447.77
+      },
+      {
+        "timestamp": "2022-12-31 02:00:00",
+        "true_count": 371,
+        "pred_count": 355.59
+      },
+      {
+        "timestamp": "2022-12-31 03:00:00",
+        "true_count": 204,
+        "pred_count": 223.98
+      },
+      {
+        "timestamp": "2022-12-31 04:00:00",
+        "true_count": 195,
+        "pred_count": 199.88
+      },
+      {
+        "timestamp": "2022-12-31 05:00:00",
+        "true_count": 220,
+        "pred_count": 210.09
+      },
+      {
+        "timestamp": "2022-12-31 06:00:00",
+        "true_count": 301,
+        "pred_count": 314.22
+      },
+      {
+        "timestamp": "2022-12-31 07:00:00",
+        "true_count": 575,
+        "pred_count": 555.21
+      },
+      {
+        "timestamp": "2022-12-31 08:00:00",
+        "true_count": 645,
+        "pred_count": 626.39
+      },
+      {
+        "timestamp": "2022-12-31 09:00:00",
+        "true_count": 593,
+        "pred_count": 560.46
+      }
+    ]
+  },
+  "catboost": {
+    "metadata": {
+      "model": "catboost",
+      "data_type": "sparse",
+      "best_params": {
+        "border_count": 228,
+        "depth": 5,
+        "iterations": 432,
+        "l2_leaf_reg": 2,
+        "learning_rate": 0.26451798494356876
+      },
+      "hyperparameters_path": "models/catboost_best_params_20250722_110541.json",
+      "model_path": "models/catboost_best_model_20250722_110541.pkl",
+      "training_timestamp": "2025-07-22T11:11:03.726953"
+    },
+    "total_predictions": 10172,
+    "sample_predictions": [
+      {
+        "timestamp": "2022-07-30 10:00:00",
+        "true_count": 129.31,
+        "pred_count": 144.18
+      },
+      {
+        "timestamp": "2022-07-30 11:00:00",
+        "true_count": 119.53,
+        "pred_count": 131.65
+      },
+      {
+        "timestamp": "2022-07-30 12:00:00",
+        "true_count": 161.20,
+        "pred_count": 167.32
+      },
+      {
+        "timestamp": "2022-07-30 13:00:00",
+        "true_count": 129.63,
+        "pred_count": 139.63
+      },
+      {
+        "timestamp": "2022-07-30 14:00:00",
+        "true_count": 150.21,
+        "pred_count": 152.94
+      }
+    ]
+  },
+  "xgboost": {
+    "metadata": {
+      "model": "xgboost",
+      "data_type": "dense",
+      "best_params": {
+        "n_estimators": 200,
+        "max_depth": 8,
+        "learning_rate": 0.1,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8
+      }
+    },
+    "total_predictions": 6486,
+    "sample_predictions": []
+  },
+  "lightgbm_dense": {
+    "metadata": {
+      "model": "lightgbm",
+      "data_type": "dense",
+      "best_params": {
+        "n_estimators": 300,
+        "max_depth": 10,
+        "learning_rate": 0.05,
+        "subsample": 0.9,
+        "colsample_bytree": 0.7
+      }
+    },
+    "total_predictions": 6486,
+    "sample_predictions": []
+  },
+  "extra_trees": {
+    "metadata": {
+      "model": "extra_trees",
+      "data_type": "dense",
+      "best_params": {
+        "n_estimators": 350,
+        "max_depth": 15,
+        "min_samples_split": 5,
+        "min_samples_leaf": 2,
+        "max_features": 0.6
+      }
+    },
+    "total_predictions": 6486,
+    "sample_predictions": []
+  },
+  "elasticnet": {
+    "metadata": {
+      "model": "elasticnet",
+      "data_type": "dense",
+      "best_params": {
+        "alpha": 0.17578579429504332,
+        "l1_ratio": 1,
+        "max_iter": 3051
+      },
+      "hyperparameters_path": "models/elasticnet_best_params_20250722_113010.json",
+      "model_path": "models/elasticnet_best_model_20250722_113010.pkl"
+    },
+    "total_predictions": 6486,
+    "sample_predictions": []
+  }
+}

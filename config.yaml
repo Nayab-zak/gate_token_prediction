@@ -1,0 +1,101 @@
+# Configuration file for predictive modeling pipeline
+# Generated on: 2025-07-22
+
+# Data paths and splits
+data:
+  input_dir: "data/input"
+  preprocessed_dir: "data/preprocessed" 
+  encoded_input_dir: "data/encoded_input"
+  predictions_dir: "data/predictions"
+  
+  # Chronological splits (used by data_split_agent)
+  splits:
+    train_end_date: "2022-10-01"  # T_split1
+    val_end_date: "2022-12-31"    # T_split2
+    # Test starts from 2023-01-01 onwards
+
+# Model directories
+models:
+  dir: "models"
+  champion_file: "models/champion.txt"
+  
+# Logging
+logging:
+  dir: "logs"
+  level: "INFO"
+
+# Hyperparameter tuning
+tuning:
+  framework: "optuna"  # optuna, sklearn_halving, or skilearn_random
+  n_trials: 100
+  timeout_minutes: 60
+  early_stopping_rounds: 10
+  
+  # Model-specific search spaces
+  search_spaces:
+    random_forest:
+      n_estimators: [50, 500]
+      max_depth: [3, 20]
+      min_samples_split: [2, 20]
+      min_samples_leaf: [1, 10]
+      max_features: ["sqrt", "log2", 0.3, 0.8]
+      
+    extra_trees:
+      n_estimators: [50, 500]
+      max_depth: [3, 20]
+      min_samples_split: [2, 20]
+      min_samples_leaf: [1, 10]
+      max_features: ["sqrt", "log2", 0.3, 0.8]
+      
+    xgboost:
+      n_estimators: [50, 500]
+      max_depth: [3, 12]
+      learning_rate: [0.01, 0.3]
+      subsample: [0.6, 1.0]
+      colsample_bytree: [0.6, 1.0]
+      reg_alpha: [0, 10]
+      reg_lambda: [0, 10]
+      
+    lightgbm:
+      n_estimators: [50, 500]
+      max_depth: [3, 12]
+      learning_rate: [0.01, 0.3]
+      subsample: [0.6, 1.0]
+      colsample_bytree: [0.6, 1.0]
+      reg_alpha: [0, 10]
+      reg_lambda: [0, 10]
+      min_child_samples: [10, 100]
+      
+    catboost:
+      iterations: [50, 500]
+      depth: [3, 12]
+      learning_rate: [0.01, 0.3]
+      l2_leaf_reg: [1, 10]
+      border_count: [32, 255]
+      
+    elasticnet:
+      alpha: [0.0001, 10]
+      l1_ratio: [0, 1]
+      max_iter: [1000, 5000]
+      
+    ridge:
+      alpha: [0.0001, 100]
+      
+    lasso:
+      alpha: [0.0001, 10]
+      
+    mlp:
+      hidden_layer_sizes: [[50], [100], [50, 50], [100, 50]]
+      alpha: [0.0001, 0.01]
+      learning_rate_init: [0.001, 0.01]
+      max_iter: [500, 2000]
+
+# Streamlit apps
+streamlit:
+  model_results_port: 8501
+  model_comparison_port: 8502
+  
+# Pipeline orchestration
+orchestration:
+  skip_completed_models: true  # Skip training if best params exist
+  parallel_training: false     # Train models in parallel (experimental)

@@ -1,0 +1,53 @@
+best_params:
+  colsample_bytree: 0.6824622358295697
+  learning_rate: 0.10793679295122488
+  max_depth: 9
+  min_child_samples: 50
+  n_estimators: 484
+  reg_alpha: 0
+  reg_lambda: 10
+  subsample: 0.9017816863507087
+data_type: dense
+hyperparameters_path: models/lightgbm_dense_best_params_20250722_103245.json
+model: lightgbm_dense
+model_path: models/lightgbm_dense_best_model_20250722_103245.pkl
+test_metrics:
+  mae: !!python/object/apply:numpy.core.multiarray.scalar
+  - &id001 !!python/object/apply:numpy.dtype
+    args:
+    - f8
+    - false
+    - true
+    state: !!python/tuple
+    - 3
+    - <
+    - null
+    - null
+    - null
+    - -1
+    - -1
+    - 0
+  - !!binary |
+    4i2hEicsMUA=
+  mape: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    +JMn6IO7oT8=
+  rmse: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    uy6mFUOHOEA=
+train_metrics:
+  mae: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    Jh7n0cJQI0A=
+  mape: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    cWi15g5Omj8=
+  rmse: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    baGqtXT+KUA=
+training_timestamp: '2025-07-22T10:34:01.710041'

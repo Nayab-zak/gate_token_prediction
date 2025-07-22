@@ -1,0 +1,50 @@
+best_params:
+  border_count: 228
+  depth: 5
+  iterations: 432
+  l2_leaf_reg: 2
+  learning_rate: 0.26451798494356876
+data_type: sparse
+hyperparameters_path: models/catboost_best_params_20250722_110541.json
+model: catboost
+model_path: models/catboost_best_model_20250722_110541.pkl
+test_metrics:
+  mae: !!python/object/apply:numpy.core.multiarray.scalar
+  - &id001 !!python/object/apply:numpy.dtype
+    args:
+    - f8
+    - false
+    - true
+    state: !!python/tuple
+    - 3
+    - <
+    - null
+    - null
+    - null
+    - -1
+    - -1
+    - 0
+  - !!binary |
+    oBs/h1NXIUA=
+  mape: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    OeTi2nfl4D8=
+  rmse: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    UcWIxA3DKEA=
+train_metrics:
+  mae: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    msvREqNTCUA=
+  mape: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    kTh5bCTC3D8=
+  rmse: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    FVOlDbxTEEA=
+training_timestamp: '2025-07-22T11:11:03.726953'

@@ -1,0 +1,51 @@
+best_params:
+  alpha: 0.00289885802010906
+  hidden_layer_sizes:
+  - 50
+  - 50
+  learning_rate_init: 0.006629660499645003
+  max_iter: 1228
+data_type: dense
+hyperparameters_path: models/mlp_best_params_20250722_103417.json
+model: mlp
+model_path: models/mlp_best_model_20250722_103417.pkl
+test_metrics:
+  mae: !!python/object/apply:numpy.core.multiarray.scalar
+  - &id001 !!python/object/apply:numpy.dtype
+    args:
+    - f8
+    - false
+    - true
+    state: !!python/tuple
+    - 3
+    - <
+    - null
+    - null
+    - null
+    - -1
+    - -1
+    - 0
+  - !!binary |
+    vjmQ89sULUA=
+  mape: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    VrEbs6IioD8=
+  rmse: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    L3RKhnK9NEA=
+train_metrics:
+  mae: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    6cVT/dCBJUA=
+  mape: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    5F8bT/Cmnj8=
+  rmse: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    QoHN8H0gLkA=
+training_timestamp: '2025-07-22T11:03:19.320956'

@@ -1,0 +1,7 @@
+n_series: 40
+split_timestamp: '2025-07-22T09:47:46.025671'
+test_size: 6486
+train_end_date: '2022-10-01'
+train_size: 59142
+val_end_date: '2022-12-31'
+val_size: 2184
