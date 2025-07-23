@@ -811,6 +811,8 @@ def show_business_overview():
     
     col1, col2, col3, col4 = st.columns(4)
     
+    # Initialize champion_data with default values
+    champion_data = {}
     if metrics:
         champion_data = metrics.get(champion_model, {})
         
