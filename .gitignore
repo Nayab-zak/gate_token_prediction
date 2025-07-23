@@ -69,8 +69,17 @@ catboost_info/
 # Temporary files
 *.tmp
 *.temp
+*~
+
+# Test files (development only)
+test_*.py
+debug_*.py
 
 # Node.js (for Vercel app)
+node_modules/
+.next/
+out/
+.vercel/
 vercel-eda-app/node_modules/
 vercel-eda-app/.next/
 vercel-eda-app/out/
@@ -81,3 +90,21 @@ vercel-eda-app/.vercel/
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Documentation (keep only main README and core docs)
+*_SUMMARY.md
+*_ENHANCED.md
+*_COMPLETE.md
+*_GUIDE.md
+*_STATUS.md
+
+# Analysis images (keep only core ones)
+model_analysis_*_2022*.png
+model_analysis_*_2023*.png
+!model_analysis_mlp.png
+!model_analysis_random_forest.png
+
+# Old/backup files
+*.bak
+*.backup
+*.old

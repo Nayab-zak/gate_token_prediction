@@ -26,7 +26,77 @@ print_colored() {
 # Function to show help
 show_help() {
     echo "ML Pipeline Management Script"
-    echo "============================="
+    echo "========================"
+    echo ""
+}
+
+# Function to launch business dashboard
+launch_business_dashboard() {
+    print_colored $BLUE "🏢 Launching Business Analytics Dashboard..."
+    
+    export PYTHONPATH="${PROJECT_ROOT}"
+    
+    # Find available port
+    for port in 8501 8502 8503 8504 8505; do
+        if ! lsof -Pi :$port -sTCP:LISTEN -t >/dev/null 2>&1; then
+            print_colored $GREEN "📊 Starting business dashboard on port $port..."
+            print_colored $YELLOW "🌐 Dashboard URL: http://localhost:$port"
+            print_colored $BLUE "👥 Mode: Business User Interface"
+            python -m streamlit run streamlit_business_dashboard.py --server.port $port --server.headless false
+            break
+        fi
+    done
+}
+
+# Function to launch developer dashboard
+launch_developer_dashboard() {
+    print_colored $BLUE "⚙️ Launching Developer Technical Dashboard..."
+    
+    export PYTHONPATH="${PROJECT_ROOT}"
+    
+    # Find available port
+    for port in 8501 8502 8503 8504 8505; do
+        if ! lsof -Pi :$port -sTCP:LISTEN -t >/dev/null 2>&1; then
+            print_colored $GREEN "🔧 Starting developer dashboard on port $port..."
+            print_colored $YELLOW "🌐 Dashboard URL: http://localhost:$port"
+            print_colored $BLUE "👨‍💻 Mode: Developer Technical Interface"
+            python -m streamlit run streamlit_developer_dashboard.py --server.port $port --server.headless false
+            break
+        fi
+    done
+}
+
+# Function to launch all dashboards
+launch_all_dashboards() {
+    print_colored $BLUE "🚀 Launching All Dashboards..."
+    
+    export PYTHONPATH="${PROJECT_ROOT}"
+    
+    # Start business dashboard
+    print_colored $GREEN "📊 Starting business dashboard on port 8501..."
+    python -m streamlit run streamlit_business_dashboard.py --server.port 8501 --server.headless true &
+    
+    # Start developer dashboard
+    print_colored $GREEN "🔧 Starting developer dashboard on port 8502..."
+    python -m streamlit run streamlit_developer_dashboard.py --server.port 8502 --server.headless true &
+    
+    # Start original model comparison
+    print_colored $GREEN "📈 Starting model comparison dashboard on port 8503..."
+    python -m streamlit run streamlit_model_comparison.py --server.port 8503 --server.headless true &
+    
+    sleep 3
+    print_colored $YELLOW "🌐 Dashboard URLs:"
+    print_colored $YELLOW "   Business Dashboard: http://localhost:8501"
+    print_colored $YELLOW "   Developer Dashboard: http://localhost:8502"
+    print_colored $YELLOW "   Model Comparison: http://localhost:8503"
+    
+    print_colored $GREEN "✅ All dashboards launched successfully!"
+}
+
+# Function to show help
+show_help() {
+    echo "ML Pipeline Management Script"
+    echo "========================"
     echo ""
     echo "Usage: $0 [command] [options]"
     echo ""
@@ -42,6 +112,14 @@ show_help() {
     echo "Model Training Commands:"
     echo "  train [model] [--hyper-tune]      Train specific model or all models"
     echo "  test [model]                      Test specific model or all models"
+    echo ""
+    echo "EDA and Analysis Commands:"
+    echo "  eda-input                         Analyze input data structure and statistics"
+    echo "  eda-output                        Interactive model results and predictions analysis"
+    echo "  eda-notebook                      Launch Jupyter notebook for detailed analysis"
+    echo "  dashboard-business                Launch business-friendly analytics dashboard"
+    echo "  dashboard-developer               Launch technical developer dashboard"
+    echo "  dashboards-all                    Launch all Streamlit dashboards"
     echo ""
     echo "Realtime Prediction Commands:"
     echo "  realtime-watch [--watch-dir DIR]  Start realtime prediction monitoring"
@@ -74,6 +152,12 @@ show_help() {
     echo "  $0 train random_forest           # Train Random Forest without hyperparameter tuning"
     echo "  $0 test all                      # Test all trained models"
     echo "  $0 test elasticnet               # Test ElasticNet model only"
+    echo "  $0 eda-input                     # Analyze input data structure and statistics"
+    echo "  $0 eda-output                    # Interactive analysis of model predictions"
+    echo "  $0 eda-notebook                  # Launch Jupyter notebook for detailed analysis"
+    echo "  $0 dashboard-business            # Launch business-friendly analytics dashboard"
+    echo "  $0 dashboard-developer           # Launch technical developer dashboard"
+    echo "  $0 dashboards-all                # Launch all Streamlit dashboards"
     echo "  $0 resume-from 3                 # Resume pipeline from aggregation step"
     echo "  $0 realtime-watch                # Start realtime prediction monitoring"
     echo "  $0 realtime-predict data.csv     # Make prediction on single file"
@@ -527,6 +611,85 @@ cleanup_realtime_files() {
     print_colored $GREEN "✅ Cleanup completed"
 }
 
+# Function to analyze input data structure
+analyze_input_data() {
+    print_colored $BLUE "📊 Analyzing Input Data Structure and Statistics..."
+    
+    export PYTHONPATH="${PROJECT_ROOT}"
+    python examine_data.py
+    
+    print_colored $GREEN "✅ Input data analysis completed"
+}
+
+# Function to run interactive model output analysis
+analyze_model_outputs() {
+    print_colored $BLUE "🔍 Starting Interactive Model Output Analysis..."
+    
+    export PYTHONPATH="${PROJECT_ROOT}"
+    python model_explorer.py
+    
+    print_colored $GREEN "✅ Model output analysis completed"
+}
+
+# Function to launch Jupyter notebook for detailed EDA
+launch_eda_notebook() {
+    print_colored $BLUE "📓 Launching Jupyter Notebook for Detailed Analysis..."
+    
+    # Check if jupyter is available
+    if command -v jupyter >/dev/null 2>&1; then
+        print_colored $GREEN "🚀 Opening model_analysis_eda.ipynb..."
+        jupyter notebook model_analysis_eda.ipynb
+    else
+        print_colored $YELLOW "⚠ Jupyter not found. Opening notebook file for viewing..."
+        print_colored $BLUE "📂 Notebook location: model_analysis_eda.ipynb"
+        print_colored $BLUE "💡 Install Jupyter: pip install jupyter"
+    fi
+}
+
+# Function to launch model comparison dashboard
+launch_model_comparison_dashboard() {
+    print_colored $BLUE "🚀 Launching Model Comparison Dashboard..."
+    
+    export PYTHONPATH="${PROJECT_ROOT}"
+    
+    # Find available port
+    for port in 8501 8502 8503 8504 8505; do
+        if ! lsof -Pi :$port -sTCP:LISTEN -t >/dev/null 2>&1; then
+            print_colored $GREEN "📊 Starting model comparison dashboard on port $port..."
+            print_colored $YELLOW "🌐 Dashboard URL: http://localhost:$port"
+            python -m streamlit run streamlit_model_comparison.py --server.port $port --server.headless false
+            break
+        fi
+    done
+}
+
+# Function to launch model results dashboard
+launch_model_results_dashboard() {
+    print_colored $BLUE "🚀 Launching Model Results Dashboard..."
+    
+    export PYTHONPATH="${PROJECT_ROOT}"
+    
+    # Find available port
+    for port in 8503 8504 8505 8506 8507; do
+        if ! lsof -Pi :$port -sTCP:LISTEN -t >/dev/null 2>&1; then
+            print_colored $GREEN "📈 Starting model results dashboard on port $port..."
+            print_colored $YELLOW "🌐 Dashboard URL: http://localhost:$port"
+            python -m streamlit run streamlit_model_results.py --server.port $port --server.headless false
+            break
+        fi
+    done
+}
+
+# Function to launch all dashboards
+launch_all_dashboards() {
+    print_colored $BLUE "🚀 Launching All Streamlit Dashboards..."
+    
+    export PYTHONPATH="${PROJECT_ROOT}"
+    python utils/launch_dashboards.py
+    
+    print_colored $GREEN "✅ All dashboards started"
+}
+
 # Main script logic
 case "${1:-help}" in
     "encode-data")
@@ -563,6 +726,30 @@ case "${1:-help}" in
         fi
         
         test_model "$2"
+        ;;
+    "eda-input")
+        analyze_input_data
+        ;;
+    "eda-output")
+        analyze_model_outputs
+        ;;
+    "eda-notebook")
+        launch_eda_notebook
+        ;;
+    "dashboard-models")
+        launch_model_comparison_dashboard
+        ;;
+    "dashboard-business")
+        launch_business_dashboard
+        ;;
+    "dashboard-developer")
+        launch_developer_dashboard
+        ;;
+    "dashboard-results")
+        launch_model_results_dashboard
+        ;;
+    "dashboards-all")
+        launch_all_dashboards
         ;;
     "realtime-watch")
         # Parse watch directory if provided

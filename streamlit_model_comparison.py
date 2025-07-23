@@ -11,6 +11,25 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import yaml
 from pathlib import Path
+import json
+
+# Custom YAML loader to handle numpy scalars
+class CustomYAMLLoader(yaml.SafeLoader):
+    pass
+
+def numpy_scalar_constructor(loader, node):
+    """Custom constructor for numpy scalars"""
+    return float(loader.construct_scalar(node))
+
+# Register numpy scalar constructors
+CustomYAMLLoader.add_constructor(
+    'tag:yaml.org,2002:python/object/apply:numpy.core.multiarray.scalar',
+    numpy_scalar_constructor
+)
+CustomYAMLLoader.add_constructor(
+    'tag:yaml.org,2002:python/object/apply:numpy.float64',
+    numpy_scalar_constructor
+)
 
 # Page config
 st.set_page_config(
@@ -29,6 +48,15 @@ def load_config():
         return {'data': {'predictions_dir': 'data/predictions'}, 'models': {'champion_file': 'models/champion.txt'}}
 
 @st.cache_data
+def load_champion_model():
+    """Load champion model name"""
+    try:
+        with open('models/champion.txt', 'r') as f:
+            return f.read().strip()
+    except:
+        return None
+
+@st.cache_data
 def collect_all_model_results():
     """Collect results from all trained models"""
     config = load_config()
@@ -38,6 +66,7 @@ def collect_all_model_results():
         return pd.DataFrame()
     
     results = []
+    champion = load_champion_model()
     
     for model_dir in predictions_dir.iterdir():
         if not model_dir.is_dir():
@@ -54,18 +83,23 @@ def collect_all_model_results():
         
         try:
             with open(latest_metadata, 'r') as f:
-                metadata = yaml.safe_load(f)
+                metadata = yaml.load(f, Loader=CustomYAMLLoader)
+            
+            # Extract metrics safely
+            test_metrics = metadata.get('test_metrics', {})
+            train_metrics = metadata.get('train_metrics', {})
             
             result = {
                 'Model': model_name,
+                'Champion': model_name == champion,
                 'Data Type': metadata.get('data_type', 'Unknown'),
-                'Training Date': metadata.get('training_timestamp', '')[:10],
-                'Test MAE': metadata.get('test_metrics', {}).get('mae', np.nan),
-                'Test RMSE': metadata.get('test_metrics', {}).get('rmse', np.nan),
-                'Test MAPE': metadata.get('test_metrics', {}).get('mape', np.nan),
-                'Train MAE': metadata.get('train_metrics', {}).get('mae', np.nan),
-                'Train RMSE': metadata.get('train_metrics', {}).get('rmse', np.nan),
-                'Train MAPE': metadata.get('train_metrics', {}).get('mape', np.nan),
+                'Training Date': str(metadata.get('training_timestamp', ''))[:10],
+                'Test MAE': float(test_metrics.get('mae', 0.0)) if test_metrics.get('mae') is not None else np.nan,
+                'Test RMSE': float(test_metrics.get('rmse', 0.0)) if test_metrics.get('rmse') is not None else np.nan,
+                'Test MAPE': float(test_metrics.get('mape', 0.0)) if test_metrics.get('mape') is not None else np.nan,
+                'Train MAE': float(train_metrics.get('mae', 0.0)) if train_metrics.get('mae') is not None else np.nan,
+                'Train RMSE': float(train_metrics.get('rmse', 0.0)) if train_metrics.get('rmse') is not None else np.nan,
+                'Train MAPE': float(train_metrics.get('mape', 0.0)) if train_metrics.get('mape') is not None else np.nan,
                 'Metadata Path': str(latest_metadata)
             }
             
@@ -73,6 +107,27 @@ def collect_all_model_results():
             
         except Exception as e:
             st.warning(f"Could not load metadata for {model_name}: {str(e)}")
+            # Try to extract metrics from JSON files as fallback
+            try:
+                json_files = list(model_dir.glob("*_best_params_*.json"))
+                if json_files:
+                    st.info(f"Attempting fallback loading for {model_name}")
+                    result = {
+                        'Model': model_name,
+                        'Champion': model_name == champion,
+                        'Data Type': 'Unknown',
+                        'Training Date': 'Unknown',
+                        'Test MAE': np.nan,
+                        'Test RMSE': np.nan,
+                        'Test MAPE': np.nan,
+                        'Train MAE': np.nan,
+                        'Train RMSE': np.nan,
+                        'Train MAPE': np.nan,
+                        'Metadata Path': 'JSON fallback'
+                    }
+                    results.append(result)
+            except:
+                pass
             continue
     
     return pd.DataFrame(results)
@@ -98,13 +153,19 @@ def plot_model_comparison_bar(df, metric='Test MAE'):
     # Sort by metric
     df_sorted = df.sort_values(metric)
     
+    # Create colors - gold for champion, blue for others
+    colors = ['gold' if is_champ else 'lightblue' for is_champ in df_sorted['Champion']]
+    
     fig = go.Figure()
     fig.add_trace(go.Bar(
         x=df_sorted['Model'],
         y=df_sorted[metric],
         text=df_sorted[metric].round(4),
         textposition='outside',
-        marker_color='lightblue'
+        marker_color=colors,
+        hovertemplate='<b>%{x}</b><br>' + 
+                     f'{metric}: %{{y:.4f}}<br>' +
+                     '<extra></extra>'
     ))
     
     fig.update_layout(
