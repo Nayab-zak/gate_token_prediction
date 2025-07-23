@@ -47,6 +47,7 @@ venv.bak/
 *.xlsx
 *.parquet
 !test_data.csv
+!data/predictions/**/*.csv
 
 # Model files
 *.pkl
