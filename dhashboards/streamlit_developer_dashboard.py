@@ -69,48 +69,77 @@ st.markdown("""
 <style>
     .main-header {
         font-size: 2.5rem;
-        color: #2563eb;
+        color: #fff;
         text-align: center;
         margin-bottom: 2rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-shadow: 0 2px 8px #000;
     }
     .tech-card {
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-        color: white;
-        padding: 1rem;
-        border-radius: 10px;
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        color: #fff;
+        padding: 1.2rem;
+        border-radius: 12px;
         border-left: 5px solid #3b82f6;
         margin: 0.5rem 0;
+        font-weight: bold;
+        box-shadow: 0 2px 12px #0002;
     }
     .metric-header {
-        color: #60a5fa;
+        color: #facc15;
         font-weight: bold;
-        font-size: 0.9rem;
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.5rem;
     }
     .code-block {
         background: #1e1e1e;
-        color: #d4d4d4;
+        color: #f8fafc;
         padding: 1rem;
         border-radius: 5px;
         font-family: 'Courier New', monospace;
-        font-size: 0.85rem;
+        font-size: 1rem;
         margin: 1rem 0;
+        font-weight: bold;
     }
     .warning-box {
         background: #fef3c7;
         border-left: 4px solid #f59e0b;
-        padding: 1rem;
-        margin: 1rem 0;
-        border-radius: 5px;
+        color: #b45309;
+        font-weight: bold;
     }
     .success-box {
         background: #ecfdf5;
         border-left: 4px solid #10b981;
-        padding: 1rem;
-        margin: 1rem 0;
-        border-radius: 5px;
+        color: #065f46;
+        font-weight: bold;
+    }
+    .stMetric label, .stMetric span {
+        color: #fff !important;
+        font-weight: bold !important;
+        font-size: 1.2rem !important;
+        text-shadow: 0 1px 4px #0008;
+    }
+    .stDataFrame th, .stDataFrame td {
+        color: #fff !important;
+        font-weight: bold !important;
+        background: #1e293b !important;
+        font-size: 1.1rem !important;
+    }
+    .stPlotlyChart text {
+        fill: #fff !important;
+        font-weight: bold !important;
     }
 </style>
 """, unsafe_allow_html=True)
+
+# Add logo at the top
+logo_path = "image/logo.png"
+try:
+    st.image(logo_path, width=120)
+except Exception:
+    st.markdown('<h2 style="color:#fff; font-weight:bold;">Gate Token Prediction</h2>', unsafe_allow_html=True)
 
 # Custom YAML loader
 class CustomYAMLLoader(yaml.SafeLoader):
@@ -163,8 +192,51 @@ def load_config():
         return {'data': {'predictions_dir': 'data/predictions'}}
 
 @st.cache_data
+def calculate_metrics_from_csv(csv_file_path):
+    """Calculate MAE, RMSE, and MAPE from CSV prediction file"""
+    try:
+        import csv
+        import math
+        
+        true_values = []
+        pred_values = []
+        
+        with open(csv_file_path, 'r') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                try:
+                    true_val = float(row['true_count'])
+                    pred_val = float(row['pred_count'])
+                    true_values.append(true_val)
+                    pred_values.append(pred_val)
+                except (ValueError, KeyError):
+                    continue
+        
+        if len(true_values) == 0:
+            return None
+        
+        # Calculate metrics
+        errors = [abs(t - p) for t, p in zip(true_values, pred_values)]
+        mae = sum(errors) / len(errors)
+        
+        squared_errors = [(t - p) ** 2 for t, p in zip(true_values, pred_values)]
+        rmse = math.sqrt(sum(squared_errors) / len(squared_errors))
+        
+        percentage_errors = [abs((t - p) / t) * 100 for t, p in zip(true_values, pred_values) if t != 0]
+        mape = sum(percentage_errors) / len(percentage_errors) if percentage_errors else 0
+        
+        return {
+            'mae': mae,
+            'rmse': rmse,
+            'mape': mape
+        }
+        
+    except Exception as e:
+        return None
+
+@st.cache_data
 def collect_all_model_results():
-    """Collect results from all trained models with technical details"""
+    """Collect results from all trained models with technical details - Fixed NaN issue"""
     config = load_config()
     predictions_dir = Path(config['data']['predictions_dir'])
     
@@ -179,48 +251,67 @@ def collect_all_model_results():
             continue
         
         model_name = model_dir.name
-        metadata_files = list(model_dir.glob("*_metadata_*.yaml"))
         
-        # Also check backup folder for metadata files
+        # Find CSV files for test and train predictions
+        test_csv_files = list(model_dir.glob("*_test_preds_*.csv"))
+        train_csv_files = list(model_dir.glob("*_train_preds_*.csv"))
+        
+        if not test_csv_files:
+            continue
+            
+        # Get latest CSV files
+        latest_test_csv = max(test_csv_files, key=lambda x: x.stat().st_mtime)
+        latest_train_csv = max(train_csv_files, key=lambda x: x.stat().st_mtime) if train_csv_files else None
+        
+        # Load metadata for additional info (but don't rely on it for metrics)
+        metadata_files = list(model_dir.glob("*_metadata_*.yaml"))
         backup_dir = model_dir / "backup"
         if backup_dir.exists():
             metadata_files.extend(list(backup_dir.glob("*_metadata_*.yaml")))
         
-        if not metadata_files:
-            continue
-            
-        latest_metadata = max(metadata_files, key=lambda x: x.stat().st_mtime)
+        metadata = {}
+        if metadata_files:
+            try:
+                latest_metadata = max(metadata_files, key=lambda x: x.stat().st_mtime)
+                with open(latest_metadata, 'r') as f:
+                    # Try to get non-metric metadata
+                    content = f.read()
+                    lines = content.split('\n')
+                    for line in lines:
+                        if 'data_type:' in line:
+                            metadata['data_type'] = line.split(':', 1)[1].strip()
+                        elif 'training_timestamp:' in line:
+                            metadata['training_timestamp'] = line.split(':', 1)[1].strip().strip("'\"")
+                        elif 'model_path:' in line:
+                            metadata['model_path'] = line.split(':', 1)[1].strip()
+                        elif 'hyperparameters_path:' in line:
+                            metadata['hyperparameters_path'] = line.split(':', 1)[1].strip()
+            except:
+                pass
         
         try:
-            with open(latest_metadata, 'r') as f:
-                # Try custom loader first
-                try:
-                    metadata = yaml.load(f, Loader=CustomYAMLLoader)
-                except Exception:
-                    # Fallback to unsafe_load for numpy objects
-                    f.seek(0)
-                    metadata = yaml.unsafe_load(f)
+            # Calculate metrics from CSV files (avoids NaN issue)
+            test_metrics = calculate_metrics_from_csv(latest_test_csv)
+            train_metrics = calculate_metrics_from_csv(latest_train_csv) if latest_train_csv else None
             
-            test_metrics = metadata.get('test_metrics', {})
-            train_metrics = metadata.get('train_metrics', {})
-            
-            result = {
-                'Model': model_name,
-                'Champion': model_name == champion,
-                'Data Type': metadata.get('data_type', 'Unknown'),
-                'Training Date': str(metadata.get('training_timestamp', ''))[:19],
-                'Test MAE': float(test_metrics.get('mae', 0.0)) if test_metrics.get('mae') is not None else np.nan,
-                'Test RMSE': float(test_metrics.get('rmse', 0.0)) if test_metrics.get('rmse') is not None else np.nan,
-                'Test MAPE': float(test_metrics.get('mape', 0.0)) if test_metrics.get('mape') is not None else np.nan,
-                'Train MAE': float(train_metrics.get('mae', 0.0)) if train_metrics.get('mae') is not None else np.nan,
-                'Train RMSE': float(train_metrics.get('rmse', 0.0)) if train_metrics.get('rmse') is not None else np.nan,
-                'Train MAPE': float(train_metrics.get('mape', 0.0)) if train_metrics.get('mape') is not None else np.nan,
-                'Overfitting': abs(float(train_metrics.get('mae', 0)) - float(test_metrics.get('mae', 0))) if train_metrics.get('mae') and test_metrics.get('mae') else np.nan,
-                'Model Path': metadata.get('model_path', 'N/A'),
-                'Hyperparams Path': metadata.get('hyperparameters_path', 'N/A')
-            }
-            
-            results.append(result)
+            if test_metrics:
+                result = {
+                    'Model': model_name,
+                    'Champion': model_name == champion,
+                    'Data Type': metadata.get('data_type', 'Dense'),
+                    'Training Date': str(metadata.get('training_timestamp', ''))[:19],
+                    'Test MAE': test_metrics['mae'],
+                    'Test RMSE': test_metrics['rmse'],
+                    'Test MAPE': test_metrics['mape'],
+                    'Train MAE': train_metrics['mae'] if train_metrics else 0.0,
+                    'Train RMSE': train_metrics['rmse'] if train_metrics else 0.0,
+                    'Train MAPE': train_metrics['mape'] if train_metrics else 0.0,
+                    'Overfitting': abs(train_metrics['mae'] - test_metrics['mae']) if train_metrics else 0.0,
+                    'Model Path': metadata.get('model_path', 'N/A'),
+                    'Hyperparams Path': metadata.get('hyperparameters_path', 'N/A')
+                }
+                
+                results.append(result)
             
         except Exception as e:
             st.sidebar.warning(f"Error loading {model_name}: {str(e)}")
@@ -235,7 +326,7 @@ def load_champion_model():
         with open('models/champion.txt', 'r') as f:
             return f.read().strip()
     except:
-        return "random_forest"
+        return "mlp"  # Default to MLP as champion
 
 @st.cache_data
 def load_hyperparameters(model_name):
@@ -374,7 +465,7 @@ def show_model_comparison():
     champion_model = df[df['Champion'] == True]['Model'].iloc[0] if any(df['Champion']) else None
     
     if champion_model:
-        st.markdown(f"### 🏆 Production AI System: **Hybrid Neural Architecture with Auto-Encoding**")
+        st.markdown(f"### 🏆 Production AI System: **MLP Neural Network with Auto-Encoding**")
     
     # Model comparison table
     st.markdown("### 📊 Performance Metrics")
@@ -393,40 +484,168 @@ def show_model_comparison():
     styled_df = display_df.style.apply(highlight_champion_rows(df), axis=1)
     st.dataframe(styled_df, use_container_width=True)
     
-    # Performance visualization
+    # Performance visualization - Three horizontal plots
     st.markdown("### 📈 Performance Visualization")
     
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        # MAE comparison
-        fig = go.Figure()
-        colors = ['gold' if is_champ else 'lightblue' for is_champ in df['Champion']]
+    # Calculate accuracy percentages from MAPE (100 - MAPE = Accuracy)
+    if 'Test MAPE' in df.columns:
+        df_plot = df.copy()
+        df_plot['Accuracy'] = 100 - df_plot['Test MAPE']
+        df_plot['Accuracy'] = df_plot['Accuracy'].clip(0, 100)  # Ensure 0-100 range
+        df_plot = df_plot.sort_values('Test MAE')  # Sort by MAE for consistency
         
-        fig.add_trace(go.Bar(
-            x=df['Model'],
-            y=df['Test MAE'],
-            name='Test MAE',
-            marker_color=colors,
-            text=df['Test MAE'].round(2),
-            textposition='outside'
-        ))
-        fig.update_layout(title="Test MAE by Model", xaxis_tickangle=-45)
-        st.plotly_chart(fig, use_container_width=True)
-    
-    with col2:
-        # RMSE comparison
-        fig = go.Figure()
-        fig.add_trace(go.Bar(
-            x=df['Model'],
-            y=df['Test RMSE'],
-            name='Test RMSE',
-            marker_color=colors,
-            text=df['Test RMSE'].round(2),
-            textposition='outside'
-        ))
-        fig.update_layout(title="Test RMSE by Model", xaxis_tickangle=-45)
-        st.plotly_chart(fig, use_container_width=True)
+        # Create three horizontal plots using columns
+        col1, col2, col3 = st.columns(3)
+        
+        # Color coding: gold for champion, blue for others
+        colors = ['gold' if is_champ else 'lightblue' for is_champ in df_plot['Champion']]
+        
+        with col1:
+            # MAE subplot
+            fig_mae = go.Figure()
+            fig_mae.add_trace(go.Bar(
+                x=df_plot['Model'],
+                y=df_plot['Test MAE'],
+                name='MAE',
+                marker_color=colors,
+                text=df_plot['Test MAE'].round(2),
+                textposition='outside',
+                textfont=dict(size=14, family="Arial Black", color='black'),
+                width=0.6,  # Slimmer bars
+                hovertemplate='<b>%{x}</b><br>MAE: %{y:.2f}<extra></extra>'
+            ))
+            
+            fig_mae.update_layout(
+                title=dict(
+                    text="<b>MAE (Lower is Better)</b>",
+                    font=dict(size=16, color='darkblue', family="Arial Black"),
+                    x=0.5
+                ),
+                xaxis=dict(
+                    title=dict(text="<b>Model</b>", font=dict(size=14, family="Arial Black")),
+                    tickangle=-45,
+                    tickfont=dict(size=12, family="Arial", color='black')
+                ),
+                yaxis=dict(
+                    title=dict(text="<b>MAE</b>", font=dict(size=14, family="Arial Black")),
+                    tickfont=dict(size=12, family="Arial", color='black')
+                ),
+                template='plotly_white',
+                height=280,
+                margin=dict(l=20, r=10, t=40, b=40),
+                showlegend=False
+            )
+            st.plotly_chart(fig_mae, use_container_width=True)
+        
+        with col2:
+            # RMSE subplot  
+            fig_rmse = go.Figure()
+            fig_rmse.add_trace(go.Bar(
+                x=df_plot['Model'],
+                y=df_plot['Test RMSE'],
+                name='RMSE',
+                marker_color=colors,
+                text=df_plot['Test RMSE'].round(2),
+                textposition='outside',
+                textfont=dict(size=14, family="Arial Black", color='black'),
+                width=0.6,  # Slimmer bars
+                hovertemplate='<b>%{x}</b><br>RMSE: %{y:.2f}<extra></extra>'
+            ))
+            
+            fig_rmse.update_layout(
+                title=dict(
+                    text="<b>RMSE (Lower is Better)</b>",
+                    font=dict(size=16, color='darkgreen', family="Arial Black"),
+                    x=0.5
+                ),
+                xaxis=dict(
+                    title=dict(text="<b>Model</b>", font=dict(size=14, family="Arial Black")),
+                    tickangle=-45,
+                    tickfont=dict(size=12, family="Arial", color='black')
+                ),
+                yaxis=dict(
+                    title=dict(text="<b>RMSE</b>", font=dict(size=14, family="Arial Black")),
+                    tickfont=dict(size=12, family="Arial", color='black')
+                ),
+                template='plotly_white',
+                height=280,
+                margin=dict(l=20, r=10, t=40, b=40),
+                showlegend=False
+            )
+            st.plotly_chart(fig_rmse, use_container_width=True)
+        
+        with col3:
+            # Accuracy subplot
+            fig_acc = go.Figure()
+            fig_acc.add_trace(go.Bar(
+                x=df_plot['Model'],
+                y=df_plot['Accuracy'],
+                name='Accuracy',
+                marker_color=colors,
+                text=[f"{acc:.1f}%" for acc in df_plot['Accuracy']],
+                textposition='outside',
+                textfont=dict(size=14, family="Arial Black", color='black'),
+                width=0.6,  # Slimmer bars
+                hovertemplate='<b>%{x}</b><br>Accuracy: %{y:.1f}%<extra></extra>'
+            ))
+            
+            fig_acc.update_layout(
+                title=dict(
+                    text="<b>Accuracy % (Higher is Better)</b>",
+                    font=dict(size=16, color='darkred', family="Arial Black"),
+                    x=0.5
+                ),
+                xaxis=dict(
+                    title=dict(text="<b>Model</b>", font=dict(size=14, family="Arial Black")),
+                    tickangle=-45,
+                    tickfont=dict(size=12, family="Arial", color='black')
+                ),
+                yaxis=dict(
+                    title=dict(text="<b>Accuracy (%)</b>", font=dict(size=14, family="Arial Black")),
+                    tickfont=dict(size=12, family="Arial", color='black')
+                ),
+                template='plotly_white',
+                height=280,
+                margin=dict(l=20, r=10, t=40, b=40),
+                showlegend=False
+            )
+            st.plotly_chart(fig_acc, use_container_width=True)
+        
+        # Performance summary metrics below the plots
+        st.markdown("---")
+        st.markdown("### 📊 Performance Summary")
+        
+        col1, col2, col3, col4 = st.columns(4)
+        
+        df_summary = df_plot.copy()
+        
+        # Best performing models
+        best_mae_model = df_summary.loc[df_summary['Test MAE'].idxmin()]
+        best_rmse_model = df_summary.loc[df_summary['Test RMSE'].idxmin()]  
+        best_acc_model = df_summary.loc[df_summary['Accuracy'].idxmax()]
+        
+        with col1:
+            st.metric("🏆 Best MAE", 
+                     f"{best_mae_model['Test MAE']:.2f}", 
+                     delta=f"{best_mae_model['Model']}")
+        
+        with col2:
+            st.metric("🎯 Best RMSE", 
+                     f"{best_rmse_model['Test RMSE']:.2f}",
+                     delta=f"{best_rmse_model['Model']}")
+        
+        with col3:
+            st.metric("⭐ Best Accuracy", 
+                     f"{best_acc_model['Accuracy']:.1f}%",
+                     delta=f"{best_acc_model['Model']}")
+        
+        with col4:
+            # Overall statistics
+            avg_accuracy = df_summary['Accuracy'].mean()
+            excellent_models = len(df_summary[df_summary['Accuracy'] >= 95])
+            st.metric("📈 Avg Accuracy", 
+                     f"{avg_accuracy:.1f}%",
+                     delta=f"{excellent_models}/{len(df_summary)} excellent")
     
     # Overfitting analysis
     st.markdown("### 🔍 Overfitting Analysis")

@@ -147,17 +147,23 @@ class FeatureAgent:
             
             series_cols = [col for col in df.columns if col not in exclude_cols]
             
+            # Only keep numeric columns
+            numeric_series_cols = [col for col in series_cols if pd.api.types.is_numeric_dtype(df[col])]
+            if not numeric_series_cols:
+                self.logger.warning("No numeric columns available for rolling features. Skipping rolling feature creation.")
+                return df
+            
             # Limit series for rolling features
             max_series = 30
-            if len(series_cols) > max_series:
-                series_variance = df[series_cols].var().sort_values(ascending=False)
-                series_cols = series_variance.head(max_series).index.tolist()
+            if len(numeric_series_cols) > max_series:
+                series_variance = df[numeric_series_cols].var().sort_values(ascending=False)
+                numeric_series_cols = series_variance.head(max_series).index.tolist()
                 self.logger.info(f"Selected top {max_series} series for rolling features")
             
             # Create rolling features
             for window in windows:
                 self.logger.info(f"Creating {window}h rolling features")
-                for col in series_cols:
+                for col in numeric_series_cols:
                     # Rolling mean
                     mean_col = f"{col}_roll_mean_{window}h"
                     df[mean_col] = df[col].rolling(window=window, min_periods=1).mean()
@@ -167,7 +173,7 @@ class FeatureAgent:
                         std_col = f"{col}_roll_std_{window}h"
                         df[std_col] = df[col].rolling(window=window, min_periods=1).std().fillna(0)
             
-            self.logger.info(f"Created rolling features for {len(series_cols)} series")
+            self.logger.info(f"Created rolling features for {len(numeric_series_cols)} series")
             return df
             
         except Exception as e:
@@ -190,13 +196,19 @@ class FeatureAgent:
             
             series_cols = [col for col in df.columns if col not in exclude_cols]
             
+            # Only keep numeric columns
+            numeric_series_cols = [col for col in series_cols if pd.api.types.is_numeric_dtype(df[col])]
+            if not numeric_series_cols:
+                self.logger.warning("No numeric columns available for change features. Skipping change feature creation.")
+                return df
+            
             # Limit series for change features
             max_series = 20
-            if len(series_cols) > max_series:
-                series_variance = df[series_cols].var().sort_values(ascending=False)
-                series_cols = series_variance.head(max_series).index.tolist()
+            if len(numeric_series_cols) > max_series:
+                series_variance = df[numeric_series_cols].var().sort_values(ascending=False)
+                numeric_series_cols = series_variance.head(max_series).index.tolist()
             
-            for col in series_cols:
+            for col in numeric_series_cols:
                 # Delta (difference)
                 delta_col = f"{col}_delta"
                 df[delta_col] = df[col].diff().fillna(0)
@@ -205,7 +217,7 @@ class FeatureAgent:
                 pct_col = f"{col}_pct_change"
                 df[pct_col] = df[col].pct_change().fillna(0).replace([np.inf, -np.inf], 0)
             
-            self.logger.info(f"Created change features for {len(series_cols)} series")
+            self.logger.info(f"Created change features for {len(numeric_series_cols)} series")
             return df
             
         except Exception as e:

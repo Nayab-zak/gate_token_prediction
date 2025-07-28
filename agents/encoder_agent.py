@@ -3,6 +3,9 @@
 Encoder Agent - Train autoencoder and create embeddings
 """
 
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = ""
+
 import pandas as pd
 import numpy as np
 import logging
@@ -36,11 +39,10 @@ class EncoderAgent:
         np.random.seed(42)
     
     def load_scaled_data(self, file_path):
-        """Load scaled data and separate features from timestamp"""
+        """Load scaled data and separate features from timestamp. Only keep numeric columns for encoding."""
         try:
             self.logger.info(f"Loading scaled data from: {file_path}")
             df = pd.read_csv(file_path)
-            
             # Separate timestamp and features
             if 'timestamp' in df.columns:
                 timestamps = df['timestamp']
@@ -48,10 +50,10 @@ class EncoderAgent:
             else:
                 timestamps = None
                 features = df
-            
-            self.logger.info(f"Loaded {len(features)} rows with {features.shape[1]} features")
-            return features, timestamps
-            
+            # Only keep numeric columns for encoding
+            numeric_features = features.select_dtypes(include=[np.number])
+            self.logger.info(f"Loaded {len(numeric_features)} rows with {numeric_features.shape[1]} numeric features (from {features.shape[1]} total features)")
+            return numeric_features, timestamps
         except Exception as e:
             self.logger.error(f"Error loading scaled data: {str(e)}")
             raise

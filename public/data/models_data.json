@@ -1,5 +1,5 @@
 {
-  "_champion": "random_forest",
+  "_champion": "mlp",
   "mlp": {
     "metadata": {
       "model": "mlp",

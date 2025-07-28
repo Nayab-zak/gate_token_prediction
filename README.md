@@ -30,7 +30,7 @@ Input Features (512) → Encoder (64) → Decoder (512) → Predictions
 - **Pattern Recognition**: Automatically discovers hidden relationships
 
 #### **2. Hybrid Model Ensemble**
-- **🏆 Champion**: Random Forest (Best Overall Performance)
+- **🏆 Champion**: MLP (Best Overall Performance)
 - **🧠 Neural**: MLP with auto-encoded features
 - **📈 Gradient Boosting**: XGBoost, LightGBM, CatBoost
 - **📊 Linear**: ElasticNet with regularization
@@ -177,10 +177,10 @@ agent.generate_predictions()
 
 ## 📈 Model Performance
 
-### **Champion Model: Random Forest**
-- **Accuracy**: 92.3%
-- **Average Error**: 18.5 tokens
-- **MAPE**: 12.1%
+### **Champion Model: MLP**
+- **Accuracy**: 89.7%
+- **Average Error**: 14.5 tokens
+- **MAPE**: 3.1%
 - **Features**: 64 auto-encoded + 8 time features
 
 ### **Neural Network: MLP**
@@ -210,8 +210,8 @@ gate_token_predict/
 │   │   ├── ingestion_agent.py            # Stage 1: Data ingestion
 │   │   ├── preprocessing_agent.py        # Stage 2: Data cleaning
 │   │   ├── aggregation_agent.py          # Stage 3: Data aggregation
-│   │   ├── feature_agent.py              # Stage 4: Feature engineering
-│   │   ├── encoder_agent.py              # Stage 5: Neural encoding
+│   │   ├── feature_agent.py               # Stage 4: Feature engineering
+│   │   ├── encoder_agent.py               # Stage 5: Neural encoding
 │   │   ├── model_training_orchestrator.py # Stage 6: Model training
 │   │   └── realtime_predict_agent.py     # Real-time predictions
 │
@@ -368,7 +368,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 #### 🎯 Supported Algorithms (7 Models)
 
-1. **🌲 Random Forest** (Champion Model)
+1. **🌲 Random Forest**
    - **Data Type**: Dense (64-dim embeddings)
    - **Hyperparameters**:
      - `n_estimators`: 400
@@ -377,7 +377,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
      - `min_samples_split`: 3
      - `min_samples_leaf`: 1
 
-2. **🧠 Multi-Layer Perceptron (MLP)**
+2. **🧠 Multi-Layer Perceptron (MLP) (Champion Model)**
    - **Data Type**: Dense (64-dim embeddings)
    - **Architecture**: Input → 50 → 50 → Output (2 hidden layers)
    - **Optimized Hyperparameters**:
@@ -413,7 +413,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
    - **Search Space**: alpha [0.0001-10], l1_ratio [0-1], max_iter [1000-5000]
 
 #### 🏆 Champion Model System
-- **Current Champion**: Random Forest
+- **Current Champion**: MLP
 - **Selection Criteria**: Lowest test set MAE
 - **Auto-Update**: Champions automatically updated when better models found
 - **Transparency**: Champion status displayed in all analysis tools
@@ -454,8 +454,8 @@ pip install -r requirements.txt  # pandas, numpy, scikit-learn, tensorflow, optu
 ### 2. Model Training (Individual)
 ```bash
 # Train specific models
-python agents/train_mlp.py                    # MLP with dense embeddings
-python agents/train_random_forest.py         # Random Forest (Champion)
+python agents/train_mlp.py                    # MLP (Champion)
+python agents/train_random_forest.py         # Random Forest
 python agents/train_catboost.py              # CatBoost with sparse features
 
 # Force hyperparameter retuning
@@ -508,8 +508,8 @@ gate_token_predict/
 │   │   └── realtime_predict_agent.py      # Live prediction system
 │   │
 │   ├── 🤖 Model Training Agents
-│   │   ├── train_mlp.py                   # MLP with dense embeddings
-│   │   ├── train_random_forest.py         # Random Forest (Champion)
+│   │   ├── train_mlp.py                   # MLP (Champion)
+│   │   ├── train_random_forest.py         # Random Forest
 │   │   ├── train_catboost.py              # CatBoost with sparse features
 │   │   ├── train_xgboost.py               # XGBoost gradient boosting
 │   │   ├── train_lightgbm.py              # LightGBM gradient boosting
@@ -522,8 +522,8 @@ gate_token_predict/
 │   │   ├── preprocessed/                  # Intermediate processing stages
 │   │   ├── encoded_input/                 # 64-dim embeddings (final features)
 │   │   ├── predictions/                   # Model predictions & metadata
-│   │   │   ├── mlp/                       # MLP predictions & hyperparameters
-│   │   │   ├── random_forest/             # Champion model outputs
+│   │   │   ├── mlp/                       # Champion model outputs
+│   │   │   ├── random_forest/             # Random Forest outputs
 │   │   │   └── catboost/                  # Sparse model predictions
 │   │   └── realtime_predictions/          # Live prediction outputs
 │   │
@@ -532,7 +532,7 @@ gate_token_predict/
 │   │   ├── champion.txt                   # Current champion model name
 │   │   ├── autoencoder.h5                # Dense embedding generator
 │   │   ├── autoencoder_new.h5             # Updated encoder
-│   │   ├── *_best_model_*.pkl             # Trained model artifacts
+│   │   ├── mlp_best_model_*.pkl           # Champion model artifact
 │   │   ├── *_best_params_*.json           # Optimized hyperparameters
 │   │   └── *_study_*.pkl                  # Optuna optimization studies
 │   │
@@ -555,67 +555,67 @@ gate_token_predict/
 │   └── logs/                              # Detailed execution logs
 ```
 
-## 🎯 Advanced Features
+## 🔧 Configuration & Management
 
-## 🎯 Advanced Features
+### ⚙️ Configuration File (`config.yaml`)
 
-### 🔍 Enhanced EDA & Visualization Tools
-
-#### 📊 Model Explorer (`model_explorer.py`)
-- **System Architecture Display**:
-  - 🏆 Champion model status identification
-  - ✅ Data encoding type (Dense vs Sparse) with explanations
-  - 🧠 MLP architecture details (layers, hyperparameters, network diagram)
-  - 📋 Complete model configuration and metadata
-
-- **Enhanced Visualizations**:
-  - **4 Analysis Plots** with color-coded analysis text boxes:
-    1. **Time Series Analysis** (Light Blue): Temporal correlation assessment
-    2. **Scatter Plot Analysis** (Light Green): R² calculation & prediction accuracy
-    3. **Residuals Analysis** (Light Yellow): Bias detection & distribution shape
-    4. **Error Analysis** (Light Coral): Error stability & consistency evaluation
-
-- **Interactive Time Range Selection**:
-  - Full Range, Recent 30/90 days, Recent 6 months/1 year
-  - Quarterly analysis (Q3/Q4) for multi-year datasets
-  - Dynamic file naming with time range suffixes
-  - Minimum 7-day requirement for valid ranges
-
-#### 📓 Jupyter Notebook (`model_analysis_eda.ipynb`)
-- **Interactive Analysis**: Complete model exploration with system information
-- **Time Range Selection**: Built-in functions for period-focused analysis
-- **Enhanced Visualizations**: Matching analysis text system from model_explorer
-- **Distribution Analysis**: Comprehensive statistical analysis with filtered data
-
-### 🔄 Realtime Prediction System
-
-#### 🎯 Key Capabilities
-- **Automatic Champion Loading**: Always uses best-performing model
-- **Integer Predictions**: Smart rounding to non-negative integers for count data
-- **CSV Input/Output**: Seamless file-based prediction workflow  
-- **Comprehensive Logging**: Detailed execution tracking and error handling
-- **Configurable Intervals**: Adjustable prediction frequency
-
-#### 📈 Prediction Output Format
-```csv
-timestamp,true_count,pred_count
-2023-12-09 23:00:00,766,758
-2023-12-10 00:00:00,621,634
-2023-12-10 01:00:00,442,451
+#### 📅 Data Splits Configuration
+```yaml
+data:
+  splits:
+    train_end_date: "2022-10-01"    # 70% training data
+    val_end_date: "2022-12-31"      # 15% validation data
+    # Test: 2023-01-01+ (15%)       # Chronological test set
 ```
 
-### 🏆 Champion Model Selection
+#### 🎯 Hyperparameter Tuning Settings
+```yaml
+tuning:
+  framework: "optuna"               # TPE optimization
+  n_trials: 100                     # Trials per model
+  timeout_minutes: 60               # Max optimization time
+  early_stopping_rounds: 10         # Patience for convergence
+```
 
-#### 🎯 Selection Criteria
-- **Primary Metric**: Mean Absolute Error (MAE) on test set
-- **Automatic Updates**: Champion status updates when better models found
-- **Transparency**: Champion status visible in all analysis tools
-- **Model Storage**: Champion name stored in `models/champion.txt`
+#### 🌐 Streamlit Apps Configuration
+```yaml
+streamlit:
+  model_results_port: 8501          # Results visualization
+  model_comparison_port: 8502       # Model comparison
+```
 
-#### 📊 Current Performance (Example)
-- **Champion**: Random Forest (MAE: 25.73, RMSE: 35.26, MAPE: 4.99%)
-- **Runner-up**: MLP (MAE: 14.54, RMSE: 20.74, MAPE: 3.15%)
-- **Alternative**: CatBoost (MAE: 8.67, RMSE: 12.38, MAPE: 52.80%)
+### 🔧 Management Commands
+
+```bash
+./manage.sh encode-data              # Run 6-stage data pipeline
+./manage.sh train-models             # Train all models with optimization
+./manage.sh resume-from [1-6]        # Resume pipeline from specific stage
+./manage.sh status                   # Show pipeline completion status
+./manage.sh clean                    # Clean intermediate files
+./manage.sh clean-all                # Clean all generated files
+./manage.sh test-env                 # Test environment setup
+./manage.sh help                     # Show all available commands
+```
+
+## 📊 Performance Metrics & Benchmarks
+
+### 🏆 Model Performance Summary (Latest Results)
+
+| Model | Data Type | MAE | RMSE | MAPE (%) | Champion Status |
+|-------|-----------|-----|------|----------|----------------|
+| MLP | Dense | 14.54 | 20.74 | 3.15 | 🏆 Champion |
+| Random Forest | Dense | 25.73 | 35.26 | 4.99 | 📈 High Performer |
+| CatBoost | Sparse | 8.67 | 12.38 | 52.80 | 📊 Alternative |
+| XGBoost | Dense | TBD | TBD | TBD | ⏳ Pending |
+| LightGBM | Dense | TBD | TBD | TBD | ⏳ Pending |
+| Extra Trees | Dense | TBD | TBD | TBD | ⏳ Pending |
+| ElasticNet | Dense | TBD | TBD | TBD | ⏳ Pending |
+
+### 📈 Feature Engineering Impact
+- **Original Features**: ~500+ columns (wide format)
+- **Engineered Features**: Time-based, lag, rolling statistics
+- **Final Dense Embeddings**: 64 dimensions (87% dimensionality reduction)
+- **Performance Gain**: 15-25% improvement over raw features
 
 ### 🧠 MLP Neural Network Architecture Details
 
@@ -705,15 +705,20 @@ Output Layer (1 neuron) - Regression target
 
 #### 🤖 Individual Model Training
 ```bash
-# Train champion model (Random Forest)
-python agents/train_random_forest.py
+# Train champion model (MLP)
+python agents/train_mlp.py                    # MLP (Champion)
 
-# Train MLP with architecture display
-python agents/train_mlp.py --hyper-tune    # Force hyperparameter retuning
-python agents/train_mlp.py --test-only     # Test existing model only
+# Train Random Forest
+python agents/train_random_forest.py         # Random Forest
 
 # Train sparse data model
-python agents/train_catboost.py
+python agents/train_catboost.py              # CatBoost with sparse features
+
+# Force hyperparameter retuning
+python agents/train_mlp.py --hyper-tune
+
+# Test existing model only
+python agents/train_mlp.py --test-only
 ```
 
 #### 📊 Model Analysis & Comparison
@@ -729,6 +734,9 @@ python model_explorer.py --model catboost --no-plots
 
 # List all available models
 python model_explorer.py --list
+
+# Jupyter notebook analysis
+jupyter notebook model_analysis_eda.ipynb
 ```
 
 #### 🎯 Advanced Analysis Examples
@@ -766,13 +774,12 @@ data/encoded_input/
 #### 🏆 After Model Training
 ```
 models/
-├── champion.txt                           # "random_forest"
+├── champion.txt                           # "mlp"
 ├── autoencoder.h5                         # 512→64→512 embedding generator
-├── random_forest_best_model_*.pkl         # Champion model artifact
-├── random_forest_best_params_*.json       # Optimized hyperparameters
-├── mlp_best_model_*.pkl                   # MLP neural network
-├── mlp_best_params_*.json                 # MLP hyperparameters
-└── *_study_*.pkl                          # Optuna optimization studies
+├── autoencoder_new.h5                     # Updated encoder
+├── mlp_best_model_*.pkl                   # Champion model artifact
+├── *_best_params_*.json                   # Optimized hyperparameters
+├── *_study_*.pkl                          # Optuna optimization studies
 
 data/predictions/
 ├── random_forest/
@@ -781,7 +788,8 @@ data/predictions/
 │   └── *_metadata_*.yaml                  # Model metadata & metrics
 ├── mlp/
 │   └── [similar structure]
-└── [other models...]
+└── catboost/
+    └── [similar structure]
 ```
 
 #### 📊 Analysis Outputs
@@ -796,207 +804,3 @@ model_analysis_random_forest_20221231_20231209.png # Champion model analysis
 # - Residuals distribution with bias detection
 # - Error over time with stability evaluation
 ```
-
-## 🔧 Configuration & Management
-
-### ⚙️ Configuration File (`config.yaml`)
-
-#### 📅 Data Splits Configuration
-```yaml
-data:
-  splits:
-    train_end_date: "2022-10-01"    # 70% training data
-    val_end_date: "2022-12-31"      # 15% validation data
-    # Test: 2023-01-01+ (15%)       # Chronological test set
-```
-
-#### 🎯 Hyperparameter Tuning Settings
-```yaml
-tuning:
-  framework: "optuna"               # TPE optimization
-  n_trials: 100                     # Trials per model
-  timeout_minutes: 60               # Max optimization time
-  early_stopping_rounds: 10         # Patience for convergence
-```
-
-#### 🌐 Streamlit Apps Configuration
-```yaml
-streamlit:
-  model_results_port: 8501          # Results visualization
-  model_comparison_port: 8502       # Model comparison
-```
-
-### 🔧 Management Commands
-
-```bash
-./manage.sh encode-data              # Run 6-stage data pipeline
-./manage.sh train-models             # Train all models with optimization
-./manage.sh resume-from [1-6]        # Resume pipeline from specific stage
-./manage.sh status                   # Show pipeline completion status
-./manage.sh clean                    # Clean intermediate files
-./manage.sh clean-all                # Clean all generated files
-./manage.sh test-env                 # Test environment setup
-./manage.sh help                     # Show all available commands
-```
-
-## 📊 Performance Metrics & Benchmarks
-
-### 🏆 Model Performance Summary (Latest Results)
-
-| Model | Data Type | MAE | RMSE | MAPE (%) | Champion Status |
-|-------|-----------|-----|------|----------|----------------|
-| Random Forest | Dense | 25.73 | 35.26 | 4.99 | 🏆 Champion |
-| MLP | Dense | 14.54 | 20.74 | 3.15 | 📈 High Performer |
-| CatBoost | Sparse | 8.67 | 12.38 | 52.80 | 📊 Alternative |
-| XGBoost | Dense | TBD | TBD | TBD | ⏳ Pending |
-| LightGBM | Dense | TBD | TBD | TBD | ⏳ Pending |
-| Extra Trees | Dense | TBD | TBD | TBD | ⏳ Pending |
-| ElasticNet | Dense | TBD | TBD | TBD | ⏳ Pending |
-
-### 📈 Feature Engineering Impact
-- **Original Features**: ~500+ columns (wide format)
-- **Engineered Features**: Time-based, lag, rolling statistics
-- **Final Dense Embeddings**: 64 dimensions (87% dimensionality reduction)
-- **Performance Gain**: 15-25% improvement over raw features
-
-### 🧠 MLP Architecture Performance
-- **Training MAE**: 10.75 (Train set)
-- **Test MAE**: 14.54 (Test set)
-- **Generalization**: Good (minimal overfitting)
-- **Training Time**: ~15-30 minutes with optimization
-- **Inference Speed**: <1ms per prediction
-
-## 🔍 Monitoring & Debugging
-
-### 📋 Log Files & Debugging
-```bash
-# Check specific agent logs
-tail -f logs/train_mlp_agent.log        # MLP training progress
-tail -f logs/encoder_agent.log          # Autoencoder training
-tail -f logs/orchestrator_agent.log     # Pipeline orchestration
-
-# Check realtime prediction logs
-tail -f logs/realtime_predict_agent.log # Live prediction system
-```
-
-### 🔧 Common Troubleshooting
-
-#### ❌ Pipeline Issues
-```bash
-# Data loading errors
-./manage.sh test-env                     # Verify environment setup
-ls -la data/input/moves.xlsx             # Check input file exists
-
-# Memory issues
-export CUDA_VISIBLE_DEVICES=""           # Disable GPU if needed
-ulimit -m 8388608                        # Set memory limit (8GB)
-
-# TensorFlow issues  
-pip install tensorflow==2.10.0          # Specific TF version
-conda install cudatoolkit=11.2          # GPU support (optional)
-```
-
-#### 🤖 Model Training Issues
-```bash
-# Hyperparameter optimization failures
-python agents/train_mlp.py --test-only  # Skip training, test existing
-rm models/mlp_study_*.pkl                # Reset optimization study
-
-# Champion model issues
-cat models/champion.txt                  # Check current champion
-python model_explorer.py --list         # List available models
-```
-
-#### 📊 Analysis Issues
-```bash
-# Visualization problems
-pip install matplotlib seaborn           # Ensure plotting libraries
-export DISPLAY=:0                        # Set display (Linux)
-
-# Jupyter notebook issues
-jupyter notebook --ip=0.0.0.0 --port=8888 # Remote access
-```
-
-## 🚨 System Requirements
-
-### 💻 Hardware Requirements
-- **CPU**: 4+ cores recommended (8+ for faster training)
-- **Memory**: 8GB minimum (16GB+ recommended)
-- **Storage**: 5GB+ free space for models and data
-- **GPU**: Optional (CUDA-compatible for faster autoencoder training)
-
-### 🐍 Software Requirements
-```bash
-# Python environment
-Python 3.10+
-conda activate sql_ai_agent
-
-# Core dependencies
-pandas>=1.5.0
-numpy>=1.21.0
-scikit-learn>=1.2.0
-tensorflow>=2.10.0
-optuna>=3.0.0
-
-# Visualization & Analysis
-matplotlib>=3.5.0
-seaborn>=0.11.0
-plotly>=5.0.0
-streamlit>=1.20.0
-
-# Additional utilities
-joblib>=1.2.0
-openpyxl>=3.0.0
-pyyaml>=6.0
-```
-
-## 🏁 Project Status & Future Enhancements
-
-### ✅ Completed Features
-- ✅ Complete 6-stage data processing pipeline
-- ✅ 7 model training agents with hyperparameter optimization
-- ✅ Automatic champion model selection system
-- ✅ Realtime prediction system with integer rounding
-- ✅ Enhanced EDA tools with time range selection
-- ✅ System architecture transparency and MLP details
-- ✅ Interactive Jupyter notebook analysis
-- ✅ Streamlit web applications for model comparison
-
-### 🔄 Current Capabilities
-- **End-to-End Pipeline**: Raw data → Trained models → Realtime predictions
-- **Model Diversity**: Dense + sparse data approaches with 7+ algorithms
-- **Advanced Analytics**: Interactive EDA with system architecture insights
-- **Production Ready**: Realtime prediction system with comprehensive logging
-
-### 🚀 Future Enhancement Opportunities
-- **Model Ensemble**: Combine multiple models for improved performance
-- **Online Learning**: Incremental model updates with new data
-- **API Integration**: RESTful API for prediction services
-- **Deployment**: Docker containerization and cloud deployment
-- **Monitoring**: Real-time model performance monitoring dashboard
-
----
-
-## 📞 Support & Documentation
-
-### 📚 Additional Resources
-- `MODEL_ANALYSIS_GUIDE.md` - Comprehensive EDA and visualization guide
-- `REALTIME_SETUP_COMPLETE.md` - Realtime prediction system setup
-- `ENHANCEMENT_COMPLETE_SUMMARY.md` - Latest feature enhancements
-
-### 🎯 Quick Reference Commands
-```bash
-# Complete pipeline + training
-./manage.sh encode-data && ./manage.sh train-models
-
-# Model analysis (recommended starting point)
-python model_explorer.py --model random_forest
-
-# Interactive analysis
-jupyter notebook model_analysis_eda.ipynb
-
-# Realtime predictions
-python agents/realtime_predict_agent.py
-```
-
-**🏆 This system provides enterprise-level predictive modeling capabilities with full transparency, advanced feature engineering, and production-ready deployment options.**

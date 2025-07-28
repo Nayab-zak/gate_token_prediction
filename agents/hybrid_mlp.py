@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 """
-MLP Regressor Training Agent - Dense embeddings
+Hybrid MLP Regressor Training Agent - Always uses combined (wide+encoded) features
 """
 
 from agents.base_training_agent import BaseTrainingAgent
 from sklearn.neural_network import MLPRegressor
 from typing import Dict, Any
 
-class TrainMLPAgent(BaseTrainingAgent):
-    def __init__(self, config_path: str = "config.yaml", log_dir: str = "logs", feature_set: str = "wide"):
-        # Use unique model name for hybrid (combined) features
-        model_name = "hybrid_mlp" if feature_set == "combined" else "mlp"
+class TrainHybridMLPAgent(BaseTrainingAgent):
+    def __init__(self, config_path: str = "config.yaml", log_dir: str = "logs"):
+        # Always use combined features and unique model name
+        model_name = "hybrid_mlp"
         super().__init__(model_name, config_path, log_dir)
-        self.feature_set = feature_set  # 'wide' or 'combined'
+        self.feature_set = 'combined'
     
     def get_search_space(self) -> Dict[str, Any]:
         """Return hyperparameter search space for MLP"""
@@ -32,19 +32,14 @@ class TrainMLPAgent(BaseTrainingAgent):
         return 'dense'
 
     def load_data(self):
-        """Load data based on feature set (wide or combined)"""
+        """Load combined (wide+encoded) features for all splits"""
         from pathlib import Path
         import pandas as pd
         pre_dir = Path(self.config['data']['preprocessed_dir'])
-        if self.feature_set == 'combined':
-            train_path = pre_dir / "combined_train.csv"
-            val_path = pre_dir / "combined_val.csv"
-            test_path = pre_dir / "combined_test.csv"
-        else:
-            train_path = pre_dir / "wide_train.csv"
-            val_path = pre_dir / "wide_val.csv"
-            test_path = pre_dir / "wide_test.csv"
-        self.logger.info(f"Loading {self.feature_set} features for MLP model")
+        train_path = pre_dir / "combined_train.csv"
+        val_path = pre_dir / "combined_val.csv"
+        test_path = pre_dir / "combined_test.csv"
+        self.logger.info(f"Loading combined features for Hybrid MLP model")
         train_df = pd.read_csv(train_path)
         val_df = pd.read_csv(val_path)
         test_df = pd.read_csv(test_path)
@@ -52,32 +47,29 @@ class TrainMLPAgent(BaseTrainingAgent):
         return train_df, val_df, test_df
 
     def run(self, mode='train', force_retune=False) -> bool:
-        """Override run to log feature set used in metadata and compare results if both sets are run."""
+        """Override run to log feature set used in metadata."""
         try:
-            self.logger.info(f"Starting {mode} process for {self.model_name} (feature_set={self.feature_set})")
+            self.logger.info(f"Starting {mode} process for {self.model_name} (feature_set=combined)")
             result = super().run(mode=mode, force_retune=force_retune)
-            # Optionally, add logic here to compare results if both feature sets are available
             return result
         except Exception as e:
-            self.logger.error(f"Run failed for {self.model_name} (feature_set={self.feature_set}): {str(e)}")
+            self.logger.error(f"Run failed for {self.model_name} (feature_set=combined): {str(e)}")
             return False
 
 def main():
     """CLI entry point"""
     import argparse
     
-    parser = argparse.ArgumentParser(description='Train MLP Agent')
+    parser = argparse.ArgumentParser(description='Train Hybrid MLP Agent')
     parser.add_argument('--config', default='config.yaml', help='Configuration file')
     parser.add_argument('--hyper-tune', action='store_true', 
                        help='Force hyperparameter retuning even if existing params found')
     parser.add_argument('--test-only', action='store_true',
                        help='Test existing model only (no training)')
-    parser.add_argument('--feature-set', default='wide', choices=['wide', 'combined'],
-                       help='Feature set to use: wide or combined')
     
     args = parser.parse_args()
     
-    agent = TrainMLPAgent(args.config, feature_set=args.feature_set)
+    agent = TrainHybridMLPAgent(args.config)
     
     if args.test_only:
         success = agent.run(mode='test')
