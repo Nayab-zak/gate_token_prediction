@@ -93,16 +93,49 @@ class BaseTrainingAgent(ABC):
     
     def prepare_features_targets(self, train_df: pd.DataFrame, val_df: pd.DataFrame, 
                                 test_df: pd.DataFrame) -> Tuple:
-        """Prepare X and y for training"""
+        """Prepare X and y for training, with encoding for categorical features."""
         try:
-            # For now, we'll create a simple target by summing all counts
-            # This can be extended to predict specific series
-            
             # Separate timestamps and features
             X_train = train_df.drop('timestamp', axis=1) if 'timestamp' in train_df.columns else train_df
             X_val = val_df.drop('timestamp', axis=1) if 'timestamp' in val_df.columns else val_df
             X_test = test_df.drop('timestamp', axis=1) if 'timestamp' in test_df.columns else test_df
-            
+
+            # --- Encode categorical features (fit on train, transform all) ---
+            from sklearn.preprocessing import OneHotEncoder
+            # Only encode if there are categorical columns AND they are not already numeric
+            cat_cols = X_train.select_dtypes(include=['object', 'category']).columns.tolist()
+            # Check if all values in cat_cols are already numeric (i.e., already encoded)
+            if cat_cols:
+                # If all values in all cat_cols are numeric, skip encoding
+                all_numeric = all(np.issubdtype(X_train[col].dropna().dtype, np.number) for col in cat_cols)
+                if all_numeric:
+                    self.logger.info(f"Categorical columns {cat_cols} are already numeric. Skipping encoding.")
+                    cat_cols = []
+            if cat_cols:
+                self.logger.info(f"Encoding categorical columns: {cat_cols}")
+                X_train[cat_cols] = X_train[cat_cols].astype(str)
+                X_val[cat_cols] = X_val[cat_cols].astype(str)
+                X_test[cat_cols] = X_test[cat_cols].astype(str)
+                cat_cols = [str(col) for col in cat_cols]
+                try:
+                    encoder = OneHotEncoder(handle_unknown='ignore', sparse_output=False)
+                except TypeError:
+                    encoder = OneHotEncoder(handle_unknown='ignore', sparse=False)
+                X_train_cat = encoder.fit_transform(X_train[cat_cols])
+                X_val_cat = encoder.transform(X_val[cat_cols])
+                X_test_cat = encoder.transform(X_test[cat_cols])
+                cat_feature_names = [str(name) for name in encoder.get_feature_names_out(cat_cols)]
+                # Drop original cat columns and concat encoded
+                X_train = X_train.drop(columns=cat_cols)
+                X_val = X_val.drop(columns=cat_cols)
+                X_test = X_test.drop(columns=cat_cols)
+                X_train = pd.concat([X_train.reset_index(drop=True), pd.DataFrame(X_train_cat, columns=cat_feature_names)], axis=1)
+                X_val = pd.concat([X_val.reset_index(drop=True), pd.DataFrame(X_val_cat, columns=cat_feature_names)], axis=1)
+                X_test = pd.concat([X_test.reset_index(drop=True), pd.DataFrame(X_test_cat, columns=cat_feature_names)], axis=1)
+            else:
+                self.logger.info("No categorical columns to encode. Skipping encoding step.")
+            # --- End categorical encoding ---
+
             # For dense data, create target from original wide data
             if self.get_model_type() == 'dense':
                 # Load original wide data for targets
@@ -233,7 +266,7 @@ class BaseTrainingAgent(ABC):
                            y_train: pd.Series, y_test: pd.Series,
                            train_timestamps: pd.Series, test_timestamps: pd.Series,
                            paths: Dict[str, Path]):
-        """Save all model artifacts"""
+        """Save all model artifacts, including feature set info if available."""
         try:
             # Save best parameters
             with open(paths['best_params'], 'w') as f:
@@ -274,6 +307,7 @@ class BaseTrainingAgent(ABC):
             metadata = {
                 'model': self.model_name,
                 'data_type': self.get_model_type(),
+                'feature_set': getattr(self, 'feature_set', 'wide'),
                 'hyperparameters_path': str(paths['best_params']),
                 'model_path': str(paths['best_model']),
                 'training_timestamp': datetime.now().isoformat(),
