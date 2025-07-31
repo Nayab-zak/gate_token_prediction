@@ -1,0 +1,38 @@
+{
+  "model_info": {
+    "type": "lgbm",
+    "variant": "classic",
+    "agent_name": "lgbm_classic",
+    "model_class": "LGBMRegressor"
+  },
+  "validation_info": {
+    "temporal_validation": true,
+    "validation_strategy": "expanding",
+    "n_folds": 8,
+    "gap_hours": 1
+  },
+  "performance_metrics": {
+    "rmse_mean": 1.2208913035962807,
+    "rmse_std": 0.10949628459995138,
+    "mae_mean": 0.8921859558628319,
+    "mape_mean": 6.385613870074154,
+    "r2_mean": 0.9981092893090432,
+    "performance_stability": "Stable",
+    "overall_performance": "Poor"
+  },
+  "production_readiness": {
+    "deployment_status": "NEEDS_IMPROVEMENT",
+    "criteria_checks": {
+      "RMSE_acceptable": false,
+      "R2_acceptable": true,
+      "Model_stable": true,
+      "Low_variance": true
+    },
+    "production_approved": false
+  },
+  "training_metadata": {
+    "training_timestamp": "2025-07-31T14:36:12.987108",
+    "data_leakage_prevented": true,
+    "overfitting_risk": "HIGH"
+  }
+}

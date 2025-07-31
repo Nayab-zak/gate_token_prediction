@@ -1,0 +1,106 @@
+# Enhanced Temporal Validation Pipeline - Git Ignore File
+# ========================================================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Data files (large datasets should not be in git)
+data/raw/*.csv
+data/preprocessed/*.csv
+data/features/*.csv
+data/encoded_input/*.csv
+data/encoded_output/*.csv
+data/final_output/*.csv
+data/dashboard_data/*.csv
+
+# Model files (trained models are typically too large for git)
+models/**/*.joblib
+models/**/*.pkl
+models/**/*.h5
+models/**/*.model
+
+# Logs
+logs/*.log
+logs/**/*.log
+*.log
+
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints
+
+# Environment variables
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Docker
+.dockerignore
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# CatBoost specific
+catboost_info/
+
+# Test outputs
+test_reports/mass_testing_summary.json
+pipeline_results/*.json
+
+# Keep structure but ignore large content
+data/raw/.gitkeep
+data/preprocessed/.gitkeep
+data/features/.gitkeep
+models/*/.gitkeep
+
+# Exception: Keep important config and documentation
+!README.md
+!requirements.txt
+!requirements_temporal_validation.txt
+!config.py
+!docker-compose.yml
+!telegraf.conf
+!manage.sh
+!*.md

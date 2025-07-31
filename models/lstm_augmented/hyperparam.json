@@ -1,0 +1,6 @@
+{
+  "units": 50,
+  "epochs": 50,
+  "batch_size": 32,
+  "patience": 10
+}

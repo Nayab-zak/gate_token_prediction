@@ -1,0 +1,81 @@
+{
+  "update_timestamp": "2025-07-31T12:11:12.411160",
+  "total_agents": 12,
+  "successful_agents": 0,
+  "failed_agents": 12,
+  "approved_agents": 0,
+  "results": [
+    {
+      "agent_name": "rf_classic",
+      "deployment_status": "FAILED",
+      "error": "float division by zero",
+      "success": false
+    },
+    {
+      "agent_name": "rf_augmented",
+      "deployment_status": "FAILED",
+      "error": "float division by zero",
+      "success": false
+    },
+    {
+      "agent_name": "xgb_classic",
+      "deployment_status": "FAILED",
+      "error": "float division by zero",
+      "success": false
+    },
+    {
+      "agent_name": "xgb_augmented",
+      "deployment_status": "FAILED",
+      "error": "float division by zero",
+      "success": false
+    },
+    {
+      "agent_name": "lgbm_classic",
+      "deployment_status": "FAILED",
+      "error": "float division by zero",
+      "success": false
+    },
+    {
+      "agent_name": "lgbm_augmented",
+      "deployment_status": "FAILED",
+      "error": "float division by zero",
+      "success": false
+    },
+    {
+      "agent_name": "catboost_classic",
+      "deployment_status": "FAILED",
+      "error": "float division by zero",
+      "success": false
+    },
+    {
+      "agent_name": "catboost_augmented",
+      "deployment_status": "FAILED",
+      "error": "float division by zero",
+      "success": false
+    },
+    {
+      "agent_name": "lstm_classic",
+      "deployment_status": "FAILED",
+      "error": "float division by zero",
+      "success": false
+    },
+    {
+      "agent_name": "lstm_augmented",
+      "deployment_status": "FAILED",
+      "error": "float division by zero",
+      "success": false
+    },
+    {
+      "agent_name": "mlp_classic",
+      "deployment_status": "FAILED",
+      "error": "float division by zero",
+      "success": false
+    },
+    {
+      "agent_name": "mlp_augmented",
+      "deployment_status": "FAILED",
+      "error": "float division by zero",
+      "success": false
+    }
+  ]
+}

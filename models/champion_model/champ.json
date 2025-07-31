@@ -1,0 +1,8 @@
+{
+  "champion": "catboost_augmented",
+  "rmse": 0.6584,
+  "mae": 0.3807,
+  "mape": 1.714,
+  "mse": 0.4335,
+  "accuracy": 64.1919
+}

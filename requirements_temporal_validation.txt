@@ -1,0 +1,25 @@
+# Enhanced Temporal Validation Framework - Requirements
+# Core dependencies for the enhanced temporal validation system
+
+# Data manipulation and analysis
+pandas>=1.3.0
+numpy>=1.21.0
+
+# Machine learning and validation
+scikit-learn>=1.0.0
+joblib>=1.0.0
+
+# Statistical analysis (optional - fallback implemented)
+scipy>=1.7.0
+
+# Logging and utilities (built-in Python modules)
+# logging - built-in
+# datetime - built-in
+# copy - built-in
+# warnings - built-in
+# typing - built-in
+
+# For production deployment (optional)
+# flask>=2.0.0  # For API endpoints
+# prometheus-client>=0.12.0  # For monitoring metrics
+# influxdb-client>=1.25.0  # For time series storage

@@ -1,0 +1,19 @@
+# Add required Python packages here
+pandas
+numpy
+scikit-learn
+tensorflow  # or torch, for autoencoder
+xgboost
+lightgbm
+catboost
+streamlit
+shap
+umap-learn  # for t-SNE or UMAP
+holidays     # for UAE calendar integration
+plotly
+matplotlib
+seaborn
+statsmodels
+scipy
+joblib
+requests

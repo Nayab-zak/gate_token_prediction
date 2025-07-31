@@ -1,0 +1,11 @@
+{
+  "hidden_layer_sizes": [
+    100,
+    50
+  ],
+  "activation": "relu",
+  "solver": "adam",
+  "learning_rate_init": 0.001,
+  "max_iter": 200,
+  "random_state": 42
+}

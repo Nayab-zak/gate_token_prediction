@@ -1,0 +1,38 @@
+{
+  "model_info": {
+    "type": "catboost",
+    "variant": "augmented",
+    "agent_name": "catboost_augmented",
+    "model_class": "CatBoostRegressor"
+  },
+  "validation_info": {
+    "temporal_validation": true,
+    "validation_strategy": "expanding",
+    "n_folds": 8,
+    "gap_hours": 1
+  },
+  "performance_metrics": {
+    "rmse_mean": 1.5998357306126527,
+    "rmse_std": 0.23257881582089193,
+    "mae_mean": 1.2234914031212316,
+    "mape_mean": 10.391751951368402,
+    "r2_mean": 0.9968102526509905,
+    "performance_stability": "Unstable",
+    "overall_performance": "Poor"
+  },
+  "production_readiness": {
+    "deployment_status": "NEEDS_IMPROVEMENT",
+    "criteria_checks": {
+      "RMSE_acceptable": false,
+      "R2_acceptable": true,
+      "Model_stable": false,
+      "Low_variance": true
+    },
+    "production_approved": false
+  },
+  "training_metadata": {
+    "training_timestamp": "2025-07-31T14:37:21.230680",
+    "data_leakage_prevented": true,
+    "overfitting_risk": "HIGH"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "model_info": {
+    "type": "xgb",
+    "variant": "classic",
+    "agent_name": "xgb_classic",
+    "model_class": "XGBRegressor"
+  },
+  "validation_info": {
+    "temporal_validation": true,
+    "validation_strategy": "expanding",
+    "n_folds": 8,
+    "gap_hours": 1
+  },
+  "performance_metrics": {
+    "rmse_mean": 1.1259965446139009,
+    "rmse_std": 0.09464593806713281,
+    "mae_mean": 0.8271437257689548,
+    "mape_mean": 5.589296451096508,
+    "r2_mean": 0.998385538539203,
+    "performance_stability": "Stable",
+    "overall_performance": "Poor"
+  },
+  "production_readiness": {
+    "deployment_status": "NEEDS_IMPROVEMENT",
+    "criteria_checks": {
+      "RMSE_acceptable": false,
+      "R2_acceptable": true,
+      "Model_stable": true,
+      "Low_variance": true
+    },
+    "production_approved": false
+  },
+  "training_metadata": {
+    "training_timestamp": "2025-07-31T14:35:43.923677",
+    "data_leakage_prevented": true,
+    "overfitting_risk": "HIGH"
+  }
+}

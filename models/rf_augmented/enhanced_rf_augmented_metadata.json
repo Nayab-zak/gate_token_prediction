@@ -1,0 +1,38 @@
+{
+  "model_info": {
+    "type": "rf",
+    "variant": "augmented",
+    "agent_name": "rf_augmented",
+    "model_class": "RandomForestRegressor"
+  },
+  "validation_info": {
+    "temporal_validation": true,
+    "validation_strategy": "expanding",
+    "n_folds": 8,
+    "gap_hours": 1
+  },
+  "performance_metrics": {
+    "rmse_mean": 0.6682449681289522,
+    "rmse_std": 0.33995017893870744,
+    "mae_mean": 0.25820627067161495,
+    "mape_mean": 2.664112122853721,
+    "r2_mean": 0.999431133810442,
+    "performance_stability": "Unstable",
+    "overall_performance": "Poor"
+  },
+  "production_readiness": {
+    "deployment_status": "NEEDS_IMPROVEMENT",
+    "criteria_checks": {
+      "RMSE_acceptable": false,
+      "R2_acceptable": true,
+      "Model_stable": false,
+      "Low_variance": false
+    },
+    "production_approved": false
+  },
+  "training_metadata": {
+    "training_timestamp": "2025-07-31T14:35:31.125579",
+    "data_leakage_prevented": true,
+    "overfitting_risk": "HIGH"
+  }
+}

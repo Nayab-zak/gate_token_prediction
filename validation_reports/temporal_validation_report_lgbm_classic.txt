@@ -1,0 +1,106 @@
+================================================================================
+🎯 TEMPORAL CROSS-VALIDATION REPORT
+================================================================================
+Generated: 2025-07-31 14:36:12
+Validation Strategy: expanding
+Completed Folds: 8
+
+📊 PERFORMANCE SUMMARY
+--------------------------------------------------
+RMSE: 1.2209 ± 0.1095
+  Range: [1.0989, 1.3970]
+  95% CI: [1.1450, 1.2968]
+
+MAE: 0.8922 ± 0.0648
+  Range: [0.8261, 0.9981]
+  95% CI: [0.8473, 0.9371]
+
+MAPE: 6.39% ± 0.63%
+  Range: [5.69%, 7.52%]
+
+R²: 0.9981 ± 0.0003
+  Range: [0.9977, 0.9985]
+
+🎚️ MODEL STABILITY
+--------------------------------------------------
+Performance Stability: Stable
+RMSE Coefficient of Variation: 0.090
+Overall Assessment: Poor
+
+📋 FOLD-BY-FOLD RESULTS
+--------------------------------------------------
+Fold 1:
+  Training: 175422 samples (2016-01-01T02:00:00.000000000 to 2017-09-05T04:00:00.000000000)
+  Validation: 87711 samples (2017-09-05T04:00:00.000000000 to 2018-07-09T01:00:00.000000000)
+  RMSE: 1.3970
+  MAE: 0.9981
+  MAPE: 6.05%
+  R²: 0.9983
+
+Fold 2:
+  Training: 263133 samples (2016-01-01T02:00:00.000000000 to 2018-07-09T01:00:00.000000000)
+  Validation: 87711 samples (2018-07-09T02:00:00.000000000 to 2019-05-09T23:00:00.000000000)
+  RMSE: 1.3200
+  MAE: 0.9452
+  MAPE: 7.04%
+  R²: 0.9985
+
+Fold 3:
+  Training: 350844 samples (2016-01-01T02:00:00.000000000 to 2019-05-09T23:00:00.000000000)
+  Validation: 87711 samples (2019-05-09T23:00:00.000000000 to 2020-03-04T17:00:00.000000000)
+  RMSE: 1.3483
+  MAE: 0.9715
+  MAPE: 6.86%
+  R²: 0.9984
+
+Fold 4:
+  Training: 438555 samples (2016-01-01T02:00:00.000000000 to 2020-03-04T17:00:00.000000000)
+  Validation: 87711 samples (2020-03-04T17:00:00.000000000 to 2020-11-20T16:00:00.000000000)
+  RMSE: 1.2057
+  MAE: 0.8821
+  MAPE: 7.52%
+  R²: 0.9981
+
+Fold 5:
+  Training: 526266 samples (2016-01-01T02:00:00.000000000 to 2020-11-20T16:00:00.000000000)
+  Validation: 87711 samples (2020-11-20T16:00:00.000000000 to 2021-07-09T17:00:00.000000000)
+  RMSE: 1.0989
+  MAE: 0.8261
+  MAPE: 5.69%
+  R²: 0.9977
+
+Fold 6:
+  Training: 613977 samples (2016-01-01T02:00:00.000000000 to 2021-07-09T17:00:00.000000000)
+  Validation: 87711 samples (2021-07-09T17:00:00.000000000 to 2022-02-24T00:00:00.000000000)
+  RMSE: 1.1305
+  MAE: 0.8377
+  MAPE: 6.18%
+  R²: 0.9978
+
+Fold 7:
+  Training: 701688 samples (2016-01-01T02:00:00.000000000 to 2022-02-24T00:00:00.000000000)
+  Validation: 87711 samples (2022-02-24T00:00:00.000000000 to 2022-10-10T10:00:00.000000000)
+  RMSE: 1.1229
+  MAE: 0.8317
+  MAPE: 5.96%
+  R²: 0.9980
+
+Fold 8:
+  Training: 789399 samples (2016-01-01T02:00:00.000000000 to 2022-10-10T10:00:00.000000000)
+  Validation: 87711 samples (2022-10-10T10:00:00.000000000 to 2023-06-09T23:00:00.000000000)
+  RMSE: 1.1437
+  MAE: 0.8451
+  MAPE: 5.78%
+  R²: 0.9980
+
+💡 RECOMMENDATIONS
+--------------------------------------------------
+⚠️ Poor overall performance detected - consider:
+   • Different model architectures
+   • Feature selection/engineering
+   • Data quality assessment
+
+✅ Temporal validation completed successfully
+✅ No data leakage detected (temporal order preserved)
+
+================================================================================

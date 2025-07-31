@@ -1,0 +1,17 @@
+apiVersion: 1
+
+datasources:
+  - name: InfluxDB-ports
+    uid: influxdb-ports
+    type: influxdb
+    access: proxy
+    url: http://influxdb:8086
+    jsonData:
+      version: Flux
+      organization: ports
+      defaultBucket: gate_tokens_raw
+      httpMode: POST
+      tlsSkipVerify: true
+    secureJsonData:
+      token: inflxAdm1nT0k3n123
+    editable: true
