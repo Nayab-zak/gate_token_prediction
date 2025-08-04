@@ -7,5 +7,10 @@
   "solver": "adam",
   "learning_rate_init": 0.001,
   "max_iter": 200,
-  "random_state": 42
+  "random_state": 42,
+  "validation_metrics": {
+    "val_mse": 0.13373387424011704,
+    "val_rmse": 0.3656964236085951,
+    "val_r2": 0.9998191923714113
+  }
 }

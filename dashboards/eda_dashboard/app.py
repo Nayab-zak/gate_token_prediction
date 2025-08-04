@@ -5,6 +5,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 from datetime import date
 from config import DATA_DIR, TOP_IF_SLIDER
+from dashboards.eda_dashboard.components import show_data_split_visualization
 
 # Page config and dark theme CSS
 st.set_page_config(page_title="EDA Dashboard", layout="wide")
@@ -20,7 +21,7 @@ st.markdown(
 
 # Sidebar controls
 stage = st.sidebar.radio(
-    "Select Stage", ["Raw", "Preprocessed", "Engineered", "Encoded", "Feature Impact"]
+    "Select Stage", ["Raw", "Preprocessed", "Data Splits", "Engineered", "Encoded", "Feature Impact"]
 )
 
 # Date range filter in sidebar
@@ -115,6 +116,12 @@ elif stage == "Preprocessed":
         ax.hist(df['TokenCount'], bins=50)
         st.pyplot(fig, use_container_width=True)
 
+elif stage == "Data Splits":
+    st.title("Temporal Data Splits")
+    st.write("Visualization of train/validation/test data splits based on time")
+    show_data_split_visualization()
+    st.markdown("---")
+    
 elif stage == "Engineered":
     st.title("Engineered Features")
     df = load_engineered()

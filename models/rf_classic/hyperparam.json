@@ -1,5 +1,10 @@
 {
   "n_estimators": 100,
   "max_depth": 10,
-  "random_state": 42
+  "random_state": 42,
+  "validation_metrics": {
+    "val_mse": 2.146508971946109,
+    "val_rmse": 1.4650969155472646,
+    "val_r2": 0.997097929008883
+  }
 }

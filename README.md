@@ -3,6 +3,34 @@
 
 > **CRITICAL UPGRADE**: This enhanced pipeline eliminates dangerous data leakage from random splits and implements production-ready temporal validation for time series forecasting.
 
+## 🆕 Recent Updates (August 2025)
+
+1. **Three-Way Data Split Implementation**
+   - Train: Historical data up to validation cutoff
+   - Validation: 3 months before test data 
+   - Test: Most recent 6 months of data
+
+2. **Data Preprocessing Improvements**
+   - Dropped `ContainerCount` column in preprocessing
+   - Enhanced Excel/CSV file handling
+   - Added support for `Token_Input_data_desig` sheet name in Excel data sources
+
+3. **Feature Engineering & Encoding Updates**
+   - Fixed feature count consistency between datasets
+   - Added column alignment for train/validation/test datasets
+   - Improved categorical feature handling with reference levels
+
+4. **Training Agent Updates**
+   - All training agents now properly use validation data
+   - Added early stopping for tree-based models with validation data
+   - Added validation metrics tracking and reporting
+   - Neural network models use explicit validation data instead of splits
+
+5. **Testing Infrastructure**
+   - Added test scripts for data ingestion and splitting
+   - Added validation data usage test script
+   - Enhanced error handling and reporting
+
 ---
 
 ## 🎯 **PROBLEM SOLVED**

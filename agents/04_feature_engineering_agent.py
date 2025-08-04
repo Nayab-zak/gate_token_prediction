@@ -180,9 +180,45 @@ def main():
     train_df.to_csv(train_path, index=False)
     logger.info(f"Saved train features to {train_path}, final shape {train_df.shape}")
     
-    # STEP 2: Process test data using the exact same feature set
+    # STEP 2: Process validation data using the exact same feature set
     logger.info("=" * 50)
-    logger.info("STEP 2: Processing test data with consistent feature set")
+    logger.info("STEP 2: Processing validation data with consistent feature set")
+    try:
+        validation_df = load_data('validation')
+        logger.info(f"Loaded validation set with shape {validation_df.shape}")
+        
+        # Apply all feature engineering steps to validation (same as train)
+        validation_df = add_calendar_features(validation_df)
+        validation_df = add_lag_features(validation_df)
+        validation_df = add_rolling_stats(validation_df)
+        validation_df = add_periodic_encodings(validation_df)
+        
+        # Apply train-determined feature set to validation data
+        logger.info("Applying train-determined feature set to validation data...")
+        keep_cols = ['datetime', 'TokenCount'] + final_features
+        available_cols = [col for col in keep_cols if col in validation_df.columns]
+        missing_cols = [col for col in keep_cols if col not in validation_df.columns]
+        
+        if missing_cols:
+            logger.warning(f"⚠️  Features missing in validation data: {missing_cols}")
+        
+        validation_df = validation_df[available_cols]
+        logger.info(f"✅ Validation features aligned with train: {len(available_cols)-2} features")
+        
+        # Drop rows with NaN from lagging
+        validation_df = validation_df.dropna().reset_index(drop=True)
+        
+        # Save validation features
+        validation_path = os.path.join(feat_dir, 'validation_features.csv')
+        validation_df.to_csv(validation_path, index=False)
+        logger.info(f"Saved validation features to {validation_path}, final shape {validation_df.shape}")
+    except FileNotFoundError:
+        logger.warning("Validation set not found. Skipping validation data processing.")
+        validation_df = None
+    
+    # STEP 3: Process test data using the exact same feature set
+    logger.info("=" * 50)
+    logger.info("STEP 3: Processing test data with consistent feature set")
     test_df = load_data('test')
     logger.info(f"Loaded test set with shape {test_df.shape}")
     
@@ -213,12 +249,13 @@ def main():
     test_df.to_csv(test_path, index=False)
     logger.info(f"Saved test features to {test_path}, final shape {test_df.shape}")
     
-    # STEP 3: Validation
+    # STEP 4: Feature consistency validation
     logger.info("=" * 50)
-    logger.info("STEP 3: Feature consistency validation")
+    logger.info("STEP 4: Feature consistency validation")
     train_features_final = set(train_df.columns) - {'datetime', 'TokenCount'}
     test_features_final = set(test_df.columns) - {'datetime', 'TokenCount'}
     
+    # Check consistency between train and test
     if train_features_final == test_features_final:
         logger.info("✅ SUCCESS: Train and test have identical feature sets")
         logger.info(f"✅ Both datasets have {len(train_features_final)} features")
@@ -226,6 +263,17 @@ def main():
         logger.error("❌ MISMATCH: Train and test have different feature sets")
         logger.error(f"Train only: {train_features_final - test_features_final}")
         logger.error(f"Test only: {test_features_final - train_features_final}")
+    
+    # Check consistency with validation if it exists
+    if validation_df is not None:
+        validation_features_final = set(validation_df.columns) - {'datetime', 'TokenCount'}
+        if train_features_final == validation_features_final:
+            logger.info("✅ SUCCESS: Train and validation have identical feature sets")
+            logger.info(f"✅ Both datasets have {len(train_features_final)} features")
+        else:
+            logger.error("❌ MISMATCH: Train and validation have different feature sets")
+            logger.error(f"Train only: {train_features_final - validation_features_final}")
+            logger.error(f"Validation only: {validation_features_final - train_features_final}")
     
     logger.info("Feature engineering completed.")
 

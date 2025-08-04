@@ -46,14 +46,72 @@ def flag_holidays(df):
 
 
 def preprocess(df, logger):
-    # Ensure MoveDate is string, not datetime
-    df['MoveDate'] = df['MoveDate'].astype(str)
-    df['MoveHour'] = df['MoveHour'].astype(str)
-    df['datetime'] = pd.to_datetime(df['MoveDate'] + ' ' + df['MoveHour'] + ':00')
+    # Handle missing values before processing
+    logger.info(f"Original dataframe shape: {df.shape}")
+    
+    # Check if the dataframe already has a datetime column (from CSV format)
+    if 'datetime' in df.columns:
+        logger.info("Found existing datetime column, using it directly")
+        # Ensure it's in datetime format
+        if not pd.api.types.is_datetime64_dtype(df['datetime']):
+            logger.info("Converting existing datetime column to datetime type")
+            df['datetime'] = pd.to_datetime(df['datetime'], errors='coerce')
+            # Drop any rows where datetime conversion failed
+            invalid_dates = df['datetime'].isna().sum()
+            if invalid_dates > 0:
+                logger.warning(f"Found {invalid_dates} rows with invalid date formats that couldn't be converted")
+                df = df.dropna(subset=['datetime'])
+                logger.info(f"Dataframe shape after dropping invalid dates: {df.shape}")
+    
+    # Handle the case with MoveDate and MoveHour columns (from Excel format)
+    elif 'MoveDate' in df.columns and 'MoveHour' in df.columns:
+        logger.info("Using MoveDate and MoveHour columns to create datetime")
+        
+        # Check for missing date/time values
+        missing_date = df['MoveDate'].isna().sum()
+        missing_hour = df['MoveHour'].isna().sum()
+        logger.info(f"Missing MoveDate values: {missing_date}")
+        logger.info(f"Missing MoveHour values: {missing_hour}")
+        
+        # Drop rows with missing date or time values before conversion
+        if missing_date > 0 or missing_hour > 0:
+            df = df.dropna(subset=['MoveDate', 'MoveHour'])
+            logger.info(f"Dropped {missing_date + missing_hour} rows with missing date/time values")
+            logger.info(f"Dataframe shape after dropping missing dates: {df.shape}")
+        
+        # Ensure MoveDate and MoveHour are strings
+        df['MoveDate'] = df['MoveDate'].astype(str)
+        df['MoveHour'] = df['MoveHour'].astype(str)
+        
+        # Convert to datetime with error handling
+        try:
+            df['datetime'] = pd.to_datetime(df['MoveDate'] + ' ' + df['MoveHour'] + ':00', errors='coerce')
+            # Drop any rows where datetime conversion failed
+            invalid_dates = df['datetime'].isna().sum()
+            if invalid_dates > 0:
+                logger.warning(f"Found {invalid_dates} rows with invalid date formats that couldn't be converted")
+                df = df.dropna(subset=['datetime'])
+                logger.info(f"Dataframe shape after dropping invalid dates: {df.shape}")
+        except Exception as e:
+            logger.error(f"Error during datetime conversion: {str(e)}")
+            raise
+    else:
+        logger.error("Required date/time columns not found in data. Need either 'datetime' or both 'MoveDate' and 'MoveHour'")
+        raise ValueError("Missing required date/time columns in the data")
+    
     # Cast types
     for col in ['MoveType', 'TerminalID', 'Desig']:
-        df[col] = df[col].astype('category')
-    # Drop missing or invalid
+        if col in df.columns:
+            df[col] = df[col].astype('category')
+        else:
+            logger.warning(f"Column {col} not found in dataframe")
+    
+    # Drop ContainerCount column as it's not needed
+    if 'ContainerCount' in df.columns:
+        logger.info("Dropping ContainerCount column as requested")
+        df = df.drop(columns=['ContainerCount'])
+    
+    # Drop missing or invalid token counts
     df = df.dropna(subset=['TokenCount'])
     df = df[df['TokenCount'] >= 0]
     df = df.drop_duplicates(subset=['datetime', 'TerminalID', 'MoveType', 'Desig'])
@@ -80,9 +138,41 @@ def preprocess(df, logger):
 def main():
     logger = setup_logger()
     logger.info("Starting preprocessing...")
-    df_raw = load_raw_data()
-    df_prep = preprocess(df_raw, logger)
-    logger.info("Preprocessing completed.")
+    try:
+        # Create logs directory if it doesn't exist
+        os.makedirs('logs/agents', exist_ok=True)
+        
+        # Load and preprocess data
+        df_raw = load_raw_data()
+        if df_raw.empty:
+            logger.error("No raw data found to process")
+            return
+            
+        logger.info(f"Raw data loaded: {df_raw.shape[0]} rows, {df_raw.shape[1]} columns")
+        
+        # Check for required columns
+        required_cols = ['TokenCount']
+        # If we have a datetime column directly, we don't need MoveDate and MoveHour
+        if 'datetime' not in df_raw.columns:
+            required_cols.extend(['MoveDate', 'MoveHour'])
+        
+        missing_cols = [col for col in required_cols if col not in df_raw.columns]
+        if missing_cols:
+            logger.error(f"Missing required columns: {missing_cols}")
+            return
+        
+        # Check for ContainerCount column that will be dropped
+        if 'ContainerCount' in df_raw.columns:
+            logger.info("Found ContainerCount column which will be dropped during preprocessing")
+            
+        # Show columns for debugging
+        logger.info(f"Available columns: {', '.join(df_raw.columns)}")
+        
+        df_prep = preprocess(df_raw, logger)
+        logger.info("Preprocessing completed successfully.")
+    except Exception as e:
+        logger.error(f"Error during preprocessing: {str(e)}", exc_info=True)
+        raise
 
 
 if __name__ == '__main__':

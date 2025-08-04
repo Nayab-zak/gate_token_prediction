@@ -6,5 +6,11 @@
   "colsample_bytree": 0.8,
   "random_state": 42,
   "tree_method": "hist",
-  "device": "cuda"
+  "device": "cuda",
+  "validation_metrics": {
+    "val_mse": 1.1134912477010885,
+    "val_rmse": 1.0552209473380865,
+    "val_r2": 0.9984945645738968,
+    "best_iteration": 299
+  }
 }

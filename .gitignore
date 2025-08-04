@@ -81,6 +81,12 @@ Thumbs.db
 tmp/
 temp/
 *.tmp
+*.bak
+*.old
+*.orig
+*.rej
+.DS_Store
+Thumbs.db
 
 # CatBoost specific
 catboost_info/

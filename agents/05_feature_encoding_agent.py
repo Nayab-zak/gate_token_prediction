@@ -52,14 +52,73 @@ def build_autoencoder(input_dim, latent_dim=16):
     return autoencoder, encoder
 
 
-def process_encoding(split, scaler, encoder_model, autoencoder_model, logger):
+def process_encoding(split, scaler, encoder_model, autoencoder_model, logger, reference_levels=None):
+    """
+    Process feature encoding for a data split (train, validation, or test)
+    
+    Args:
+        split: String identifier ('train', 'validation', 'test')
+        scaler: Fitted StandardScaler
+        encoder_model: Trained encoder model
+        autoencoder_model: Trained autoencoder model
+        logger: Logger instance
+        reference_levels: Dict of reference levels for categorical variables (if None, will be inferred)
+    """
     df = load_features(split)
     logger.info(f"Loaded {split} features, shape={df.shape}")
 
-    # One-hot encode categorical columns
+    # One-hot encode categorical columns - with consistent reference levels
     cat_cols = ['MoveType', 'TerminalID', 'Desig']
-    df_enc = pd.get_dummies(df, columns=cat_cols, drop_first=True)
-
+    
+    # To ensure consistent encoding across train/validation/test, we need to:
+    # 1. Generate all possible categories first
+    # 2. Create dummies with all categories specified
+    
+    # Define reference levels - either use provided ones or infer from training data
+    if reference_levels:
+        move_types = reference_levels['move_types']
+        terminals = reference_levels['terminals'] 
+        desig_types = reference_levels['desig_types']
+        logger.info("Using provided reference levels for categorical encoding")
+    else:
+        # Define reference levels based on the training data
+        move_types = ['In', 'Out']
+        terminals = ['T1', 'T2', 'T3', 'T4']
+        desig_types = ['EXP', 'FCL', 'MT', 'T/S']
+        logger.info("Using default reference levels for categorical encoding")
+    
+    # Create explicit dummies with consistent references
+    df_enc = df.copy()
+    
+    # Handle each categorical column separately
+    df_enc = pd.get_dummies(df_enc, columns=['MoveType'], prefix=['MoveType'])
+    df_enc = pd.get_dummies(df_enc, columns=['TerminalID'], prefix=['TerminalID'])
+    df_enc = pd.get_dummies(df_enc, columns=['Desig'], prefix=['Desig'])
+    
+    # Ensure all expected columns exist (for consistent feature counts)
+    for move_type in move_types:
+        col = f'MoveType_{move_type}'
+        if col not in df_enc.columns:
+            df_enc[col] = 0
+    
+    for terminal in terminals:
+        col = f'TerminalID_{terminal}'
+        if col not in df_enc.columns:
+            df_enc[col] = 0
+            
+    for desig in desig_types:
+        col = f'Desig_{desig}'
+        if col not in df_enc.columns:
+            df_enc[col] = 0
+    
+    # Drop the first category for each to match original behavior
+    if 'MoveType_In' in df_enc.columns:
+        df_enc = df_enc.drop(columns=['MoveType_In'])
+    if 'TerminalID_T1' in df_enc.columns:
+        df_enc = df_enc.drop(columns=['TerminalID_T1'])
+    if 'Desig_EXP' in df_enc.columns:
+        df_enc = df_enc.drop(columns=['Desig_EXP'])
+    
     # Keep datetime and target
     datetime_idx = df_enc['datetime'].reset_index(drop=True)
     y = df_enc['TokenCount'].values
@@ -69,6 +128,74 @@ def process_encoding(split, scaler, encoder_model, autoencoder_model, logger):
     non_numeric = ['datetime', 'MoveDate', 'outlier_flag', 'TokenCount']
     drop_cols = [col for col in non_numeric if col in df_enc.columns]
     X_to_scale = df_enc.drop(columns=drop_cols).values
+    
+    # Log column count and column names to help debug
+    logger.info(f"[{split}] Feature count before scaling: {X_to_scale.shape[1]}")
+    df_cols = df_enc.drop(columns=drop_cols).columns.tolist()
+    logger.info(f"[{split}] Columns: {df_cols}")
+    
+    # For validation/test sets, ensure they have exactly the same columns as the training data
+    if split != 'train':
+        # Get training columns by loading training data with same processing
+        train_df = load_features('train')
+        train_df_enc = train_df.copy()
+        
+        # Process train with same categorical handling
+        train_df_enc = pd.get_dummies(train_df_enc, columns=['MoveType'], prefix=['MoveType'])
+        train_df_enc = pd.get_dummies(train_df_enc, columns=['TerminalID'], prefix=['TerminalID'])
+        train_df_enc = pd.get_dummies(train_df_enc, columns=['Desig'], prefix=['Desig'])
+        
+        # Apply same column dropping
+        for move_type in move_types:
+            col = f'MoveType_{move_type}'
+            if col not in train_df_enc.columns:
+                train_df_enc[col] = 0
+        
+        for terminal in terminals:
+            col = f'TerminalID_{terminal}'
+            if col not in train_df_enc.columns:
+                train_df_enc[col] = 0
+                
+        for desig in desig_types:
+            col = f'Desig_{desig}'
+            if col not in train_df_enc.columns:
+                train_df_enc[col] = 0
+        
+        # Drop the first category for each to match original behavior
+        if 'MoveType_In' in train_df_enc.columns:
+            train_df_enc = train_df_enc.drop(columns=['MoveType_In'])
+        if 'TerminalID_T1' in train_df_enc.columns:
+            train_df_enc = train_df_enc.drop(columns=['TerminalID_T1'])
+        if 'Desig_EXP' in train_df_enc.columns:
+            train_df_enc = train_df_enc.drop(columns=['Desig_EXP'])
+        
+        # Get train columns after processing
+        train_non_numeric = ['datetime', 'MoveDate', 'outlier_flag', 'TokenCount']
+        train_drop_cols = [col for col in train_non_numeric if col in train_df_enc.columns]
+        train_cols = train_df_enc.drop(columns=train_drop_cols).columns.tolist()
+        
+        logger.info(f"[train] Reference columns: {train_cols}")
+        
+        # Find columns in validation/test not in train
+        extra_cols = [col for col in df_cols if col not in train_cols]
+        if extra_cols:
+            logger.warning(f"[{split}] Extra columns found: {extra_cols}")
+            # Drop extra columns
+            df_enc = df_enc.drop(columns=extra_cols)
+            
+        # Find columns in train not in validation/test
+        missing_cols = [col for col in train_cols if col not in df_cols]
+        if missing_cols:
+            logger.warning(f"[{split}] Missing columns found: {missing_cols}")
+            # Add missing columns with zeros
+            for col in missing_cols:
+                df_enc[col] = 0
+        
+        # Re-compute X_to_scale after column adjustments
+        X_to_scale = df_enc.drop(columns=drop_cols).values
+        logger.info(f"[{split}] Adjusted feature count: {X_to_scale.shape[1]}")
+    
+    # Apply scaling
     X_scaled = scaler.transform(X_to_scale)
 
     # Autoencoder outputs - CPU only
@@ -171,17 +298,69 @@ def main():
 
     # Load train features
     df_train = load_features('train')
+    
+    # One-hot encode with consistent reference levels for training too
+    df_train_enc = df_train.copy()
+    
+    # Define reference levels for all datasets - this will be used for train, validation and test
+    # We explicitly specify all possible values to ensure consistent encoding
+    move_types = ['In', 'Out']
+    terminals = ['T1', 'T2', 'T3', 'T4', 'R1']  # Added R1 terminal that appears in validation/test
+    desig_types = ['EXP', 'FCL', 'MT', 'T/S']
+    
+    # Store reference levels for consistent use across all splits
+    reference_levels = {
+        'move_types': move_types,
+        'terminals': terminals,
+        'desig_types': desig_types
+    }
+    
+    logger.info(f"Reference levels for categorical encoding:")
+    logger.info(f"  - MoveType: {move_types}")
+    logger.info(f"  - TerminalID: {terminals}")
+    logger.info(f"  - Desig: {desig_types}")
+    
+    # Create explicit dummies with consistent references
+    df_train_enc = pd.get_dummies(df_train_enc, columns=['MoveType'], prefix=['MoveType'])
+    df_train_enc = pd.get_dummies(df_train_enc, columns=['TerminalID'], prefix=['TerminalID'])
+    df_train_enc = pd.get_dummies(df_train_enc, columns=['Desig'], prefix=['Desig'])
+    
+    # Ensure all expected columns exist
+    for move_type in move_types:
+        col = f'MoveType_{move_type}'
+        if col not in df_train_enc.columns:
+            df_train_enc[col] = 0
+    
+    for terminal in terminals:
+        col = f'TerminalID_{terminal}'
+        if col not in df_train_enc.columns:
+            df_train_enc[col] = 0
+            
+    for desig in desig_types:
+        col = f'Desig_{desig}'
+        if col not in df_train_enc.columns:
+            df_train_enc[col] = 0
+    
+    # Drop the first category for each to match original behavior
+    if 'MoveType_In' in df_train_enc.columns:
+        df_train_enc = df_train_enc.drop(columns=['MoveType_In'])
+    if 'TerminalID_T1' in df_train_enc.columns:
+        df_train_enc = df_train_enc.drop(columns=['TerminalID_T1'])
+    if 'Desig_EXP' in df_train_enc.columns:
+        df_train_enc = df_train_enc.drop(columns=['Desig_EXP'])
 
-    # One-hot then scale on train
-    cat_cols = ['MoveType', 'TerminalID', 'Desig']
-    df_train_enc = pd.get_dummies(df_train, columns=cat_cols, drop_first=True)
     # Convert boolean columns to int so they are included in scaling
     for col in ['is_weekend', 'is_friday', 'is_holiday']:
         if col in df_train_enc.columns:
             df_train_enc[col] = df_train_enc[col].astype(int)
+            
     # Drop only non-numeric columns that cannot be encoded
     non_numeric = ['datetime', 'MoveDate', 'outlier_flag']
     X_train = df_train_enc.drop(columns=[col for col in non_numeric if col in df_train_enc.columns] + ['TokenCount']).values
+    
+    # Log feature count before scaling to help debug
+    logger.info(f"[train] Feature count before scaling: {X_train.shape[1]}")
+    
     scaler = StandardScaler().fit(X_train)
 
     # Build and train autoencoder
@@ -223,11 +402,13 @@ def main():
     logger.info(f"  - Final validation loss: {final_val_loss:.6f}")
     logger.info(f"  - Training stopped via: {'Early stopping' if final_epoch < 100 else 'Max epochs reached'}")
 
-    # Process train and test splits
-    process_encoding('train', scaler, encoder, autoencoder, logger)
-    process_encoding('test', scaler, encoder, autoencoder, logger)
+    # Process train, validation, and test splits
+    # Pass reference levels to ensure consistency across all datasets
+    process_encoding('train', scaler, encoder, autoencoder, logger, reference_levels)
+    process_encoding('validation', scaler, encoder, autoencoder, logger, reference_levels)
+    process_encoding('test', scaler, encoder, autoencoder, logger, reference_levels)
 
-    logger.info("Feature encoding completed.")
+    logger.info("Feature encoding completed for train, validation, and test datasets.")
 
 
 if __name__ == '__main__':

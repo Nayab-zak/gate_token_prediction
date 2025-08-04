@@ -4,7 +4,7 @@ import json
 import pandas as pd
 import joblib
 from lightgbm import LGBMRegressor
-from config import DATA_DIR, MODEL_DIR
+from config import DATA_DIR, MODEL_DIR, LGBM_AUGMENTED_ITERATIONS
 
 
 def setup_logger():
@@ -35,7 +35,7 @@ def load_hyperparams():
             params = json.load(f)
     else:
         params = {
-            'n_estimators': 300,
+            'n_estimators': LGBM_AUGMENTED_ITERATIONS,  # Use value from config.py
             'learning_rate': 0.05,
             'num_leaves': 31,
             'random_state': 42

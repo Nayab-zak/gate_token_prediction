@@ -4,7 +4,7 @@ import json
 import pandas as pd
 import joblib
 from sklearn.ensemble import RandomForestRegressor
-from config import DATA_DIR, MODEL_DIR
+from config import DATA_DIR, MODEL_DIR, RF_AUGMENTED_ESTIMATORS
 
 
 def setup_logger():
@@ -36,8 +36,8 @@ def load_hyperparams():
         with open(hp_path, 'r') as f:
             params = json.load(f)
     else:
-        # default hyperparameters
-        params = {"n_estimators": 100, "max_depth": 10, "random_state": 42}
+        # default hyperparameters using estimators from config
+        params = {"n_estimators": RF_AUGMENTED_ESTIMATORS, "max_depth": 10, "random_state": 42}
     return params, hp_dir
 
 

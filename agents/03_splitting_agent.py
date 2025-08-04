@@ -3,7 +3,7 @@ import os
 import logging
 import pandas as pd
 from dateutil.relativedelta import relativedelta
-from config import DATA_DIR, TEST_SPLIT_MONTHS
+from config import DATA_DIR, TEST_SPLIT_MONTHS, VALIDATION_SPLIT_MONTHS
 
 
 def setup_logger():
@@ -27,29 +27,54 @@ def load_preprocessed():
 def split_data(df, logger):
     df = df.sort_values('datetime')
     last_date = df['datetime'].max()
-    cutoff = last_date - relativedelta(months=TEST_SPLIT_MONTHS)
-    # Split
-    train = df[df['datetime'] <= cutoff].copy()
-    test = df[df['datetime'] > cutoff].copy()
+    
+    # Calculate cutoff dates for test and validation sets
+    test_cutoff = last_date - relativedelta(months=TEST_SPLIT_MONTHS)
+    validation_cutoff = test_cutoff - relativedelta(months=VALIDATION_SPLIT_MONTHS)
+    
+    # Split into three sets: train, validation, and test
+    train = df[df['datetime'] <= validation_cutoff].copy()
+    validation = df[(df['datetime'] > validation_cutoff) & (df['datetime'] <= test_cutoff)].copy()
+    test = df[df['datetime'] > test_cutoff].copy()
 
     # Ensure output dirs
     out_dir = os.path.join(DATA_DIR, 'preprocessed')
     os.makedirs(out_dir, exist_ok=True)
 
+    # Save the three datasets
     train_path = os.path.join(out_dir, 'train.csv')
+    validation_path = os.path.join(out_dir, 'validation.csv')
     test_path = os.path.join(out_dir, 'test.csv')
+    
     train.to_csv(train_path, index=False)
+    validation.to_csv(validation_path, index=False)
     test.to_csv(test_path, index=False)
-    logger.info(f"Data split done. Train: {train.shape}, Test: {test.shape}, cutoff: {cutoff}")
-    return train, test
+    
+    logger.info(f"Data split done. Train: {train.shape}, Validation: {validation.shape}, Test: {test.shape}")
+    logger.info(f"Cutoff dates - Validation: {validation_cutoff}, Test: {test_cutoff}")
+    
+    # Verify temporal integrity
+    logger.info(f"Train date range: {train['datetime'].min()} to {train['datetime'].max()}")
+    logger.info(f"Validation date range: {validation['datetime'].min()} to {validation['datetime'].max()}")
+    logger.info(f"Test date range: {test['datetime'].min()} to {test['datetime'].max()}")
+    
+    return train, validation, test
 
 
 def main():
     logger = setup_logger()
-    logger.info("Starting data splitting...")
+    logger.info("Starting data splitting with temporal validation...")
     df = load_preprocessed()
-    split_data(df, logger)
-    logger.info("Data splitting completed.")
+    train, validation, test = split_data(df, logger)
+    
+    # Calculate and log split proportions
+    total_rows = len(df)
+    train_pct = len(train) / total_rows * 100
+    val_pct = len(validation) / total_rows * 100
+    test_pct = len(test) / total_rows * 100
+    
+    logger.info(f"Split proportions: Train={train_pct:.1f}%, Validation={val_pct:.1f}%, Test={test_pct:.1f}%")
+    logger.info("Data splitting completed with train, validation, and test sets.")
 
 
 if __name__ == '__main__':

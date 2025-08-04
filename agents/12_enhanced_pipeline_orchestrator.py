@@ -34,6 +34,13 @@ base_path = "/home/wk-12195/Fatima/predictive_modeling/gate_token_prediction_hou
 sys.path.append(f"{base_path}/agents")
 sys.path.append(f"{base_path}/utils")
 
+# Import configuration to access epoch parameters
+sys.path.append(base_path)
+import config
+
+# Import configuration parameters
+import config
+
 class EnhancedPipelineOrchestrator:
     """
     Master orchestrator for the enhanced ML pipeline with temporal validation.
@@ -64,28 +71,62 @@ class EnhancedPipelineOrchestrator:
         logger = logging.getLogger("enhanced_orchestrator")
         logger.setLevel(logging.INFO)
         
+        # Avoid duplicate handlers
         if not logger.handlers:
+            # Console handler
+            console_handler = logging.StreamHandler()
+            console_formatter = logging.Formatter(
+                '%(asctime)s [%(name)s] %(levelname)s: %(message)s',
+                datefmt='%Y-%m-%d %H:%M:%S'
+            )
+            console_handler.setFormatter(console_formatter)
+            logger.addHandler(console_handler)
+            
             # File handler
-            log_file = f"{self.base_path}/logs/enhanced_orchestrator.log"
-            os.makedirs(os.path.dirname(log_file), exist_ok=True)
-            file_handler = logging.FileHandler(log_file)
+            file_handler = logging.FileHandler(f"{self.logs_dir}/enhanced_orchestrator.log")
             file_formatter = logging.Formatter(
-                '%(asctime)s [ORCHESTRATOR] %(levelname)s: %(message)s',
+                '%(asctime)s [%(name)s] %(levelname)s: %(message)s',
                 datefmt='%Y-%m-%d %H:%M:%S'
             )
             file_handler.setFormatter(file_formatter)
             logger.addHandler(file_handler)
-            
-            # Console handler
-            console_handler = logging.StreamHandler()
-            console_formatter = logging.Formatter(
-                '%(asctime)s [ORCHESTRATOR] %(levelname)s: %(message)s',
-                datefmt='%H:%M:%S'
-            )
-            console_handler.setFormatter(console_formatter)
-            logger.addHandler(console_handler)
         
         return logger
+    
+    def _log_epoch_configuration(self):
+        """Log current epoch configuration settings."""
+        self.logger.info("Current Epoch Configuration:")
+        self.logger.info("=" * 50)
+        
+        # Neural Network model epochs
+        self.logger.info(f"Neural Network Models:")
+        self.logger.info(f"  LSTM Classic Epochs: {config.LSTM_CLASSIC_EPOCHS}")
+        self.logger.info(f"  LSTM Augmented Epochs: {config.LSTM_AUGMENTED_EPOCHS}")
+        self.logger.info(f"  MLP Classic Epochs: {config.MLP_CLASSIC_EPOCHS}")
+        self.logger.info(f"  MLP Augmented Epochs: {config.MLP_AUGMENTED_EPOCHS}")
+        
+        # Tree-based model iterations
+        self.logger.info(f"Tree-based Models:")
+        self.logger.info(f"  XGBoost Classic Iterations: {config.XGB_CLASSIC_ITERATIONS}")
+        self.logger.info(f"  XGBoost Augmented Iterations: {config.XGB_AUGMENTED_ITERATIONS}")
+        self.logger.info(f"  LightGBM Classic Iterations: {config.LGBM_CLASSIC_ITERATIONS}")
+        self.logger.info(f"  LightGBM Augmented Iterations: {config.LGBM_AUGMENTED_ITERATIONS}")
+        self.logger.info(f"  CatBoost Classic Iterations: {config.CATBOOST_CLASSIC_ITERATIONS}")
+        self.logger.info(f"  CatBoost Augmented Iterations: {config.CATBOOST_AUGMENTED_ITERATIONS}")
+        self.logger.info(f"  RandomForest Classic Estimators: {config.RF_CLASSIC_ESTIMATORS}")
+        self.logger.info(f"  RandomForest Augmented Estimators: {config.RF_AUGMENTED_ESTIMATORS}")
+        
+        # Autoencoder configuration
+        self.logger.info(f"Autoencoder Configuration:")
+        self.logger.info(f"  Max Epochs: {config.AE_MAX_EPOCHS}")
+        
+        # Detect if we're in development mode
+        if (config.LSTM_CLASSIC_EPOCHS == 1 and 
+            config.XGB_CLASSIC_ITERATIONS == 1 and 
+            config.LGBM_CLASSIC_ITERATIONS == 1):
+            self.logger.warning("⚠️  DEVELOPMENT MODE DETECTED: Using minimal epochs for quick testing")
+        else:
+            self.logger.info("✅ PRODUCTION MODE: Using full training epochs")
     
     def run_enhanced_training_pipeline(self) -> Dict[str, Any]:
         """
@@ -458,6 +499,9 @@ class EnhancedPipelineOrchestrator:
         self.logger.info("🚀 STARTING COMPLETE ENHANCED PIPELINE")
         self.logger.info("=" * 100)
         
+        # Log current epoch configuration
+        self._log_epoch_configuration()
+        
         pipeline_results = {
             'pipeline_start_time': pipeline_start_time.isoformat(),
             'stages_completed': [],
@@ -577,6 +621,9 @@ def main():
     try:
         # Initialize orchestrator
         orchestrator = EnhancedPipelineOrchestrator(base_path)
+        
+        # Log epoch configuration
+        orchestrator._log_epoch_configuration()
         
         # Run complete pipeline
         results = orchestrator.run_complete_enhanced_pipeline()

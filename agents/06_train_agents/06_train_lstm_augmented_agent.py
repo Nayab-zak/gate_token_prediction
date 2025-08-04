@@ -9,7 +9,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense
 from tensorflow.keras.callbacks import EarlyStopping
 from sklearn.preprocessing import StandardScaler
-from config import DATA_DIR, MODEL_DIR
+from config import DATA_DIR, MODEL_DIR, LSTM_AUGMENTED_EPOCHS
 
 
 def setup_logger():
@@ -41,7 +41,7 @@ def load_hyperparams():
     else:
         params = {
             'units': 50,
-            'epochs': 50,
+            'epochs': LSTM_AUGMENTED_EPOCHS,  # Use value from config.py
             'batch_size': 32,
             'patience': 10
         }

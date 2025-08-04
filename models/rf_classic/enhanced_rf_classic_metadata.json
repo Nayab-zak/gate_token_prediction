@@ -13,9 +13,9 @@
   },
   "performance_metrics": {
     "rmse_mean": 0.3482089663429558,
-    "rmse_std": 0.06163482157750955,
-    "mae_mean": 0.1621690656273313,
-    "mape_mean": 2.1651050736313286,
+    "rmse_std": 0.06163482157750956,
+    "mae_mean": 0.16216906562733152,
+    "mape_mean": 2.165105073631329,
     "r2_mean": 0.999849798955559,
     "performance_stability": "Unstable",
     "overall_performance": "Moderate"
@@ -31,7 +31,7 @@
     "production_approved": false
   },
   "training_metadata": {
-    "training_timestamp": "2025-07-31T14:27:17.012883",
+    "training_timestamp": "2025-07-31T15:12:13.817270",
     "data_leakage_prevented": true,
     "overfitting_risk": "HIGH"
   }

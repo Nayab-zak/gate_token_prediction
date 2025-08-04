@@ -17,3 +17,5 @@ statsmodels
 scipy
 joblib
 requests
+python-dotenv
+openpyxl

@@ -5,7 +5,7 @@ import json
 import pandas as pd
 import joblib
 from xgboost import XGBRegressor
-from config import DATA_DIR, MODEL_DIR
+from config import DATA_DIR, MODEL_DIR, XGB_AUGMENTED_ITERATIONS
 
 
 def setup_logger():
@@ -35,9 +35,9 @@ def load_hyperparams():
         with open(hp_path, 'r') as f:
             params = json.load(f)
     else:
-        # default hyperparameters
+        # default hyperparameters using iterations from config
         params = {
-            'n_estimators': 300,
+            'n_estimators': XGB_AUGMENTED_ITERATIONS,  # Use value from config.py
             'learning_rate': 0.1,
             'max_depth': 6,
             'subsample': 0.8,

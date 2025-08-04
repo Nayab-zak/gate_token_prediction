@@ -5,7 +5,7 @@ import pandas as pd
 import joblib
 from sklearn.neural_network import MLPRegressor
 from sklearn.preprocessing import StandardScaler
-from config import DATA_DIR, MODEL_DIR
+from config import DATA_DIR, MODEL_DIR, MLP_AUGMENTED_EPOCHS
 
 
 def setup_logger():
@@ -40,7 +40,7 @@ def load_hyperparams():
             'activation': 'relu',
             'solver': 'adam',
             'learning_rate_init': 0.001,
-            'max_iter': 200,
+            'max_iter': MLP_AUGMENTED_EPOCHS,  # Use value from config.py
             'random_state': 42
         }
     return params, model_dir

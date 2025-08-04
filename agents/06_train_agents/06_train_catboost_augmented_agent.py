@@ -4,7 +4,7 @@ import json
 import pandas as pd
 import joblib
 from catboost import CatBoostRegressor
-from config import DATA_DIR, MODEL_DIR
+from config import DATA_DIR, MODEL_DIR, CATBOOST_AUGMENTED_ITERATIONS
 
 
 def setup_logger():
@@ -34,9 +34,9 @@ def load_hyperparams():
         with open(hp_path, 'r') as f:
             params = json.load(f)
     else:
-        # default hyperparameters
+        # default hyperparameters using iterations from config
         params = {
-            'iterations': 500,
+            'iterations': CATBOOST_AUGMENTED_ITERATIONS,  # Use value from config.py
             'learning_rate': 0.1,
             'depth': 6,
             'random_seed': 42,
