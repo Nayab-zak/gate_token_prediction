@@ -110,3 +110,23 @@ models/*/.gitkeep
 !telegraf.conf
 !manage.sh
 !*.md
+
+# Exclude additional unnecessary files
+*.csv
+*.tsv
+*.json
+*.pkl
+*.h5
+*.ckpt
+*.npy
+*.npz
+*.sav
+*.joblib
+
+# Allow README.md files in ignored directories
+!data/**/README.md
+!logs/**/README.md
+!models/**/README.md
+!pipeline_results/**/README.md
+!test_reports/**/README.md
+!validation_reports/**/README.md
