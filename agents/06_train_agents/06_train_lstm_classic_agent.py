@@ -108,7 +108,23 @@ def main():
         LSTM(params['units'], input_shape=(1, X_train_scaled.shape[1])),
         Dense(1)
     ])
-    model.compile(optimizer='adam', loss=tf.keras.losses.MeanSquaredError(), metrics=['mae', 'mse'])
+    
+    # Add gradient clipping to the optimizer
+    optimizer = tf.keras.optimizers.Adam(clipnorm=1.0)
+    model.compile(optimizer=optimizer, loss=tf.keras.losses.MeanSquaredError(), metrics=['mae', 'mse'])
+
+    # Check for GPU compatibility and log GPU details
+    gpus = tf.config.list_physical_devices('GPU')
+    if gpus:
+        logger.info(f"Num GPUs Available: {len(gpus)}")
+        try:
+            from tensorflow.keras import mixed_precision
+            mixed_precision.set_global_policy('mixed_float16')
+            logger.info("Enabled mixed precision for faster training.")
+        except Exception as e:
+            logger.warning(f"Could not set mixed precision: {e}")
+    else:
+        logger.warning("No GPU detected. Training will use CPU.")
 
     # Use early stopping with the explicit validation data
     early_stop = EarlyStopping(monitor='val_loss', patience=params['patience'], restore_best_weights=True)
@@ -149,19 +165,6 @@ def main():
 
     save_model_and_params(model, params, model_dir, logger, metrics)
     logger.info("LSTM training completed successfully with validation metrics.")
-
-    # Check for GPU and enable mixed precision for TensorFlow
-    gpus = tf.config.list_physical_devices('GPU')
-    if gpus:
-        print(f"Num GPUs Available: {len(gpus)}")
-        try:
-            from tensorflow.keras import mixed_precision
-            mixed_precision.set_global_policy('mixed_float16')
-            print("Enabled mixed precision for faster training.")
-        except Exception as e:
-            print(f"Could not set mixed precision: {e}")
-    else:
-        print("No GPU detected. Training will use CPU.")
 
 
 if __name__ == '__main__':

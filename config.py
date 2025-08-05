@@ -95,4 +95,4 @@ DEFAULT_HYPERPARAMS = {
 }
 
 # Flag to control whether to use hyperparameters from JSON or config.py
-USE_HYPERPARAMS_FROM_JSON = False
+USE_HYPERPARAMS_FROM_JSON = True

@@ -82,8 +82,18 @@ train_all)
         exit 1
     fi
     
-    # models=(rf_classic rf_augmented xgb_classic xgb_augmented catboost_classic catboost_augmented lgbm_classic lgbm_augmented mlp_classic mlp_augmented lstm_classic lstm_augmented)
-    models=(xgb_classic xgb_augmented catboost_classic catboost_augmented mlp_classic mlp_augmented lstm_classic lstm_augmented rf_classic rf_augmented)
+    # Ask if LSTM models should be skipped
+    read -p "Skip LSTM models to avoid CUDA errors? (Y/n): " -n 1 -r skip_lstm
+    echo
+    
+    # Default to YES for skipping LSTMs
+    if [[ ! $skip_lstm =~ ^[Nn]$ ]]; then
+        echo "⏩ Skipping LSTM models to avoid CUDA errors."
+        models=(xgb_classic xgb_augmented catboost_classic catboost_augmented mlp_classic mlp_augmented rf_classic rf_augmented)
+    else
+        echo "⚠️  Including LSTM models - may encounter CUDA errors."
+        models=(xgb_classic xgb_augmented catboost_classic catboost_augmented mlp_classic mlp_augmented lstm_classic lstm_augmented rf_classic rf_augmented)
+    fi
     
     total=${#models[@]}
     for i in "${!models[@]}"; do
@@ -101,8 +111,19 @@ enhanced_train_all)
     echo "📋 Using proven manage.sh infrastructure with enhanced validation"
     echo ""
     
-    # Use the working manage.sh approach but with temporal validation
-    models=(rf_classic rf_augmented xgb_classic xgb_augmented catboost_classic catboost_augmented lgbm_classic lgbm_augmented mlp_classic mlp_augmented lstm_classic lstm_augmented)
+    # Ask if LSTM models should be skipped
+    read -p "Skip LSTM models to avoid CUDA errors? (Y/n): " -n 1 -r skip_lstm
+    echo
+    
+    # Default to YES for skipping LSTMs
+    if [[ ! $skip_lstm =~ ^[Nn]$ ]]; then
+        echo "⏩ Skipping LSTM models to avoid CUDA errors."
+        models=(rf_classic rf_augmented xgb_classic xgb_augmented catboost_classic catboost_augmented mlp_classic mlp_augmented)
+    else
+        echo "⚠️  Including LSTM models - may encounter CUDA errors."
+        models=(rf_classic rf_augmented xgb_classic xgb_augmented catboost_classic catboost_augmented mlp_classic mlp_augmented lstm_classic lstm_augmented)
+    fi
+    
     total=${#models[@]}
     successful=0
     failed=0
@@ -167,7 +188,23 @@ lstm_augmented)  python agents/07_test_agents/07_test_lstm_augmented_agent.py ;;
 esac
 ;;
 test_all)
-for m in rf_classic rf_augmented xgb_classic xgb_augmented catboost_classic catboost_augmented lgbm_classic lgbm_augmented mlp_classic mlp_augmented lstm_classic lstm_augmented; do
+# Ask if LSTM models should be skipped
+read -p "Skip LSTM models to avoid CUDA errors? (Y/n): " -n 1 -r skip_lstm
+echo
+
+# Default to YES for skipping LSTMs
+if [[ ! $skip_lstm =~ ^[Nn]$ ]]; then
+    echo "⏩ Skipping LSTM models to avoid CUDA errors."
+    models=(rf_classic rf_augmented xgb_classic xgb_augmented catboost_classic catboost_augmented mlp_classic mlp_augmented)
+else
+    echo "⚠️  Including LSTM models - may encounter CUDA errors."
+    models=(rf_classic rf_augmented xgb_classic xgb_augmented catboost_classic catboost_augmented mlp_classic mlp_augmented lstm_classic lstm_augmented)
+fi
+
+total=${#models[@]}
+for i in "${!models[@]}"; do
+    m=${models[$i]}
+    echo "[$((i+1))/$total] Testing $m..."
     bash "$0" test $m
 done
 ;;
@@ -178,10 +215,23 @@ predict)
 python agents/10_real_time_prediction_agent.py
 ;;
 dashboard_dev)
-dashboard_data_dir="$(dirname "$0")/data/dashboard_data"
-rm -f "$dashboard_data_dir"/*.csv
-python utils/round_predictions_and_metrics.py
-streamlit run dashboards/test_results_dashboard/app.py --server.port 8501
+    echo "🚀 Setting up Enhanced Development Dashboard"
+    echo "📊 Processing model metrics and predictions..."
+    dashboard_data_dir="$(dirname "$0")/data/dashboard_data"
+    # Ensure directory exists
+    mkdir -p "$dashboard_data_dir"
+    
+    # Clear existing CSVs to prevent stale data
+    rm -f "$dashboard_data_dir"/*.csv
+    
+    # Process predictions and calculate metrics
+    python utils/round_predictions_and_metrics.py
+    
+    # Update/create dashboard components
+    echo "📈 Launching interactive model evaluation dashboard..."
+    
+    # Launch Streamlit app
+    streamlit run dashboards/test_results_dashboard/app.py --server.port 8501
 ;;
 dashboard_realtime)
 streamlit run dashboards/realtime_prediction_dashboard/app.py --server.port 8502
@@ -197,12 +247,75 @@ epochs)
         *)      echo "Usage: manage.sh epochs {dev|prod|status}" ;;
     esac
     ;;
+train_lstm_cpu)
+echo "🖥️  Running LSTM training with CPU-only mode (no CUDA)"
+echo "⚠️  This might be slower but avoids CUDA/GPU errors"
+echo ""
+
+# Create a new CPU-only training script
+CPU_SCRIPT="utils/train_lstm_cpu_only.py"
+cat > "$CPU_SCRIPT" << EOF
+import os
+# Force CPU only mode
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
+import sys
+import subprocess
+import logging
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger('train_lstm_cpu_only')
+
+def run_command(cmd):
+    logger.info(f"Running: {cmd}")
+    process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    stdout, stderr = process.communicate()
+    
+    if process.returncode != 0:
+        logger.error(f"Command failed with return code {process.returncode}")
+        logger.error(f"Error output: {stderr}")
+        return False
+    
+    logger.info(f"Command output: {stdout}")
+    return True
+
+if __name__ == '__main__':
+    logger.info("Starting LSTM training with CPU-only mode")
+    
+    # Train LSTM Classic model
+    logger.info("Training LSTM Classic model")
+    success = run_command("python agents/06_train_agents/06_train_lstm_classic_agent.py")
+    
+    if success:
+        # Train LSTM Augmented model
+        logger.info("Training LSTM Augmented model")
+        success = run_command("python agents/06_train_agents/06_train_lstm_augmented_agent.py")
+    
+    if success:
+        logger.info("✅ LSTM training completed successfully in CPU-only mode")
+    else:
+        logger.error("❌ LSTM training failed")
+        sys.exit(1)
+EOF
+
+# Set environment variables to force CPU-only for this session
+export CUDA_VISIBLE_DEVICES="-1"
+export TF_CPP_MIN_LOG_LEVEL="2"
+
+# Run the CPU-only training script
+echo "🏁 Starting LSTM training with CPU-only mode..."
+python "$CPU_SCRIPT"
+echo "✅ LSTM training script execution completed"
+;;
+
 *)
-echo "Usage: manage.sh {ingest|validate_config|preprocess|split|feature_engineering|encode_data|prepare_features|train <model_pipeline>|train_all|enhanced_train_all|enhanced_pipeline|test <model_pipeline>|test_all|select_champion|predict|dashboard_dev|dashboard_realtime|eda_dashboard|epochs <dev|prod|status>}"
+echo "Usage: manage.sh {ingest|validate_config|preprocess|split|feature_engineering|encode_data|prepare_features|train <model_pipeline>|train_all|enhanced_train_all|enhanced_pipeline|test <model_pipeline>|test_all|select_champion|predict|dashboard_dev|dashboard_realtime|eda_dashboard|epochs <dev|prod|status>|train_lstm_cpu}"
 echo ""
 echo "🔴 DEPRECATED: train_all (uses risky random validation)"
 echo "🟢 DEFAULT: training agents now use proper validation data with temporal splits"
-echo "🚀 FULL PIPELINE: enhanced_pipeline (complete production workflow)"
+echo "🚀 FULL PIPELINE: enhanced_pipeline (complete production workflow)" 
 echo "⚙️  EPOCHS CONFIG: epochs {dev|prod|status} (manage training intensity)"
+echo "🖥️  LSTM CPU MODE: train_lstm_cpu (train LSTM models with CPU-only to avoid CUDA errors)"
 ;;
 esac
