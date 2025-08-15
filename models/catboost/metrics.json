@@ -1,0 +1,46 @@
+{
+  "params": {
+    "loss_function": "Poisson",
+    "eval_metric": "RMSE",
+    "learning_rate": 0.05,
+    "iterations": 2000,
+    "depth": 8,
+    "l2_leaf_reg": 3.0,
+    "random_seed": 42,
+    "task_type": "CPU",
+    "bootstrap_type": "MVS",
+    "early_stopping_rounds": 100,
+    "verbose": 100
+  },
+  "metrics": {
+    "train": {
+      "RMSE": 0.6161782866604824,
+      "MAE": 0.4269410775399406,
+      "WAPE": 0.01088596845220265,
+      "SMAPE": 0.02372146416690873
+    },
+    "valid": {
+      "RMSE": 0.5785247276455017,
+      "MAE": 0.41131565530133873,
+      "WAPE": 0.011082323154235027,
+      "SMAPE": 0.020394703526263287
+    },
+    "test": {
+      "RMSE": 0.5865852034499186,
+      "MAE": 0.4222461918916805,
+      "WAPE": 0.01125525993123148,
+      "SMAPE": 0.01932892636218024
+    }
+  },
+  "train_rows": 810932,
+  "valid_rows": 59658,
+  "test_rows": 44906,
+  "horizon_hours": 1,
+  "cat_features": [
+    "TerminalID",
+    "MoveType",
+    "Desig"
+  ],
+  "target_column_train": "TokenCount",
+  "target_column_valid": "TokenCount"
+}
