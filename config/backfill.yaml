@@ -1,0 +1,36 @@
+# Automated Backfill Configuration
+# This can be used with cron/Task Scheduler for automated backfilling
+
+backfill:
+  # How often to run backfill (in hours)
+  frequency_hours: 6
+  
+  # How many days back to look for predictions needing actuals
+  lookback_days: 7
+  
+  # Source table containing actual values (update this to your actual source)
+  source_table: "your_actual_data_table"
+  
+  # Minimum delay before considering a prediction ready for backfill
+  # (e.g., wait at least 2 hours after prediction time before trying to backfill)
+  min_delay_hours: 2
+  
+  # Email notifications for backfill results (optional)
+  notifications:
+    enabled: false
+    email: "your-email@company.com"
+    
+accuracy_monitoring:
+  # How often to compute accuracy metrics (in hours)  
+  frequency_hours: 24
+  
+  # How many days of data to include in accuracy analysis
+  analysis_window_days: 30
+  
+  # Thresholds for alerting on model degradation
+  thresholds:
+    mae_threshold: 10.0  # Alert if MAE exceeds this
+    rmse_threshold: 15.0  # Alert if RMSE exceeds this
+    
+  # Performance comparison with expected model CV metrics
+  compare_with_cv: true

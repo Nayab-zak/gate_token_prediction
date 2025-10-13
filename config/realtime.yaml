@@ -1,0 +1,23 @@
+sink_contract:
+  columns:
+    MoveDate: DATE
+    MoveHour: INT
+    MoveType: VARCHAR(64)
+    TerminalID: VARCHAR(64)
+    Desig: VARCHAR(64)
+    TokenCount_actual: FLOAT
+    TokenCount_pred: FLOAT
+    primary_metric_value: FLOAT
+    prediction_ts_utc: TIMESTAMP
+    model_name: VARCHAR(64)
+    model_version: VARCHAR(64)
+    data_hash: VARCHAR(64)
+    feature_hash: VARCHAR(64)
+    inference_runtime_ms: INT
+    confidence_or_pred_interval_low: FLOAT
+    confidence_or_pred_interval_high: FLOAT
+    SUR_GKEY: INT
+    BI_CREATED: TIMESTAMP
+    BI_UPDATED: TIMESTAMP
+    BI_BATCH_ID: VARCHAR(64)
+  additional: []

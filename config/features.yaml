@@ -1,0 +1,38 @@
+required_columns:
+  - MoveDate
+  - MoveHour
+  - MoveType
+  - TerminalID
+  - Desig
+  - TokenCount
+
+entity_keys: ["TerminalID", "Desig", "MoveType"]
+timestamp_keys:
+  date_col: "MoveDate"
+  hour_col: "MoveHour"
+
+target: "TokenCount"
+
+lag_features:
+  - name: "lag_1h"
+    hours: 1    # Will become lag_7h (1+6) for 6-hour prediction
+  - name: "lag_6h" 
+    hours: 6    # Will become lag_12h (6+6) for 6-hour prediction
+  - name: "lag_24h"
+    hours: 24   # Will become lag_30h (24+6) for 6-hour prediction
+
+rolling_features:
+  - name: "roll_mean_24h"
+    window_hours: 24
+    agg: "mean"
+  - name: "roll_std_24h"
+    window_hours: 24
+    agg: "std"
+  - name: "roll_mean_48h"  # Add longer window for 6-hour prediction
+    window_hours: 48
+    agg: "mean"
+
+calendar_features: true
+holidays:
+  enabled: false
+  country_code: "AE"

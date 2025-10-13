@@ -1,0 +1,59 @@
+seed: 42
+timezone: ${env:TIMEZONE,Asia/Dubai}
+data_start_date: ${env:DATA_START_DATE,auto}
+artifact_dir: artifacts
+parallel_jobs: 4
+dry_run: false
+
+# Prediction frequency in hours - how often predictions are made and how far ahead to predict
+# IMPORTANT: This value is used both for prediction frequency AND as the training horizon
+# The model will be trained to predict this many hours into the future
+prediction_frequency_hours: ${env:PREDICTION_FREQUENCY_HOURS,6}
+
+logging:
+  level: INFO
+  json: true
+  base_log_dir: logs
+  max_bytes: 10485760
+  backup_count: 5
+  # Component-specific logging levels (optional overrides)
+  components:
+    db: INFO
+    cli: INFO
+    model: INFO
+    pipeline: INFO
+    data: DEBUG
+    error: ERROR
+
+splits:
+  cv_folds: 4
+  backtest_folds: 4
+  min_train_days: 90
+  fold_stride_hours: 168
+
+hpo:
+  n_trials: 20
+  timeout_sec: 900
+  sampler: tpe
+  pruner: median
+
+models:
+  candidates: ["lightgbm", "xgboost", "catboost", "elasticnet"]
+
+eval:
+  metrics: ["MAE", "RMSE", "MAPE", "sMAPE", "P50", "P90"]
+  primary_metric: "MAE"
+  lower_is_better: true
+
+intervals:
+  method: "quantile"   # "quantile" or "conformal"
+  quantiles: [0.1, 0.9]
+
+realtime:
+  dev_schema: DPW_DL
+  dev_table: T_DA_PRED_GATE_TOKEN
+  upsert_keys: ["MoveDate","MoveHour","MoveType","TerminalID","Desig"]
+  chunk_size: 5000
+  write_mode: upsert
+  feature_history_hours: 96  # Increased to 96 hours (4 days) to ensure enough history for all features
+  # predict_horizon_hours is now controlled by prediction_frequency_hours

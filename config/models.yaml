@@ -1,0 +1,21 @@
+lightgbm:
+  params_space:
+    n_estimators: [200, 800]
+    learning_rate: [0.01, 0.2]
+    num_leaves: [31, 255]
+    max_depth: [3, 12]
+xgboost:
+  params_space:
+    n_estimators: [200, 800]
+    learning_rate: [0.01, 0.2]
+    max_depth: [3, 12]
+    subsample: [0.6, 1.0]
+catboost:
+  params_space:
+    depth: [4, 10]
+    learning_rate: [0.01, 0.2]
+    iterations: [300, 1000]
+elasticnet:
+  params_space:
+    alpha: [0.0001, 1.0]
+    l1_ratio: [0.0, 1.0]

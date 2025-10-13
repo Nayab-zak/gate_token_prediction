@@ -1,0 +1,13 @@
+prod:
+  host: ${env:VERTICA_PROD_HOST}
+  port: ${env:VERTICA_PROD_PORT,5433}
+  database: ${env:VERTICA_PROD_DB}
+  user: ${env:VERTICA_PROD_USER}
+  password: ${env:VERTICA_PROD_PASSWORD}
+
+dev:
+  host: ${env:VERTICA_DEV_HOST}
+  port: ${env:VERTICA_DEV_PORT,5433}
+  database: ${env:VERTICA_DEV_DB}
+  user: ${env:VERTICA_DEV_USER}
+  password: ${env:VERTICA_DEV_PASSWORD}

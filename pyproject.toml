@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dpw-vertica-hourly-token"
+version = "1.2.0"
+description = "Leakage-safe hourly token prediction for DPW on Vertica (consolidated)"
+requires-python = ">=3.11"
+readme = "README.md"
+authors = [{name="DPW AI"}]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
